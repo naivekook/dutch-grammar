@@ -36,7 +36,15 @@ expl:`<h3>Onderwerpen (Subjects)</h3>
 <tr><td>ik</td><td>ben</td><td>heb</td><td>ga</td></tr>
 <tr><td>jij/u/hij/zij/het</td><td>is / bent(u)</td><td>hebt / heeft</td><td>gaat</td></tr>
 <tr><td>wij/jullie/zij</td><td>zijn</td><td>hebben</td><td>gaan</td></tr>
-</tbody></table>`,
+</tbody></table>
+<h3 style="margin-top:14px">Beklemtoonde vs Onbeklemtoonde vormen</h3>
+<p>Most personal pronouns have two forms: a <strong>stressed</strong> (full) form and an <strong>unstressed</strong> (weak) form. Use the stressed form when you want to <em>emphasise</em> who you mean.</p>
+<table class="gt"><thead><tr><th>Stressed (full)</th><th>Unstressed (weak)</th><th>When to use stressed</th></tr></thead><tbody>
+<tr><td class="hl">jij</td><td>je</td><td>Emphasis: <em>Jij</em> doet dat, niet ik.</td></tr>
+<tr><td class="hl">wij</td><td>we</td><td><em>Wij</em> gaan naar Utrecht, niet zij.</td></tr>
+<tr><td class="hl">zij (she/they)</td><td>ze</td><td><em>Zij</em> weet het, maar ze zegt het niet.</td></tr>
+</tbody></table>
+<div class="tip"><strong>In daily speech</strong> the unstressed forms (je, we, ze) are used most often. Stressed forms (jij, wij, zij) appear when you want to emphasise or contrast: <em>Ga <strong>jij</strong> morgen naar school?</em></div>`,
 exercises:[
 {id:"1-1",type:"mc",question:"Kies de juiste vorm: Johan ___ samen met zijn vriend Bas.",
 opts:["speel","speelt","spelen","speelden"],ans:enc("speelt"),
@@ -74,6 +82,30 @@ expl:`<h3>Telwoorden — Numbers</h3>
 <tr><td>Wat is je nationaliteit?</td><td>What is your nationality?</td></tr>
 <tr><td>Goedemorgen / Goedemiddag / Goedenavond</td><td>Good morning / afternoon / evening</td></tr>
 <tr><td>Tot ziens / Tot straks / Tot morgen</td><td>Goodbye / See you soon / See you tomorrow</td></tr>
+</tbody></table>
+<h3 style="margin-top:14px">Grote Getallen — Larger Numbers</h3>
+<div class="wlist">
+<div class="wi"><span class="wnl">100</span><span class="wen">honderd</span></div>
+<div class="wi"><span class="wnl">101</span><span class="wen">honderdeen</span></div>
+<div class="wi"><span class="wnl">200</span><span class="wen">tweehonderd</span></div>
+<div class="wi"><span class="wnl">365</span><span class="wen">driehonderdvijfenzestig</span></div>
+<div class="wi"><span class="wnl">1.000</span><span class="wen">duizend</span></div>
+<div class="wi"><span class="wnl">1.010</span><span class="wen">duizendtien</span></div>
+<div class="wi"><span class="wnl">2.000</span><span class="wen">tweeduizend</span></div>
+<div class="wi"><span class="wnl">10.000</span><span class="wen">tienduizend</span></div>
+<div class="wi"><span class="wnl">100.000</span><span class="wen">honderdduizend</span></div>
+<div class="wi"><span class="wnl">1.000.000</span><span class="wen">een miljoen</span></div>
+</div>
+<div class="rule"><strong>Note:</strong> Dutch uses a period (.) as thousands separator and a comma (,) as decimal separator — the opposite of English.<br>€ 3,25 = three euros twenty-five cents.</div>
+<h3 style="margin-top:14px">Hoe gaat het? — Expressing how you feel</h3>
+<table class="gt"><thead><tr><th>Expression</th><th>Meaning / level</th></tr></thead><tbody>
+<tr><td class="hl">Prima!</td><td>Great! (very positive)</td></tr>
+<tr><td class="hl">Heel goed!</td><td>Very good!</td></tr>
+<tr><td class="hl">Goed.</td><td>Good.</td></tr>
+<tr><td class="hl">Het gaat wel.</td><td>It's alright / so-so.</td></tr>
+<tr><td class="hl">Niet zo goed.</td><td>Not so good.</td></tr>
+<tr><td class="hl">Slecht.</td><td>Bad.</td></tr>
+<tr><td class="hl">Ik ben verkouden.</td><td>I have a cold.</td></tr>
 </tbody></table>`,
 exercises:[
 {id:"2-1",type:"mc",question:"Hoe zeg je 45 in het Nederlands?",
@@ -121,7 +153,17 @@ expl:`<h3>Zinstructuur — Sentence Structure</h3>
 <div class="wi"><span class="wnl">Welk / Welke</span><span class="wen">which (het / de word)</span></div>
 </div>
 <div class="tip"><strong>Welk vs Welke:</strong> Use <strong>welk</strong> before het-words, <strong>welke</strong> before de-words.<br>
-e.g. <em>Welk nummer?</em> (het nummer) vs <em>Welke taart?</em> (de taart)</div>`,
+e.g. <em>Welk nummer?</em> (het nummer) vs <em>Welke taart?</em> (de taart)</div>
+<h3 style="margin-top:14px">Het "Raam" — The Sentence Frame</h3>
+<p>Think of a Dutch sentence as a <strong>frame</strong>: the finite verb is always locked at <strong>position 2</strong>, and any second verb (infinitive/perfectum) is pinned to the <strong>end</strong>. Everything else fills the middle.</p>
+<div class="exbox"><div class="exlbl">The frame — persoonsvorm + infinitief</div>
+<div class="exrow">
+<span class="exnl">Ik | moet | vandaag op kantoor | werken.</span><span class="exen">subject · verb (pos.2) · middle · infinitive (end)</span>
+<span class="exnl">Wij | gaan | morgen naar Amsterdam | wandelen.</span><span class="exen">gaan (pos.2) — wandelen (end)</span>
+</div></div>
+<div class="rule"><strong>Two-verb rule:</strong> In every Dutch clause, the conjugated verb comes at position 2. A second verb (infinitive with modal, or perfectum) goes to the very end.<br>
+<em>Ik <strong>wil</strong> een kopje koffie <strong>drinken</strong>.</em><br>
+<em>Ik <strong>heb</strong> gisteren veel <strong>gewerkt</strong>.</em></div>`,
 exercises:[
 {id:"3-1",type:"fill",question:"Vul het juiste vraagwoord in: ___ heet jouw broer?",
 ans:enc("Hoe"),exp:"Hoe heet = What is … called? (asking for a name). Answer: mijn broer heet Ricardo."},
@@ -262,7 +304,28 @@ expl:`<h3>De-woorden en Het-woorden</h3>
 <tr><td>Suffix -uur: <em>de cultuur</em></td><td>Suffix -isme/-ment/-sel/-um: <em>het abonnement</em></td></tr>
 <tr><td>Trees, plants: <em>de roos, de eik</em></td><td></td></tr>
 </tbody></table>
-<div class="tip"><strong>Tip:</strong> When in doubt: most words are <strong>de</strong>-words. About 75% of Dutch nouns use <em>de</em>.</div>`,
+<div class="tip"><strong>Tip:</strong> When in doubt: most words are <strong>de</strong>-words. About 75% of Dutch nouns use <em>de</em>.</div>
+<h3 style="margin-top:14px">Extra hints voor de/het</h3>
+<table class="gt"><thead><tr><th>Extra DE hints</th><th>Extra HET hints</th></tr></thead><tbody>
+<tr><td>Dates / birthdays: <em>de geboortedatum</em></td><td>Two-syllable words with prefix ge-/be-: <em>het gesprek, het bezoek</em></td></tr>
+<tr><td>Most animals: <em>de hond, de kat, de vis</em></td><td>Infinitives used as nouns: <em>het werken, het lopen</em></td></tr>
+<tr><td>Body parts: <em>de hand, de arm, de rug</em></td><td>All colours as nouns: <em>het rood, het groen</em></td></tr>
+</tbody></table>
+<h3 style="margin-top:14px">Meervoud Spellingregels — Plural Spelling Rules</h3>
+<p>When adding <strong>-en</strong> to form a plural, the spelling of the stem may change to preserve the original vowel sound.</p>
+<table class="gt"><thead><tr><th>Rule</th><th>Singular</th><th>Plural</th><th>Why</th></tr></thead><tbody>
+<tr><td>Long vowel in closed syllable → double vowel drops</td><td>maan</td><td>manen</td><td>ma-nen (open syllable) stays long</td></tr>
+<tr><td>Short vowel → double consonant</td><td>man</td><td>mannen</td><td>man-nen: closed syllable keeps vowel short</td></tr>
+<tr><td>Final -s → -z before -en</td><td>huis</td><td>huizen</td><td>huis → huizen (voiced before vowel)</td></tr>
+<tr><td>Final -f → -v before -en</td><td>brief</td><td>brieven</td><td>brief → brieven</td></tr>
+</tbody></table>
+<div class="exbox"><div class="exlbl">Examples</div>
+<div class="exrow">
+<span class="exnl">maan → manen (not maanen)</span><span class="exen">long aa becomes a in open syllable</span>
+<span class="exnl">man → mannen (not manen)</span><span class="exen">short a — double n to keep closed syllable</span>
+<span class="exnl">huis → huizen</span><span class="exen">s → z before -en</span>
+<span class="exnl">brief → brieven</span><span class="exen">f → v before -en</span>
+</div></div>`,
 exercises:[
 {id:"7-1",type:"mc",question:"Welk lidwoord hoort bij 'meisje' (verkleinwoord)?",
 opts:["de meisje","het meisje","een meisje or het meisje","both de and het"],
@@ -377,7 +440,26 @@ expl:`<h3>Modale werkwoorden</h3>
 <span class="exnl">Zullen we naar de dierentuin gaan?</span><span class="exen">Shall we go to the zoo? (proposal)</span>
 </div></div>
 <div class="tip"><strong>Word order:</strong> The modal verb stays at position 2; the main infinitive goes to the <strong>end</strong> of the sentence.<br>
-<em>Ik wil graag twee koffie <strong>bestellen</strong>.</em></div>`,
+<em>Ik wil graag twee koffie <strong>bestellen</strong>.</em></div>
+<h3 style="margin-top:14px">Moeten niet vs Hoeft niet (meer)</h3>
+<p>The negative forms of <strong>moeten</strong> have different meanings depending on which word you use:</p>
+<table class="gt"><thead><tr><th>Form</th><th>Meaning</th><th>Example</th></tr></thead><tbody>
+<tr><td class="hl">moet niet</td><td>must not / shouldn't (advice/warning)</td><td>Je moet niet roken. (You shouldn't smoke.)</td></tr>
+<tr><td class="hl">hoeft niet</td><td>don't need to / it's not necessary</td><td>Je hoeft niet te betalen. (You don't need to pay.)</td></tr>
+<tr><td class="hl">hoeft niet meer</td><td>no longer need to (stopped being necessary)</td><td>Je hoeft niet meer te wachten. (You no longer need to wait.)</td></tr>
+</tbody></table>
+<div class="rule"><strong>Key distinction:</strong><br>
+• <em>moet niet</em> = prohibition or strong advice against<br>
+• <em>hoeft niet</em> = no obligation (it's optional / not required)<br>
+Example: <em>Je moet niet stelen.</em> (You must not steal.) vs <em>Je hoeft niet te helpen.</em> (You don't have to help.)</div>
+<div class="exbox"><div class="exlbl">Full modal verb conjugation table</div>
+<table class="gt" style="font-size:.78rem"><thead><tr><th>Subject</th><th>kunnen</th><th>willen</th><th>moeten</th><th>mogen</th><th>zullen</th></tr></thead><tbody>
+<tr><td>ik</td><td>kan</td><td>wil</td><td>moet</td><td>mag</td><td>zal</td></tr>
+<tr><td>jij / u</td><td>kunt / kan</td><td>wilt / wil</td><td>moet</td><td>mag</td><td>zult / zal</td></tr>
+<tr><td>hij / zij / het</td><td>kan</td><td>wil</td><td>moet</td><td>mag</td><td>zal</td></tr>
+<tr><td>wij / jullie / zij</td><td>kunnen</td><td>willen</td><td>moeten</td><td>mogen</td><td>zullen</td></tr>
+</tbody></table>
+</div>`,
 exercises:[
 {id:"10-1",type:"mc",question:"'Beste studenten, jullie ___ samenwerken.' (are allowed to)",
 opts:["moeten","willen","mogen","kunnen"],ans:enc("mogen"),
@@ -813,6 +895,281 @@ ans:enc("zodat"),exp:"'Zodat ik nieuwe woorden leer.' Zodat = so that (expresses
 {id:"22-5",type:"mc",question:"Welk voegwoord kan NOOIT een zin beginnen?",
 opts:["omdat","hoewel","als","zodat"],ans:enc("zodat"),
 exp:"Zodat expresses a result — it can never start a sentence because you cannot begin with the consequence."},
+]},
+
+
+/* ─── LESSON 23 ─────────────────────────────────── */
+{id:23, title:"Fonetiek & Uitspraak", icon:"🔊",
+expl:`<h3>Klinkers — Korte en Lange Klanken</h3>
+<p>Dutch vowels come in <strong>short</strong> (one letter) and <strong>long</strong> (two letters) pairs. Long vowels are written double in <em>closed syllables</em> (ending in consonant), but single in <em>open syllables</em>.</p>
+<table class="gt"><thead><tr><th>Short</th><th>Long</th><th>Short example</th><th>Long example</th></tr></thead><tbody>
+<tr><td class="hl">[a]</td><td class="hl">[aa]</td><td>man, tak</td><td>naam, taak</td></tr>
+<tr><td class="hl">[e]</td><td class="hl">[ee]</td><td>bed, bek</td><td>meer, been</td></tr>
+<tr><td class="hl">[o]</td><td class="hl">[oo]</td><td>bot, pot</td><td>boot, roos</td></tr>
+<tr><td class="hl">[u]</td><td class="hl">[uu]</td><td>cultuur (borrowed)</td><td>uur, vuur</td></tr>
+<tr><td class="hl">[i]</td><td class="hl">[ie]</td><td>pit, bit</td><td>niet, brief</td></tr>
+</tbody></table>
+<div class="rule"><strong>Open vs Closed syllable:</strong><br>
+• <strong>Open syllable</strong> (ends with vowel) → long sound, written once: <em>wo-nen</em> (first syllable "wo" is open → long o)<br>
+• <strong>Closed syllable</strong> (ends with consonant) → short sound: <em>woon</em> (double oo to show it's long in a closed syllable)</div>
+<div class="exbox"><div class="exlbl">Examples</div>
+<div class="exrow">
+<span class="exnl">man → mannen</span><span class="exen">short a (closed syllable)</span>
+<span class="exnl">naam → namen</span><span class="exen">long a → single a when open: na-men</span>
+<span class="exnl">wonen (wo-nen)</span><span class="exen">open syllable "wo" → sounds long</span>
+<span class="exnl">woon (closed)</span><span class="exen">double oo to keep the long sound</span>
+</div></div>
+<h3 style="margin-top:14px">Tweeklanken (Diphthongs)</h3>
+<table class="gt"><thead><tr><th>Spelling</th><th>Sound (approx.)</th><th>Examples</th></tr></thead><tbody>
+<tr><td class="hl">ei / ij</td><td>like "ay" in "say"</td><td>klein, trein, zijn, rijden</td></tr>
+<tr><td class="hl">ui</td><td>no English equiv. — lips forward + "ow"</td><td>huis, buiten,uit</td></tr>
+<tr><td class="hl">au / auw / ou / ouw</td><td>like "ow" in "cow"</td><td>blauw, koud, oud, goud</td></tr>
+</tbody></table>
+<div class="tip"><strong>ei vs ij:</strong> Same pronunciation, different spelling. You must memorise which words use which spelling: <em>klein</em> (ei) vs <em>zijn</em> (ij).</div>
+<h3 style="margin-top:14px">Digrafen (Digraphs — two letters, one sound)</h3>
+<table class="gt"><thead><tr><th>Spelling</th><th>Sound</th><th>Examples</th></tr></thead><tbody>
+<tr><td class="hl">oe</td><td>like "oo" in "food"</td><td>boek, moeder, hoe, broer</td></tr>
+<tr><td class="hl">eu</td><td>like French "eu" — round lips, say "e"</td><td>deur, neus, leuk, negen</td></tr>
+</tbody></table>
+<h3 style="margin-top:14px">De letter "e" — drie varianten</h3>
+<div class="exbox"><div class="exlbl">Three ways to pronounce "e"</div>
+<div class="exrow">
+<span class="exnl">1. Korte e (short): bed, zes, met</span><span class="exen">like "e" in "bed"</span>
+<span class="exnl">2. Lange ee (long): meer, heel, de week</span><span class="exen">like "ay" but without the glide</span>
+<span class="exnl">3. Sjwa / zwakke e: de, een, worden</span><span class="exen">unstressed schwa "ə", like "a" in "about"</span>
+</div></div>
+<h3 style="margin-top:14px">Medeklinkers — Selected Consonants</h3>
+<div class="exbox"><div class="exlbl">s / z — spelling vs sound</div>
+<p style="font-size:.85rem">At the <strong>end</strong> of a word, always spell with <strong>s</strong> (never z): <em>ijs, huis, reis</em>. The letters <strong>f and v</strong> follow the same pattern: always <em>f</em> at end → <em>brief, actief</em>.</p></div>
+<div class="exbox"><div class="exlbl">ng — single sound</div>
+<p style="font-size:.85rem">The letters <strong>ng</strong> together are one sound (like "ng" in "sing"): <em>koningin, lang, zingen</em>. The "g" is NOT pronounced separately.</p></div>`,
+exercises:[
+{id:"23-1",type:"mc",question:"Welk woord heeft een LANGE klinker?",
+opts:["man","tak","naam","pak"],ans:enc("naam"),
+exp:"'naam' has aa = long vowel. man/tak/pak all have short 'a'."},
+{id:"23-2",type:"mc",question:"Welk woord heeft een KORTE klinker?",
+opts:["boot","roos","bot","rood"],ans:enc("bot"),
+exp:"'bot' has a short 'o' (closed syllable, single letter). boot/roos/rood all have long 'oo'."},
+{id:"23-3",type:"mc",question:"De letters 'oe' in het woord 'boek' klinken als:",
+opts:["oe in 'poet' (Engels)","oo in 'food' (Engels)","ue in 'blue' (Engels)","oi in 'oil' (Engels)"],
+ans:enc("oo in 'food' (Engels)"),
+exp:"Dutch 'oe' sounds like the English 'oo' in 'food'. boek, moeder, hoe."},
+{id:"23-4",type:"mc",question:"Welke tweeklank schrijf je op twee manieren: ei én ij?",
+opts:["au/ou","oe/eu","ei/ij","ui/uy"],ans:enc("ei/ij"),
+exp:"ei and ij are pronounced identically. Examples: klein (ei) vs zijn (ij). You must memorise which spelling a word uses."},
+{id:"23-5",type:"fill",question:"Het woord 'wonen' is opgedeeld als 'wo-nen'. De eerste lettergreep 'wo' is ___ (open/gesloten).",
+ans:enc("open"),exp:"An open syllable ends with a vowel: 'wo' ends with the vowel 'o' → open syllable → long vowel sound."},
+{id:"23-6",type:"mc",question:"Welk woord eindigt correct met -s (niet -z)?",
+opts:["huis","huiz","huise","huisz"],ans:enc("huis"),
+exp:"Dutch words always end in 's' not 'z', and 'f' not 'v': huis, reis, brief, actief."},
+]},
+
+/* ─── LESSON 24 ─────────────────────────────────── */
+{id:24, title:"Negatie — Geen en Niet", icon:"🚫",
+expl:`<h3>Geen en Niet — Negation</h3>
+<p>Dutch has two negation words. Choosing the right one is one of the most important rules for beginners.</p>
+<table class="gt"><thead><tr><th></th><th>GEEN</th><th>NIET</th></tr></thead><tbody>
+<tr><td><strong>Negates</strong></td><td>a noun (that would normally have <em>een</em> or no article)</td><td>everything else: verbs, adjectives, adverbs, proper nouns, place/time</td></tr>
+<tr><td><strong>Replaces</strong></td><td><em>een</em> or the absence of an article</td><td>nothing — adds negation to the rest</td></tr>
+<tr><td><strong>Examples</strong></td><td>Ik heb <strong>geen</strong> auto.<br>Ik drink <strong>geen</strong> koffie.</td><td>Ik werk <strong>niet</strong>.<br>Hij is <strong>niet</strong> ziek.<br>Ik woon <strong>niet</strong> in Utrecht.</td></tr>
+</tbody></table>
+<div class="rule"><strong>Simple test:</strong> Could you replace the negation with "een"? → use <strong>geen</strong>.<br>
+"Ik heb een auto." → "Ik heb <strong>geen</strong> auto." ✓<br>
+"Ik werk." → "Ik werk <strong>niet</strong>." ✓ (no noun to replace)</div>
+<h3 style="margin-top:14px">Positie van NIET</h3>
+<p>Niet can appear in different positions depending on what it negates:</p>
+<table class="gt"><thead><tr><th>What is negated</th><th>Position</th><th>Example</th></tr></thead><tbody>
+<tr><td>The whole verb / general negation</td><td>end of clause</td><td>Ik werk <strong>niet</strong>.</td></tr>
+<tr><td>An adjective or adverb</td><td>before the adj/adv</td><td>Hij is <strong>niet</strong> ziek. Het gaat <strong>niet</strong> goed.</td></tr>
+<tr><td>A place or time (preposition phrase)</td><td>before the prepositional phrase</td><td>Ik woon <strong>niet</strong> in Utrecht.</td></tr>
+<tr><td>A specific word (emphasis)</td><td>directly before that word</td><td>Ik ga <strong>niet</strong> morgen, maar overmorgen.</td></tr>
+</tbody></table>
+<div class="tip"><strong>Geen + noun at plural or uncountable:</strong> geen stays the same for plural and uncountable nouns too:<br>
+<em>Ik heb geen broers.</em> (I have no brothers)<br>
+<em>Ik drink geen water.</em> (I don't drink water)</div>
+<div class="exbox"><div class="exlbl">Niet vs Geen — more examples</div>
+<div class="exrow">
+<span class="exnl">Ik heb geen zin. (de zin)</span><span class="exen">I don't feel like it. (geen → noun)</span>
+<span class="exnl">Dat is niet goed.</span><span class="exen">That is not good. (niet → adjective)</span>
+<span class="exnl">Ik ga niet naar school.</span><span class="exen">I don't go to school. (niet → preposition phrase)</span>
+<span class="exnl">Zij spreekt geen Spaans.</span><span class="exen">She doesn't speak Spanish. (geen → language as noun)</span>
+</div></div>`,
+exercises:[
+{id:"24-1",type:"mc",question:"'Ik heb ___ auto.' (negate the noun 'auto', which takes 'een')",
+opts:["niet","geen","nee","nooit"],ans:enc("geen"),
+exp:"'een auto' → negate with geen: Ik heb geen auto."},
+{id:"24-2",type:"mc",question:"'Ik werk ___.' (negate the verb 'werken', no noun)",
+opts:["geen","nee","niet","nooit"],ans:enc("niet"),
+exp:"Negating a verb with no noun involved → niet. Ik werk niet."},
+{id:"24-3",type:"fill",question:"'Hij is ___ ziek.' (negating an adjective)",
+ans:enc("niet"),exp:"Adjective negation uses niet: 'niet ziek'."},
+{id:"24-4",type:"mc",question:"'Ik drink ___ koffie.' (koffie here has no article — it's an uncountable noun)",
+opts:["niet","geen","nee","niets"],ans:enc("geen"),
+exp:"Uncountable nouns without article use geen: Ik drink geen koffie."},
+{id:"24-5",type:"mc",question:"'Wij wonen ___ in Amsterdam.' (negating a place — preposition phrase)",
+opts:["geen","nee","niet","nooit"],ans:enc("niet"),
+exp:"Preposition phrases use niet: 'niet in Amsterdam'."},
+{id:"24-6",type:"fill",question:"'Zij heeft ___ zin om te gaan.' (geen of niet?)",
+ans:enc("geen"),exp:"'zin' is a noun (de zin, normally: ze heeft zin) → negate with geen."},
+{id:"24-7",type:"mc",question:"Welke zin is CORRECT?",
+opts:["Ik heb niet auto.","Ik heb geen auto.","Ik heb auto niet.","Geen ik heb auto."],
+ans:enc("Ik heb geen auto."),
+exp:"Nouns with 'een' or no article are negated with 'geen'. Geen directly precedes the noun."},
+]},
+
+/* ─── LESSON 25 ─────────────────────────────────── */
+{id:25, title:"Er + Telwoord", icon:"🔢",
+expl:`<h3>Er + Telwoord — Using 'er' with numbers</h3>
+<p>When answering a "Hoeveel?" (how many?) question with a number, Dutch uses the word <strong>er</strong> as a placeholder for the noun. This avoids repeating the noun.</p>
+<div class="exbox"><div class="exlbl">Basic pattern</div>
+<div class="exrow">
+<span class="exnl">Hoeveel broers heb je?</span><span class="exen">How many brothers do you have?</span>
+<span class="exnl">Ik heb er twee.</span><span class="exen">I have two (of them).</span>
+<span class="exnl">Hoeveel talen spreek je?</span><span class="exen">How many languages do you speak?</span>
+<span class="exnl">Ik spreek er drie.</span><span class="exen">I speak three (of them).</span>
+</div></div>
+<div class="rule"><strong>Structure:</strong> subject + verb + <strong>er</strong> + number<br>
+<em>Ik heb er twee.</em> (I have two)<br>
+<em>Ik stuur er tien.</em> (I send ten)<br>
+<em>Ik zie er een.</em> (I see one)</div>
+<div class="tip"><strong>Special: geen and een paar</strong><br>
+• <strong>geen</strong> instead of a number: <em>Ik heb er geen.</em> (I have none)<br>
+• <strong>een paar</strong>: <em>Ik heb er een paar.</em> (I have a few)<br>
+• <strong>veel / weinig</strong>: <em>Ik heb er veel.</em> / <em>Ik heb er weinig.</em></div>
+<div class="exbox"><div class="exlbl">More examples</div>
+<div class="exrow">
+<span class="exnl">Heb je vrienden? Ja, ik heb er een paar.</span><span class="exen">Do you have friends? Yes, I have a few.</span>
+<span class="exnl">Heb je zussen? Nee, ik heb er geen.</span><span class="exen">Do you have sisters? No, I have none.</span>
+<span class="exnl">Hoeveel kopjes koffie drink je? Ik drink er acht per dag!</span><span class="exen">I drink eight a day!</span>
+</div></div>
+<h3 style="margin-top:14px">Er in questions</h3>
+<p>In a question, <strong>er</strong> comes directly after the verb:</p>
+<div class="exbox"><div class="exlbl">Questions with er</div>
+<div class="exrow">
+<span class="exnl">Heb je er een?</span><span class="exen">Do you have one (of them)?</span>
+<span class="exnl">Zijn er studenten in de kantine?</span><span class="exen">Are there students in the canteen?</span>
+</div></div>`,
+exercises:[
+{id:"25-1",type:"fill",question:"'Hoeveel broers heb je?' — 'Ik heb ___ twee.'",
+ans:enc("er"),exp:"When answering a hoeveel-question with a number, use 'er' before the number: Ik heb er twee."},
+{id:"25-2",type:"fill",question:"'Hoeveel docenten heb je?' — 'Ik heb ___ één.'",
+ans:enc("er"),exp:"Structure: subject + verb + er + number. Ik heb er één."},
+{id:"25-3",type:"mc",question:"'Heb je zussen?' — Kies het JUISTE antwoord:",
+opts:["Nee, ik heb geen er.","Nee, ik heb er geen.","Nee, er ik heb geen.","Nee, geen ik heb er."],
+ans:enc("Nee, ik heb er geen."),
+exp:"With 'geen' the structure stays: subject + verb + er + geen. Ik heb er geen."},
+{id:"25-4",type:"fill",question:"'Hoeveel talen spreek je?' — 'Ik spreek ___ drie.'",
+ans:enc("er"),exp:"Ik spreek er drie. Er comes between the verb and the number."},
+{id:"25-5",type:"mc",question:"'Heb je vrienden?' — 'Ja, ik heb ___ een paar.'",
+opts:["hem","er","ze","die"],ans:enc("er"),
+exp:"'Er een paar' = a few of them. Er is the placeholder for 'vrienden'."},
+{id:"25-6",type:"fill",question:"'Hoeveel kopjes koffie drink jij per dag?' — Geef een antwoord: 'Ik drink ___ ___.'",
+ans:enc("er"),exp:"Structure: Ik drink er [number]. E.g. Ik drink er drie. (The number can vary, 'er' is required.)"},
+]},
+
+/* ─── LESSON 26 ─────────────────────────────────── */
+{id:26, title:"Nationaliteiten & Herkomst", icon:"🌍",
+expl:`<h3>Land van herkomst — Country of origin</h3>
+<table class="gt"><thead><tr><th>Vraag</th><th>Antwoord</th></tr></thead><tbody>
+<tr><td>Waar kom je vandaan?</td><td>Ik kom uit Peru / Nederland / China.</td></tr>
+<tr><td>Waar kom jij vandaan?</td><td>Ik kom uit Duitsland.</td></tr>
+<tr><td>Uit welk land kom je?</td><td>Ik kom uit Frankrijk.</td></tr>
+<tr><td>Wat is je nationaliteit?</td><td>Ik ben Nederlander / Nederlandse.</td></tr>
+<tr><td>Wat is uw nationaliteit?</td><td>Ik heb de Nederlandse nationaliteit.</td></tr>
+</tbody></table>
+<h3 style="margin-top:14px">Nationaliteiten</h3>
+<p>Nationalities have two forms: <strong>masculine</strong> (ends in -er or consonant) and <strong>feminine</strong> (ends in -e/-se/-se).</p>
+<table class="gt"><thead><tr><th>Land</th><th>Mannelijk (de man)</th><th>Vrouwelijk (de vrouw)</th><th>Bijvoeglijk naamwoord</th></tr></thead><tbody>
+<tr><td>Nederland</td><td>Nederlander</td><td>Nederlandse</td><td>Nederlands</td></tr>
+<tr><td>Duitsland</td><td>Duitser</td><td>Duitse</td><td>Duits</td></tr>
+<tr><td>Spanje</td><td>Spanjaard</td><td>Spaanse</td><td>Spaans</td></tr>
+<tr><td>Polen</td><td>Pool</td><td>Poolse</td><td>Pools</td></tr>
+<tr><td>Rusland</td><td>Rus</td><td>Russin</td><td>Russisch</td></tr>
+<tr><td>België</td><td>Belg</td><td>Belgische</td><td>Belgisch</td></tr>
+<tr><td>Italië</td><td>Italiaan</td><td>Italiaanse</td><td>Italiaans</td></tr>
+<tr><td>China</td><td>Chinees</td><td>Chinese</td><td>Chinees</td></tr>
+<tr><td>Amerika</td><td>Amerikaan</td><td>Amerikaanse</td><td>Amerikaans</td></tr>
+<tr><td>Marokko</td><td>Marokkaan</td><td>Marokkaanse</td><td>Marokkaans</td></tr>
+</tbody></table>
+<div class="tip"><strong>Usage:</strong> Use the adjective form with language and with nouns:<br>
+<em>Ik spreek Nederlands.</em> (the adjective form, not "Nederlander")<br>
+<em>een Nederlandse cursus</em> — a Dutch course<br>
+<em>Ik ben Nederlander.</em> (nationality noun — masculine subject)<br>
+<em>Zij is Nederlandse.</em> (nationality noun — feminine subject)</div>
+<div class="exbox"><div class="exlbl">Kennismaken phrases</div>
+<div class="exrow">
+<span class="exnl">Ik kom uit Nederland. Ik ben Nederlander.</span><span class="exen">I come from the Netherlands. I am Dutch (male).</span>
+<span class="exnl">Maria komt uit Spanje. Zij is Spaanse.</span><span class="exen">Maria comes from Spain. She is Spanish.</span>
+<span class="exnl">Ik spreek een beetje Nederlands.</span><span class="exen">I speak a little Dutch.</span>
+</div></div>`,
+exercises:[
+{id:"26-1",type:"fill",question:"'Waar kom je vandaan?' — 'Ik kom ___ Polen.'",
+ans:enc("uit"),exp:"Use 'uit' for country of origin: Ik kom uit Polen."},
+{id:"26-2",type:"mc",question:"Carlos komt uit Spanje. Wat is zijn nationaliteit?",
+opts:["Spanje","Spaans","Spanjaard","Spaanse"],ans:enc("Spanjaard"),
+exp:"Male person from Spain: Spanjaard. Female: Spaanse. Adjective: Spaans."},
+{id:"26-3",type:"mc",question:"Maria is een vrouw uit Spanje. Zij is ___.",
+opts:["Spanjaard","Spaans","Spaanse","Spaniolen"],ans:enc("Spaanse"),
+exp:"Female nationality noun: Spaanse."},
+{id:"26-4",type:"fill",question:"'Ik spreek een beetje ___.' (taal van Nederland)",
+ans:enc("Nederlands"),exp:"Language names use the adjective form: Nederlands, Duits, Spaans, etc."},
+{id:"26-5",type:"mc",question:"'Wat is je nationaliteit?' — 'Ik ben ___.' (vrouw uit Nederland)",
+opts:["Nederlanders","Nederlander","Nederlandse","Nederlandsch"],ans:enc("Nederlandse"),
+exp:"A woman says: Ik ben Nederlandse. A man says: Ik ben Nederlander."},
+{id:"26-6",type:"fill",question:"Johan komt uit Nederland en spreekt ___.",
+ans:enc("Nederlands"),exp:"Language = adjective form: Nederlands."},
+]},
+
+/* ─── LESSON 27 ─────────────────────────────────── */
+{id:27, title:"Familie & Verwanten", icon:"👨‍👩‍👧‍👦",
+expl:`<h3>Familieleden — Family Members</h3>
+<table class="gt"><thead><tr><th>Man (de)</th><th>Vrouw (de)</th><th>English</th></tr></thead><tbody>
+<tr><td class="hl">de vader</td><td class="hl">de moeder</td><td>father / mother</td></tr>
+<tr><td class="hl">de zoon</td><td class="hl">de dochter</td><td>son / daughter</td></tr>
+<tr><td class="hl">de broer</td><td class="hl">de zus</td><td>brother / sister</td></tr>
+<tr><td class="hl">de opa (grootvader)</td><td class="hl">de oma (grootmoeder)</td><td>grandfather / grandmother</td></tr>
+<tr><td class="hl">de overgrootvader</td><td class="hl">de overgrootmoeder</td><td>great-grandfather / great-grandmother</td></tr>
+<tr><td class="hl">de oom</td><td class="hl">de tante</td><td>uncle / aunt</td></tr>
+<tr><td class="hl">de neef</td><td class="hl">de nicht</td><td>nephew / niece (also: male/female cousin)</td></tr>
+<tr><td class="hl">het neefje</td><td class="hl">het nichtje</td><td>little nephew / niece</td></tr>
+<tr><td class="hl">de man / de echtgenoot</td><td class="hl">de vrouw / de echtgenote</td><td>husband / wife</td></tr>
+<tr><td class="hl">de schoonvader</td><td class="hl">de schoonmoeder</td><td>father-in-law / mother-in-law</td></tr>
+<tr><td class="hl">de stiefbroer</td><td class="hl">de stiefzus</td><td>stepbrother / stepsister</td></tr>
+<tr><td class="hl">de zwager</td><td class="hl">de schoonzus</td><td>brother-in-law / sister-in-law</td></tr>
+<tr><td class="hl">de schoonzoon</td><td class="hl">de schoondochter</td><td>son-in-law / daughter-in-law</td></tr>
+</tbody></table>
+<div class="tip"><strong>Note:</strong> <em>de neef</em> and <em>de nicht</em> mean both nephew/niece AND male/female cousin. Context clarifies which is meant.</div>
+<h3 style="margin-top:14px">Relationele zinnen</h3>
+<div class="exbox"><div class="exlbl">Describing family relationships</div>
+<div class="exrow">
+<span class="exnl">Anna is de moeder van Irene.</span><span class="exen">Anna is Irene's mother.</span>
+<span class="exnl">Paul is de man / echtgenoot van Irene.</span><span class="exen">Paul is Irene's husband.</span>
+<span class="exnl">Irene is getrouwd.</span><span class="exen">Irene is married.</span>
+<span class="exnl">Frank is de opa van Simone.</span><span class="exen">Frank is Simone's grandfather.</span>
+<span class="exnl">Joost is de neef van Irene.</span><span class="exen">Joost is Irene's nephew (or cousin).</span>
+</div></div>
+<h3 style="margin-top:14px">Mannelijk vs Vrouwelijk woorden</h3>
+<table class="gt"><thead><tr><th>Man (de)</th><th>Vrouw (de)</th></tr></thead><tbody>
+<tr><td>het neefje (verkleinw.)</td><td>het nichtje (verkleinw.)</td></tr>
+<tr><td>getrouwd zijn</td><td>trouwen = to marry → getrouwd = married</td></tr>
+</tbody></table>`,
+exercises:[
+{id:"27-1",type:"fill",question:"De vader van mijn vader is mijn ___.",
+ans:enc("opa|grootvader"),exp:"De vader van je vader is je opa (of grootvader)."},
+{id:"27-2",type:"mc",question:"Anneke is de ___ van haar broer Jan.",
+opts:["dochter","zus","nicht","moeder"],ans:enc("zus"),
+exp:"A sister is 'de zus'. Jan is her brother → she is his zus."},
+{id:"27-3",type:"fill",question:"De zus van mijn man is mijn ___.",
+ans:enc("schoonzus"),exp:"Schoonzus = sister-in-law (the sister of your husband/wife)."},
+{id:"27-4",type:"mc",question:"Peter heeft twee kinderen: een jongen en een meisje. De jongen is zijn ___.",
+opts:["neef","dochter","zoon","broer"],ans:enc("zoon"),
+exp:"Een jongen als kind van Peter = de zoon."},
+{id:"27-5",type:"fill",question:"De moeder van mijn moeder is mijn ___.",
+ans:enc("oma|grootmoeder"),exp:"De moeder van je moeder is je oma (of grootmoeder)."},
+{id:"27-6",type:"mc",question:"Wat is het verschil tussen 'de neef' en 'het neefje'?",
+opts:["Er is geen verschil","Neef = volwassen of tiener, neefje = klein kind","Neef = broer, neefje = oom","Neef = Belgisch, neefje = Nederlands"],
+ans:enc("Neef = volwassen of tiener, neefje = klein kind"),
+exp:"'Het neefje' is the diminutive form (-je), used for a small/young nephew. 'De neef' is used for older nephews and cousins."},
 ]},
 
 ]; // END OF LESSONS

@@ -160,7 +160,7 @@ function buildExercise(ex, i, ls) {
   </div>`;
 }
 
-function escQ(s) { return (s||'').replace(/'/g,"&#39;").replace(/"/g,'&quot;'); }
+function escQ(s) { return (s||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;'); }
 
 /* ══════════════════════════════════════════════════
    EXERCISE CHECKING
@@ -368,6 +368,201 @@ function confirmExitExam() {
     examState = null;
     showDash();
   }
+}
+
+/* ══════════════════════════════════════════════════
+   EXERCISES (PDF) VIEW
+══════════════════════════════════════════════════ */
+let currentExTab = 'grammatica';
+
+function showExercises() {
+  currentLesson = null;
+  buildSidebar();
+  renderExTab(currentExTab);
+  showView('v-exercises');
+  document.getElementById('main').scrollTop = 0;
+}
+
+function showExTab(tab, btn) {
+  currentExTab = tab;
+  document.querySelectorAll('.ex-tab').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  renderExTab(tab);
+  document.getElementById('main').scrollTop = 0;
+}
+
+function renderExTab(tab) {
+  const groups = PDF_EXERCISES[tab] || [];
+  const html = groups.map((group, gi) => {
+    const exsHtml = group.exercises.map((ex, ei) => renderPdfExercise(ex, tab, gi, ei)).join('');
+    return `<div class="ex-theme">
+      <h4>${group.theme}</h4>
+      ${exsHtml}
+    </div>`;
+  }).join('');
+  document.getElementById('ex-content').innerHTML = html || '<p style="color:var(--muted)">Geen oefeningen beschikbaar.</p>';
+}
+
+function renderPdfExercise(ex, tab, gi, ei) {
+  const uid = `pex-${tab}-${gi}-${ei}`;
+
+  // Display card (passage + questions)
+  if (ex.type === 'display') {
+    let inner = '';
+    if (ex.instruction) inner += `<p style="font-size:.86rem;margin-bottom:8px">${ex.instruction}</p>`;
+    if (ex.passage) inner += `<div class="passage-text">${ex.passage}</div>`;
+    if (ex.note) inner += `<div class="note-tag">⚠ ${ex.note}</div>`;
+    if (ex.pairs) {
+      inner += `<table class="pairs-table"><thead><tr><th>#</th><th>Optie A</th><th>Optie B</th><th>Antwoord</th></tr></thead><tbody>`;
+      ex.pairs.forEach((p, pi) => {
+        const a = p.label ? `<td>${p.label}</td>` : '';
+        inner += `<tr><td>${pi+1}${p.label?'. '+p.label:''}</td><td>${p.a}</td><td>${p.b}</td><td style="font-weight:700;color:var(--ok)">${p.ans}</td></tr>`;
+      });
+      inner += '</tbody></table>';
+    }
+    if (ex.questions) {
+      inner += `<div style="margin-top:10px">`;
+      ex.questions.forEach((q, qi) => {
+        const quid = `${uid}-q${qi}`;
+        if (q.type === 'tf') {
+          inner += `<div class="tf-row">
+            <span class="tf-q">${q.q}</span>
+            <button class="tf-btn" id="${quid}-w" onclick="checkTF('${quid}','waar','${escQ(q.ans)}','${escQ(q.exp)}')"  >waar</button>
+            <button class="tf-btn" id="${quid}-nw" onclick="checkTF('${quid}','niet waar','${escQ(q.ans)}','${escQ(q.exp)}')">niet waar</button>
+            <span class="tf-fb" id="${quid}-fb"></span>
+          </div>`;
+        } else {
+          inner += `<div class="open-q-row">
+            <div class="open-q-label">${q.q}</div>
+            <input class="open-q-input" id="${quid}-in" type="text" placeholder="Typ je antwoord…"
+              onkeydown="if(event.key==='Enter')checkOpenQ('${quid}','${escQ(q.ans)}','${escQ(q.exp)}')">
+            <button class="chkbtn" style="margin-top:6px" onclick="checkOpenQ('${quid}','${escQ(q.ans)}','${escQ(q.exp)}')">Controleer</button>
+            <div class="open-q-fb" id="${quid}-fb"></div>
+          </div>`;
+        }
+      });
+      inner += '</div>';
+    }
+    return `<div class="eq-pass" id="${uid}"><h5>Leesoefening</h5>${inner}</div>`;
+  }
+
+  // Prompt card (speaking / writing)
+  if (ex.type === 'prompt') {
+    let inner = `<p style="font-size:.86rem;margin-bottom:8px">${ex.instruction}</p>`;
+    if (ex.bullets) inner += `<ul class="prompt-list">${ex.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>`;
+    if (ex.items)   inner += `<ul class="prompt-list">${ex.items.map(b=>`<li>${b}</li>`).join('')}</ul>`;
+    if (ex.example) inner += `<div class="exbox" style="margin-top:10px"><div class="exlbl">Voorbeeld</div><p style="font-size:.84rem;line-height:1.7">${ex.example}</p></div>`;
+    if (ex.dialogue) {
+      inner += `<table class="dialogue-table">`;
+      ex.dialogue.forEach(d => inner += `<tr><td>${d.role}</td><td>${d.line}</td></tr>`);
+      inner += `</table>`;
+    }
+    if (ex.questions) inner += `<ul class="prompt-list">${ex.questions.map(q=>`<li>${q}</li>`).join('')}</ul>`;
+    if (ex.scenarios) {
+      ex.scenarios.forEach(s => {
+        inner += `<div class="scenario-block"><strong>Situatie: ${s.situation}</strong>Voorbeeldzinnen: ${s.hints.join(' · ')}</div>`;
+      });
+    }
+    if (ex.followup) inner += `<div class="tip" style="margin-top:10px"><strong>Vervolg:</strong> ${ex.followup}</div>`;
+    if (ex.usefulPhrases) inner += `<div style="margin-top:10px"><strong style="font-size:.82rem">Nuttige zinnen:</strong><ul class="prompt-list">${ex.usefulPhrases.map(p=>`<li>${p}</li>`).join('')}</ul></div>`;
+    return `<div class="prompt-card" id="${uid}"><h5>Spreken / Schrijven</h5>${inner}</div>`;
+  }
+
+  // True/false standalone
+  if (ex.type === 'tf') {
+    const quid = uid;
+    return `<div class="eq" id="${uid}" style="border-color:transparent">
+      <div class="eqn">Waar of niet waar?</div>
+      <div class="eqq" style="white-space:pre-line">${ex.question}</div>
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <button class="tf-btn" id="${quid}-w"  onclick="checkTF('${quid}','waar','${escQ(ex.ans)}','${escQ(ex.exp)}')"  >waar</button>
+        <button class="tf-btn" id="${quid}-nw" onclick="checkTF('${quid}','niet waar','${escQ(ex.ans)}','${escQ(ex.exp)}')">niet waar</button>
+      </div>
+      <div class="fb" id="${quid}-fb"></div>
+    </div>`;
+  }
+
+  // Standard MC / fill — same rendering as lesson exercises but without state tracking
+  if (ex.type === 'mc') {
+    const optsHtml = ex.opts.map(o =>
+      `<button class="mco" onclick="checkPdfMC(this,'${uid}','${escQ(o)}','${escQ(ex.ans)}','${escQ(ex.exp)}')">${o}</button>`
+    ).join('');
+    return `<div class="eq" id="${uid}">
+      <div class="eqn">Meerkeuze</div>
+      <div class="eqq">${ex.question}</div>
+      <div class="mc-opts">${optsHtml}</div>
+      <div class="fb" id="${uid}-fb"></div>
+    </div>`;
+  }
+
+  // fill
+  return `<div class="eq" id="${uid}">
+    <div class="eqn">Invuloefening</div>
+    <div class="eqq" style="white-space:pre-line">${ex.question}</div>
+    <input class="fi" id="${uid}-in" type="text" placeholder="Typ je antwoord…"
+      onkeydown="if(event.key==='Enter')checkPdfFill('${uid}','${escQ(ex.ans)}','${escQ(ex.exp)}')">
+    <br><button class="chkbtn" onclick="checkPdfFill('${uid}','${escQ(ex.ans)}','${escQ(ex.exp)}')">Controleer</button>
+    <div class="fb" id="${uid}-fb"></div>
+  </div>`;
+}
+
+function checkPdfMC(btn, uid, chosen, encodedAns, exp) {
+  const card = document.getElementById(uid);
+  if (card.querySelector('.mco.correct')) return;
+  const correct = checkAns(encodedAns, chosen);
+  const correctVal = dec(encodedAns);
+  card.querySelectorAll('.mco').forEach(b => {
+    b.disabled = true;
+    if (b.textContent === correctVal) b.classList.add('correct');
+    else if (b.textContent === chosen && chosen !== correctVal) b.classList.add('wrong');
+  });
+  card.className = 'eq ' + (correct ? 'ok' : 'bad');
+  const fb = document.getElementById(uid + '-fb');
+  fb.className = 'fb on ' + (correct ? 'ok' : 'bad');
+  fb.innerHTML = correct ? `✓ Correct! ${exp}` : `✗ Het juiste antwoord is: <strong>${correctVal}</strong>. ${exp}`;
+}
+
+function checkPdfFill(uid, encodedAns, exp) {
+  const input = document.getElementById(uid + '-in');
+  if (input.disabled) return;
+  const correct = checkAns(encodedAns, input.value);
+  const correctVal = dec(encodedAns).split('|')[0];
+  input.disabled = true;
+  input.className = 'fi ' + (correct ? 'correct' : 'wrong');
+  const card = document.getElementById(uid);
+  card.className = 'eq ' + (correct ? 'ok' : 'bad');
+  const fb = document.getElementById(uid + '-fb');
+  fb.className = 'fb on ' + (correct ? 'ok' : 'bad');
+  fb.innerHTML = correct ? `✓ Correct! ${exp}` : `✗ Het juiste antwoord is: <strong>${correctVal}</strong>. ${exp}`;
+}
+
+function checkTF(uid, chosen, encodedAns, exp) {
+  const correct = checkAns(encodedAns, chosen);
+  const correctVal = dec(encodedAns);
+  const wBtn  = document.getElementById(uid + '-w');
+  const nwBtn = document.getElementById(uid + '-nw');
+  if (!wBtn || wBtn.disabled) return;
+  [wBtn, nwBtn].forEach(b => b.disabled = true);
+  (chosen === 'waar' ? wBtn : nwBtn).classList.add(correct ? 'correct' : 'wrong');
+  if (!correct) (chosen === 'waar' ? nwBtn : wBtn).classList.add('correct');
+  const fb = document.getElementById(uid + '-fb');
+  if (fb) {
+    fb.className = 'tf-fb on ' + (correct ? 'ok' : 'bad');
+    fb.style.color = correct ? 'var(--ok)' : 'var(--err)';
+    fb.textContent = correct ? `✓ ${exp}` : `✗ ${exp}`;
+  }
+}
+
+function checkOpenQ(uid, encodedAns, exp) {
+  const input = document.getElementById(uid + '-in');
+  if (!input || input.disabled) return;
+  const correct = checkAns(encodedAns, input.value);
+  const correctVal = dec(encodedAns).split('|')[0];
+  input.disabled = true;
+  input.className = 'open-q-input ' + (correct ? 'correct' : 'wrong');
+  const fb = document.getElementById(uid + '-fb');
+  fb.className = 'open-q-fb on ' + (correct ? 'ok' : 'bad');
+  fb.innerHTML = correct ? `✓ Correct! ${exp}` : `✗ ${exp} (antwoord: ${correctVal})`;
 }
 
 /* ══════════════════════════════════════════════════

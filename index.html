@@ -139,6 +139,53 @@ table.gt tr:nth-child(even) td{background:#f9fafb}
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-thumb{background:rgba(0,0,0,.18);border-radius:3px}
 @media(max-width:700px){#sb{width:210px;min-width:210px}.stats{grid-template-columns:1fr 1fr}.lgrid{grid-template-columns:1fr}.mc-opts{grid-template-columns:1fr}}
+
+/* ── EXERCISES SECTION ── */
+#ex-btn{margin:4px 12px 8px;padding:10px 14px;background:linear-gradient(135deg,#0f766e,#0d9488);border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:8px;font-size:.84rem;font-weight:600;transition:opacity .2s}
+#ex-btn:hover{opacity:.88}
+.ex-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:22px}
+.ex-tab{padding:7px 16px;border:2px solid var(--bdr);border-radius:20px;cursor:pointer;font-size:.82rem;font-weight:600;background:var(--wht);transition:all .15s;font-family:inherit}
+.ex-tab:hover{border-color:var(--acc);color:var(--acc)}
+.ex-tab.active{background:var(--acc);color:#fff;border-color:var(--acc)}
+.ex-theme{margin-bottom:28px}
+.ex-theme h4{font-size:.88rem;font-weight:700;color:var(--acc);margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid var(--accl)}
+.ex-panel{display:none}
+.ex-panel.on{display:block}
+.eq-pass{background:var(--wht);border-radius:10px;padding:18px;box-shadow:var(--shadow);margin-bottom:14px}
+.eq-pass h5{font-size:.82rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px}
+.passage-text{background:#f8fafc;border-radius:7px;padding:12px;font-size:.83rem;line-height:1.7;margin-bottom:14px;border-left:3px solid var(--acc)}
+.tf-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--bdr);font-size:.85rem}
+.tf-row:last-child{border-bottom:none}
+.tf-q{flex:1}
+.tf-btn{padding:5px 12px;border:2px solid var(--bdr);border-radius:6px;cursor:pointer;font-size:.78rem;font-weight:600;background:var(--wht);font-family:inherit;transition:all .15s}
+.tf-btn:hover:not(:disabled){border-color:var(--acc);background:var(--accl)}
+.tf-btn.correct{border-color:var(--ok);background:var(--okl);color:var(--ok)}
+.tf-btn.wrong{border-color:var(--err);background:var(--errl);color:var(--err)}
+.tf-fb{font-size:.78rem;margin-left:4px}
+.prompt-card{background:var(--wht);border-radius:10px;padding:18px;box-shadow:var(--shadow);margin-bottom:14px}
+.prompt-card h5{font-size:.82rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px}
+.dialogue-table{width:100%;border-collapse:collapse;font-size:.84rem;margin:10px 0}
+.dialogue-table td{padding:5px 9px;vertical-align:top}
+.dialogue-table td:first-child{font-weight:700;color:var(--acc);width:70px;white-space:nowrap}
+.prompt-list{font-size:.85rem;line-height:1.8;margin:8px 0 0 16px}
+.scenario-block{background:#f8fafc;border-radius:7px;padding:10px 12px;margin-bottom:8px;font-size:.84rem}
+.scenario-block strong{display:block;margin-bottom:4px}
+.note-tag{display:inline-block;background:#fef3c7;border:1px solid #fcd34d;border-radius:5px;padding:3px 8px;font-size:.75rem;color:#92400e;margin:6px 0}
+.open-q-row{padding:7px 0;border-bottom:1px solid var(--bdr);font-size:.85rem}
+.open-q-row:last-child{border-bottom:none}
+.open-q-label{font-weight:500;margin-bottom:4px}
+.open-q-input{width:100%;padding:7px 10px;border:2px solid var(--bdr);border-radius:6px;font-size:.84rem;outline:none;font-family:inherit;transition:border-color .2s}
+.open-q-input:focus{border-color:var(--acc)}
+.open-q-input.correct{border-color:var(--ok);background:var(--okl)}
+.open-q-input.wrong{border-color:var(--err);background:var(--errl)}
+.open-q-fb{font-size:.78rem;margin-top:3px;display:none}
+.open-q-fb.on{display:block}
+.open-q-fb.ok{color:#15803d}
+.open-q-fb.bad{color:#b91c1c}
+.pairs-table{width:100%;border-collapse:collapse;font-size:.84rem;margin:8px 0}
+.pairs-table th{background:var(--accl);padding:5px 9px;text-align:left;font-size:.77rem;font-weight:700;color:var(--acc)}
+.pairs-table td{padding:5px 9px;border-bottom:1px solid var(--bdr)}
+.pairs-table tr:last-child td{border-bottom:none}
 </style>
 </head>
 <body>
@@ -153,6 +200,7 @@ table.gt tr:nth-child(even) td{background:#f9fafb}
     <div class="pbar"><div class="pbar-fill" id="prog-bar" style="width:0%"></div></div>
   </div>
   <div id="sb-list"><!-- lesson nav items injected by JS --></div>
+  <div id="ex-btn" onclick="showExercises()">📝 Oefeningen (PDF)</div>
   <div id="exam-btn" onclick="showExam()">🎓 Mock Inburgeringsexamen</div>
 </div>
 
@@ -199,6 +247,24 @@ table.gt tr:nth-child(even) td{background:#f9fafb}
     </div>
   </div>
 
+  <div class="view" id="v-exercises">
+    <div class="dh">
+      <h2>📝 Oefeningen</h2>
+      <p>Oefeningen uit de cursus — gesorteerd per vaardigheid. Geen voortgangsregistratie, gewoon oefenen.</p>
+    </div>
+    <div class="ex-tabs" id="ex-tabs">
+      <button class="ex-tab active" onclick="showExTab('grammatica',this)">Grammatica</button>
+      <button class="ex-tab" onclick="showExTab('lezen',this)">Lezen</button>
+      <button class="ex-tab" onclick="showExTab('schrijven',this)">Schrijven</button>
+      <button class="ex-tab" onclick="showExTab('luisteren',this)">Luisteren</button>
+      <button class="ex-tab" onclick="showExTab('spreken',this)">Spreken</button>
+    </div>
+    <div id="ex-content"><!-- rendered by JS --></div>
+    <div style="margin-top:20px">
+      <button class="btns" onclick="showDash()">← Terug naar overzicht</button>
+    </div>
+  </div>
+
   <div class="view" id="v-results">
     <div class="rhead">
       <h2>Examenresultaten</h2>
@@ -223,6 +289,7 @@ table.gt tr:nth-child(even) td{background:#f9fafb}
 <script src="js/lessons-data.js"></script>
 <script src="js/exam-data.js"></script>
 <script src="js/extra-exercises.js"></script>
+<script src="js/exercises-pdf.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>
