@@ -57,6 +57,7 @@ function updateOverallProgress() {
 function showView(id) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('on'));
   document.getElementById(id).classList.add('on');
+  if (typeof closeSidebar === 'function') closeSidebar();
 }
 
 function showDash() {

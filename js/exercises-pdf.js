@@ -233,7 +233,7 @@ grammatica: [
      ans:enc("Ik moet naar het zwembad gaan."),
      exp:"Modaal werkwoord op positie 2, infinitief (gaan) naar het einde: Ik moet naar het zwembad gaan."},
 
-    {id:"pg-59",type:"mc",question:"Kies het juiste woord: Je ___ niet stelen. (verbod)",
+    {id:"pg-59",type:"mc",question:"Kies het juiste woord: Je ___ stelen. (verbod)",
      opts:["hoeft","hoeft niet","moet","moet niet"],ans:enc("moet niet"),
      exp:"Moet niet = prohibition/must not. Hoeft niet = don't have to (not required)."},
 
