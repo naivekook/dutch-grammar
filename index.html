@@ -144,7 +144,7 @@ table.gt tr:nth-child(even) td{background:#f9fafb}
 <body>
 
 <div id="sb">
-  <div id="sb-head">
+  <div id="sb-head" onclick="showDash()" style="cursor:pointer">
     <h1>🇳🇱 Nederlands Leren</h1>
     <p>Voorbereiding Inburgeringsexamen</p>
   </div>
@@ -180,6 +180,7 @@ table.gt tr:nth-child(even) td{background:#f9fafb}
     </div>
     <div class="lnav">
       <button class="btns" onclick="showDash()">← Terug naar overzicht</button>
+      <button class="btns" onclick="restartLesson()" style="color:var(--err);border-color:var(--err)">↺ Opnieuw</button>
       <button class="btnp" id="l-next" onclick="nextLesson()">Volgende les →</button>
     </div>
   </div>
@@ -279,18 +280,18 @@ expl:`<h3>Onderwerpen (Subjects)</h3>
 <tr><td>wij/jullie/zij</td><td>zijn</td><td>hebben</td><td>gaan</td></tr>
 </tbody></table>`,
 exercises:[
-{id:"1-1",type:"mc",question:"Choose the correct form: Johan ___ samen met zijn vriend Bas.",
+{id:"1-1",type:"mc",question:"Kies de juiste vorm: Johan ___ samen met zijn vriend Bas.",
 opts:["speel","speelt","spelen","speelden"],ans:enc("speelt"),
 exp:"For hij/zij/het: stem + t. spelen → stem 'speel' → speelt."},
-{id:"1-2",type:"mc",question:"Choose the correct form: Jullie ___ uit Argentinië.",
+{id:"1-2",type:"mc",question:"Kies de juiste vorm: Jullie ___ uit Argentinië.",
 opts:["komen","komt","kom","komst"],ans:enc("komen"),
-exp:"Jullie (plural) uses the infinitive form: komen."},
-{id:"1-3",type:"fill",question:"Fill in the correct form of 'wonen': Wij ___ in Utrecht.",
+exp:"Jullie (plural) uses the infinitive: komen."},
+{id:"1-3",type:"fill",question:"Vul de juiste vorm van 'wonen' in: Wij ___ in Utrecht.",
 ans:enc("wonen"),exp:"Wij (plural) = infinitive: wonen."},
-{id:"1-4",type:"mc",question:"Jij woont in Amsterdam. How do you ask this as a question?",
+{id:"1-4",type:"mc",question:"Jij woont in Amsterdam. Maak er een vraag van:",
 opts:["Woont jij in Amsterdam?","Woon jij in Amsterdam?","Wonen jij in Amsterdam?","Woont je in Amsterdam?"],
-ans:enc("Woon jij in Amsterdam?"),exp:"When jij/je follows the verb in a question, drop the -t: woonT → Woon jij?"},
-{id:"1-5",type:"fill",question:"Fill in: De voetbalclub ___ de beker gewonnen. (hebben)",
+ans:enc("Woon jij in Amsterdam?"),exp:"When jij/je comes after the verb in a question, drop the -t: woonT → Woon jij?"},
+{id:"1-5",type:"fill",question:"Vul in: De voetbalclub ___ de beker gewonnen. (hebben)",
 ans:enc("heeft"),exp:"De voetbalclub = singular third person → heeft (irregular: hebben → heeft)."},
 ]},
 
@@ -317,19 +318,19 @@ expl:`<h3>Telwoorden — Numbers</h3>
 <tr><td>Tot ziens / Tot straks / Tot morgen</td><td>Goodbye / See you soon / See you tomorrow</td></tr>
 </tbody></table>`,
 exercises:[
-{id:"2-1",type:"mc",question:"How do you say 45 in Dutch?",
+{id:"2-1",type:"mc",question:"Hoe zeg je 45 in het Nederlands?",
 opts:["vijfveertig","vijfenveertig","veertigvijf","veertigenvijf"],ans:enc("vijfenveertig"),
 exp:"Units + en + tens: vijf + en + veertig = vijfenveertig (45)."},
-{id:"2-2",type:"fill",question:"How do you say 188 in Dutch?",
-ans:enc("honderdachtentachtig"),exp:"100 = honderd, 88 = achtenachttig → honderdachtentachtig."},
-{id:"2-3",type:"mc",question:"'Waar kom je vandaan?' means:",
-opts:["Where do you live?","What is your name?","Where do you come from?","How old are you?"],
-ans:enc("Where do you come from?"),exp:"Vandaan = from (origin). 'Kom je vandaan?' = do you come from?"},
-{id:"2-4",type:"mc",question:"Which greeting do you use in the morning?",
+{id:"2-2",type:"fill",question:"Hoe zeg je 188 in het Nederlands?",
+ans:enc("honderdachtentachtig"),exp:"100 = honderd, 88 = achtenachtig → honderdachtentachtig (188)."},
+{id:"2-3",type:"mc",question:"Wat betekent 'Waar kom je vandaan?':",
+opts:["Waar woon je?","Wat is je naam?","Waar kom je vandaan?","Hoe oud ben je?"],
+ans:enc("Where do you come from?"),exp:"'Vandaan' relates to origin. 'Waar kom je vandaan?' = Where do you come from?"},
+{id:"2-4",type:"mc",question:"Welke begroeting gebruik je 's ochtends?",
 opts:["Goedenavond","Goedemiddag","Goedemorgen","Tot ziens"],ans:enc("Goedemorgen"),
-exp:"Goedemorgen = Good morning. Goedemiddag = afternoon. Goedenavond = evening."},
-{id:"2-5",type:"fill",question:"Your family name is the '___ naam'. (Fill in: voor or achter)",
-ans:enc("achter"),exp:"Achternaam = surname/family name. Voornaam = first name."},
+exp:"Goedemorgen = morning. Goedemiddag = afternoon. Goedenavond = evening."},
+{id:"2-5",type:"fill",question:"Je familienaam is je '___ naam'. (vul in: voor of achter)",
+ans:enc("achter"),exp:"Achternaam = family/last name. Voornaam = first name."},
 ]},
 
 /* ─── LESSON 3 ─────────────────────────────────── */
@@ -364,19 +365,19 @@ expl:`<h3>Zinstructuur — Sentence Structure</h3>
 <div class="tip"><strong>Welk vs Welke:</strong> Use <strong>welk</strong> before het-words, <strong>welke</strong> before de-words.<br>
 e.g. <em>Welk nummer?</em> (het nummer) vs <em>Welke taart?</em> (de taart)</div>`,
 exercises:[
-{id:"3-1",type:"fill",question:"Fill in the correct question word: ___ heet jouw broer?",
-ans:enc("Hoe"),exp:"Hoe heet … = What is … called? (asking for a name). Answer: mijn broer heet Ricardo."},
-{id:"3-2",type:"mc",question:"Fill in: ___ woont jouw moeder?",
+{id:"3-1",type:"fill",question:"Vul het juiste vraagwoord in: ___ heet jouw broer?",
+ans:enc("Hoe"),exp:"Hoe heet = What is … called? (asking for a name). Answer: mijn broer heet Ricardo."},
+{id:"3-2",type:"mc",question:"Vul in: ___ woont jouw moeder?",
 opts:["Wie","Wat","Waar","Wanneer"],ans:enc("Waar"),
-exp:"Waar = where. We are asking about the location where mother lives."},
-{id:"3-3",type:"mc",question:"Fill in: ___ broers heb je?",
+exp:"Waar = question about a place. We are asking where mother lives."},
+{id:"3-3",type:"mc",question:"Vul in: ___ broers heb je?",
 opts:["Hoe","Hoeveel","Wie","Welke"],ans:enc("Hoeveel"),
-exp:"Hoeveel = how many. Answer: 'Ik heb 4 broers.'"},
-{id:"3-4",type:"mc",question:"Which is correct? ___ nummer vind jij mooi? (het nummer)",
+exp:"Hoeveel = question about a quantity. Answer: 'Ik heb 4 broers.'"},
+{id:"3-4",type:"mc",question:"Welke is correct? ___ nummer vind jij mooi? (het nummer)",
 opts:["Welke nummer","Welk nummer","Wat nummer","Wie nummer"],ans:enc("Welk nummer"),
-exp:"Welk is used before het-words. 'nummer' = het nummer → welk nummer."},
-{id:"3-5",type:"fill",question:"Fill in the correct question word: ___ is je adres?",
-ans:enc("Wat"),exp:"Wat = what. We ask what the address is."},
+exp:"Use welk before het-words. 'nummer' = het nummer → welk nummer."},
+{id:"3-5",type:"fill",question:"Vul het juiste vraagwoord in: ___ is je adres?",
+ans:enc("Wat"),exp:"Wat = question about a thing/piece of information. Asking what the address is."},
 ]},
 
 /* ─── LESSON 4 ─────────────────────────────────── */
@@ -406,15 +407,15 @@ exercises:[
 ans:enc("Mijn"),exp:"Ik → mijn (my)."},
 {id:"4-2",type:"mc",question:"Dat is Mariska en ___ achternaam is van den Berg.",
 opts:["zijn","haar","hun","jouw"],ans:enc("haar"),
-exp:"Mariska is female (zij/ze) → haar (her)."},
+exp:"Mariska is feminine (zij/ze) → haar (her)."},
 {id:"4-3",type:"fill",question:"Wij komen uit Oostenrijk en ___ Nederlandse cursus begint morgen. ('cursus' = de cursus)",
 ans:enc("onze"),exp:"Wij → onze/ons. 'cursus' = de cursus (de-word) → onze."},
 {id:"4-4",type:"mc",question:"Yolanda en Marloes vertellen over ___ vakantie.",
 opts:["zijn","haar","hun","onze"],ans:enc("hun"),
-exp:"Yolanda en Marloes = they (zij/ze) → hun (their, for people)."},
+exp:"Yolanda en Marloes = zij (plural) → hun (used for people)."},
 {id:"4-5",type:"mc",question:"Meneer de Vries, gaat u met ___ buurman naar de supermarkt?",
 opts:["jouw","zijn","uw","hun"],ans:enc("uw"),
-exp:"U (formal you) → uw (your formal)."},
+exp:"U (formal) → uw (formal possessive pronoun)."},
 ]},
 
 /* ─── LESSON 5 ─────────────────────────────────── */
@@ -440,18 +441,18 @@ expl:`<h3>Voorzetsels van tijd — in / om / op</h3>
 <div class="tip"><strong>⚠ Half twaalf = 11:30!</strong> "Half" refers to halfway to the NEXT hour. So half twaalf = half way to twelve = 11:30.</div>`,
 exercises:[
 {id:"5-1",type:"fill",question:"De cursus begint ___ dinsdag 8 april. (specific day/date)",
-ans:enc("op"),exp:"Op is used before specific days and dates: op dinsdag, op 8 april."},
+ans:enc("op"),exp:"Use op for specific days and dates: op dinsdag, op 8 april."},
 {id:"5-2",type:"fill",question:"De cursus begint ___ 10 uur. (a clock time)",
-ans:enc("om"),exp:"Om is used before clock times: om 10 uur, om half elf."},
+ans:enc("om"),exp:"Use om for clock times: om 10 uur, om half elf."},
 {id:"5-3",type:"fill",question:"De tweede cursus begint ___ februari. (a month)",
-ans:enc("in"),exp:"In is used before months and seasons: in februari, in de winter."},
-{id:"5-4",type:"mc",question:"How do you say 11:15 in Dutch?",
+ans:enc("in"),exp:"Use in for months and seasons: in februari, in de winter."},
+{id:"5-4",type:"mc",question:"Hoe zeg je 11:15 in het Nederlands?",
 opts:["kwart voor elf","kwart over elf","vijf over half elf","tien over elf"],
 ans:enc("kwart over elf"),exp:"11:15 = 15 minutes past 11 = kwart over elf."},
-{id:"5-5",type:"mc",question:"How do you say 11:30 in Dutch?",
+{id:"5-5",type:"mc",question:"Hoe zeg je 11:30 in het Nederlands?",
 opts:["half elf","half twaalf","kwart voor twaalf","dertig over elf"],
-ans:enc("half twaalf"),exp:"Half + NEXT hour. 11:30 is halfway to 12 → half twaalf."},
-{id:"5-6",type:"mc",question:"How do you say 11:45 in Dutch?",
+ans:enc("half twaalf"),exp:"Half + the NEXT hour. 11:30 is halfway to 12 → half twaalf."},
+{id:"5-6",type:"mc",question:"Hoe zeg je 11:45 in het Nederlands?",
 opts:["kwart over elf","kwart voor elf","kwart voor twaalf","drie kwart twaalf"],
 ans:enc("kwart voor twaalf"),exp:"11:45 = 15 minutes before 12 = kwart voor twaalf."},
 ]},
@@ -476,17 +477,17 @@ expl:`<h3>Inversie — Inversion</h3>
 </div></div>
 <div class="tip"><strong>Key rule:</strong> Whatever comes first in the sentence, the <strong>verb must stay in position 2</strong>. The subject moves to position 3.</div>`,
 exercises:[
-{id:"6-1",type:"mc",question:"'We drinken koffie in het café.' Start with 'In het café':",
+{id:"6-1",type:"mc",question:"'We drinken koffie in het café.' Begin met 'In het café':",
 opts:["In het café wij drinken koffie.","In het café drinken wij koffie.","In het café koffie drinken wij.","In het café drinken koffie wij."],
-ans:enc("In het café drinken wij koffie."),exp:"Place + Verb + Subject + Object. Verb (drinken) stays in position 2."},
-{id:"6-2",type:"mc",question:"'Ze zijn op dit moment in Spanje op vakantie.' Start with 'Op dit moment':",
+ans:enc("In het café drinken wij koffie."),exp:"Place + Verb + Subject + Object. The verb (drinken) is at position 2."},
+{id:"6-2",type:"mc",question:"'Ze zijn op dit moment in Spanje op vakantie.' Begin met 'Op dit moment':",
 opts:["Op dit moment zijn ze in Spanje op vakantie.","Op dit moment ze zijn in Spanje op vakantie.","Op dit moment in Spanje zijn ze op vakantie.","Op dit moment op vakantie zijn ze in Spanje."],
-ans:enc("Op dit moment zijn ze in Spanje op vakantie."),exp:"Time + Verb + Subject + rest. zijn comes immediately after the time phrase."},
+ans:enc("Op dit moment zijn ze in Spanje op vakantie."),exp:"Time + Verb + Subject + rest. zijn comes directly after the time element."},
 {id:"6-3",type:"fill",question:"'Marloes is zaterdag jarig.' Rewrite starting with 'Zaterdag': Zaterdag ___ Marloes jarig.",
 ans:enc("is"),exp:"Inversion: Time (Zaterdag) + Verb (is) + Subject (Marloes) + rest."},
-{id:"6-4",type:"mc",question:"Which sentence has correct inversion?",
+{id:"6-4",type:"mc",question:"Welke zin heeft de juiste inversie?",
 opts:["Gisteren ik werkte thuis.","Gisteren werkte ik thuis.","Gisteren thuis werkte ik.","Gisteren ik thuis werkte."],
-ans:enc("Gisteren werkte ik thuis."),exp:"Time + Verb + Subject + place. The verb always goes directly after the first element."},
+ans:enc("Gisteren werkte ik thuis."),exp:"Time + Verb + Subject + place. The verb always comes directly after the first element."},
 ]},
 
 /* ─── LESSON 7 ─────────────────────────────────── */
@@ -505,19 +506,19 @@ expl:`<h3>De-woorden en Het-woorden</h3>
 </tbody></table>
 <div class="tip"><strong>Tip:</strong> When in doubt: most words are <strong>de</strong>-words. About 75% of Dutch nouns use <em>de</em>.</div>`,
 exercises:[
-{id:"7-1",type:"mc",question:"Which article is correct for 'meisje' (girl, diminutive)?",
+{id:"7-1",type:"mc",question:"Welk lidwoord hoort bij 'meisje' (verkleinwoord)?",
 opts:["de meisje","het meisje","een meisje or het meisje","both de and het"],
 ans:enc("het meisje"),exp:"All diminutives (-je) are het-words: het meisje, het boompje, het kindje."},
-{id:"7-2",type:"mc",question:"Which article is correct for 'universiteit'?",
+{id:"7-2",type:"mc",question:"Welk lidwoord hoort bij 'universiteit'?",
 opts:["het universiteit","de universiteit","both are possible","no article needed"],
 ans:enc("de universiteit"),exp:"Suffix -teit → always de: de universiteit, de kwaliteit."},
-{id:"7-3",type:"mc",question:"Which article is correct for 'abonnement' (subscription)?",
+{id:"7-3",type:"mc",question:"Welk lidwoord hoort bij 'abonnement'?",
 opts:["de abonnement","het abonnement","een abonnement (no rule)","both de and het"],
 ans:enc("het abonnement"),exp:"Suffix -ment → het-word: het abonnement, het appartement."},
-{id:"7-4",type:"mc",question:"Which article is correct for 'voetbal' (football)?",
+{id:"7-4",type:"mc",question:"Welk lidwoord hoort bij 'voetbal'?",
 opts:["de voetbal","het voetbal","both are used","neither"],
 ans:enc("het voetbal"),exp:"Sports are het-words: het voetbal, het tennis, het zwemmen."},
-{id:"7-5",type:"mc",question:"Which article is correct for 'verzekering' (insurance)?",
+{id:"7-5",type:"mc",question:"Welk lidwoord hoort bij 'verzekering'?",
 opts:["het verzekering","de verzekering","both","no article"],
 ans:enc("de verzekering"),exp:"Suffix -ing → always de: de verzekering, de vergadering."},
 ]},
@@ -544,18 +545,18 @@ expl:`<h3>Dagen van de week</h3>
 </tbody></table>
 <div class="tip"><strong>Note:</strong> Most words take <strong>-en</strong>. The -s rule applies to words ending in unstressed -e, -er, -el, -em, -en, -ie, -eau.</div>`,
 exercises:[
-{id:"8-1",type:"mc",question:"What is the plural of 'vakantie' (holiday)?",
+{id:"8-1",type:"mc",question:"Wat is het meervoud van 'vakantie'?",
 opts:["vakantieen","vakanties","vakantiens","vakantie's"],ans:enc("vakanties"),
 exp:"vakantie ends in -ie → add -s → vakanties."},
-{id:"8-2",type:"mc",question:"What is the plural of 'taxi'?",
+{id:"8-2",type:"mc",question:"Wat is het meervoud van 'taxi'?",
 opts:["taxien","taxis","taxi's","taxees"],ans:enc("taxi's"),
 exp:"taxi ends in -i → add -'s → taxi's."},
-{id:"8-3",type:"mc",question:"What is the plural of 'schoen' (shoe)?",
+{id:"8-3",type:"mc",question:"Wat is het meervoud van 'schoen'?",
 opts:["schoens","schoenen","schoe's","schoens"],ans:enc("schoenen"),
-exp:"schoen ends in a consonant cluster → add -en → schoenen."},
-{id:"8-4",type:"fill",question:"What day comes after dinsdag?",
+exp:"schoen ends in a consonant → add -en → schoenen."},
+{id:"8-4",type:"fill",question:"Welke dag komt na dinsdag?",
 ans:enc("woensdag"),exp:"The order: maandag, dinsdag, woensdag, donderdag, vrijdag, zaterdag, zondag."},
-{id:"8-5",type:"mc",question:"What is the plural of 'broer' (brother)?",
+{id:"8-5",type:"mc",question:"Wat is het meervoud van 'broer'?",
 opts:["broers","broederen","broeren","broer's"],ans:enc("broers"),
 exp:"broer ends in -er → add -s → broers."},
 ]},
@@ -622,18 +623,18 @@ expl:`<h3>Modale werkwoorden</h3>
 exercises:[
 {id:"10-1",type:"mc",question:"'Beste studenten, jullie ___ samenwerken.' (are allowed to)",
 opts:["moeten","willen","mogen","kunnen"],ans:enc("mogen"),
-exp:"Mogen = may/allowed to. Jullie mogen = you (plural) are allowed to."},
+exp:"Mogen = to have permission. Jullie mogen = you are allowed to."},
 {id:"10-2",type:"mc",question:"'Ik ben jarig. Ik ___ jullie een drankje aanbieden.' (want to)",
 opts:["mag","moet","kan","wil"],ans:enc("wil"),
-exp:"Willen = to want. Ik wil = I want to."},
-{id:"10-3",type:"fill",question:"___ we naar de dierentuin gaan? (let's make a proposal — shall)",
-ans:enc("Zullen"),exp:"Zullen is used for proposals: Zullen we …? = Shall we …?"},
+exp:"Willen = to want something. Ik wil = I want to do this."},
+{id:"10-3",type:"fill",question:"___ we naar de dierentuin gaan? (maak een voorstel)",
+ans:enc("Zullen"),exp:"Use zullen for proposals: Zullen we …? = Shall we …?"},
 {id:"10-4",type:"mc",question:"'Ricardo ___ op vakantie naar Griekenland.' (wants to go)",
 opts:["mag","moet","wil","zal"],ans:enc("wil"),
-exp:"Willen = to want. Ricardo wil = Ricardo wants to."},
+exp:"Willen = to want. Ricardo wil = Ricardo wants to do this."},
 {id:"10-5",type:"mc",question:"'Ik ___ mijn zusje van school halen.' (have the option/ability)",
 opts:["moet","wil","mag","kan"],ans:enc("kan"),
-exp:"Kunnen = can/ability. Ik kan = I can."},
+exp:"Kunnen = to have the ability. Ik kan = I am able to."},
 ]},
 
 /* ─── LESSON 11 ─────────────────────────────────── */
@@ -657,19 +658,19 @@ expl:`<h3>Vergrotende en overtreffende trap</h3>
 <tr><td>weinig (little/few)</td><td>minder</td><td>het minst</td></tr>
 </tbody></table>`,
 exercises:[
-{id:"11-1",type:"fill",question:"'Deze jas is ___ dan die jas.' (mooi → comparative)",
-ans:enc("mooier"),exp:"mooi + -er = mooier (prettier). Standard comparative rule."},
-{id:"11-2",type:"fill",question:"'Dit is ___ jas in de winkel.' (mooi → superlative, with 'de')",
-ans:enc("het mooiste"),exp:"het + mooi + -ste = het mooiste. (Before a noun with article, add -ste instead of -st.)"},
-{id:"11-3",type:"mc",question:"'Deze jas is ___ dan die jas.' (duur = expensive, ends in -r)",
+{id:"11-1",type:"fill",question:"'Deze jas is ___ dan die jas.' (mooi → vergrotende trap)",
+ans:enc("mooier"),exp:"mooi + -er = mooier. Standard comparative rule."},
+{id:"11-2",type:"fill",question:"'Dit is ___ jas in de winkel.' (mooi → overtreffende trap, met 'de')",
+ans:enc("het mooiste"),exp:"het + mooi + -ste = het mooiste. (Before a noun with an article: -ste instead of -st.)"},
+{id:"11-3",type:"mc",question:"'Deze jas is ___ dan die jas.' (duur, eindigt op -r)",
 opts:["duurer","duurster","duurder","meer duur"],ans:enc("duurder"),
-exp:"When adjective ends in -r, add -der: duur → duurder."},
-{id:"11-4",type:"mc",question:"'Welk land is ___? Nederland of Duitsland?' (groot = big, comparative)",
+exp:"When the adjective ends in -r, add -der instead of -er: duur → duurder."},
+{id:"11-4",type:"mc",question:"'Welk land is ___? Nederland of Duitsland?' (groot, vergrotende trap)",
 opts:["grooter","groter","het grootst","meer groot"],ans:enc("groter"),
-exp:"groot + -er = groter. (Single -t because 'groot' has a short vowel in closed syllable.)"},
-{id:"11-5",type:"mc",question:"'Ik vind dit ___ dan dat.' (goed = good — irregular!)",
+exp:"groot + -er = groter. (One -t because of the short vowel in a closed syllable.)"},
+{id:"11-5",type:"mc",question:"'Ik vind dit ___ dan dat.' (goed — onregelmatige vorm!)",
 opts:["goeder","goeder dan","beter","beeter"],ans:enc("beter"),
-exp:"Goed is irregular: goed → beter → het best. Same as English good-better-best."},
+exp:"Goed is irregular: goed → beter → het best."},
 ]},
 
 
@@ -693,10 +694,10 @@ expl:`<h3>Aanwijzende voornaamwoorden</h3>
 <span class="exnl">Dat meisje zingt mooi.</span><span class="exen">That girl sings beautifully. (het meisje, far)</span>
 </div></div>`,
 exercises:[
-{id:"12-1",type:"mc",question:"'Neem je ___ rode schoenen of ___ zwarte?' (de schoenen — first near, second far)",
+{id:"12-1",type:"mc",question:"'Neem je ___ rode schoenen of ___ zwarte?' (de schoenen — eerste dichtbij, tweede ver)",
 opts:["deze / die","dit / dat","die / deze","dat / dit"],ans:enc("deze / die"),
 exp:"de schoenen → near = deze, far = die."},
-{id:"12-2",type:"mc",question:"'___ T-shirt is goedkoper.' (het T-shirt, it is right here)",
+{id:"12-2",type:"mc",question:"'___ T-shirt is goedkoper.' (het T-shirt, vlakbij jou)",
 opts:["Deze","Die","Dit","Dat"],ans:enc("Dit"),
 exp:"het T-shirt is near → dit."},
 {id:"12-3",type:"fill",question:"'Wie is ___ man, daar in de gang?' (de man, far away)",
@@ -723,20 +724,20 @@ expl:`<h3>Persoonlijke voornaamwoorden — object vormen</h3>
 </tbody></table>
 <div class="tip"><strong>hen / hun:</strong> hun = with preposition or indirect object (Ik geef <em>hun</em> boeken). hen = direct object without preposition (Ik zie <em>hen</em>). In practice, <strong>ze</strong> is often used for both.</div>`,
 exercises:[
-{id:"13-1",type:"mc",question:"'Meneer de Vries, kunt u ___ helpen?' (= me, formal context)",
+{id:"13-1",type:"mc",question:"'Meneer de Vries, kunt u ___ helpen?' (= mij, formele context)",
 opts:["mij","hem","haar","ons"],ans:enc("mij"),
-exp:"The person asking uses 'mij' (object form of ik). Meneer de Vries helpt mij."},
+exp:"The speaker uses 'mij' (object form of ik). Meneer de Vries helps mij."},
 {id:"13-2",type:"fill",question:"'Marloes woont hier ook. Ik kom ___ vaak tegen.' (her)",
-ans:enc("haar"),exp:"Marloes = she (zij) → object form: haar."},
+ans:enc("haar"),exp:"Marloes = zij → object form: haar."},
 {id:"13-3",type:"mc",question:"'Wat een leuk boek! Waar heb je ___ gekocht?' (het boek)",
 opts:["hem","haar","het","ze"],ans:enc("het"),
-exp:"het boek = het-word → object pronoun: het."},
-{id:"13-4",type:"mc",question:"'Wij spreken nog geen Nederlands. Wie kan ___ helpen?' (= us)",
+exp:"het boek = het-word → object form: het."},
+{id:"13-4",type:"mc",question:"'Wij spreken nog geen Nederlands. Wie kan ___ helpen?' (= ons)",
 opts:["wij","ons","hun","hen"],ans:enc("ons"),
 exp:"Wij → object form: ons."},
-{id:"13-5",type:"mc",question:"'Waar zijn Jenny en Johan? Ik zal ___ even ophalen.' (them, people)",
+{id:"13-5",type:"mc",question:"'Waar zijn Jenny en Johan? Ik zal ___ even ophalen.' (hen/ze)",
 opts:["ze","hun","hen","ons"],ans:enc("ze"),
-exp:"Jenny en Johan = they (plural people). In modern Dutch 'ze' is most commonly used for both forms."},
+exp:"Jenny en Johan = zij (plural). In modern Dutch 'ze' is used most often."},
 ]},
 
 /* ─── LESSON 14 ─────────────────────────────────── */
@@ -763,16 +764,16 @@ leven → leef → geleef → still add -d → <strong>geleefd</strong><br>
 reizen → reis → gereis → still add -d → <strong>gereisd</strong>
 </div>`,
 exercises:[
-{id:"14-1",type:"fill",question:"Form the perfectum of 'werken': ge___",
-ans:enc("gewerkt"),exp:"werken → werk (ik-vorm) → ge+werk → K is in SOFT KETCHUP → add -t → gewerkt."},
-{id:"14-2",type:"fill",question:"Form the perfectum of 'stoppen': ge___",
+{id:"14-1",type:"fill",question:"Vorm het perfectum van 'werken': ge___",
+ans:enc("gewerkt"),exp:"werken → werk (stem) → ge+werk → K is in SOFT KETCHUP → add -t → gewerkt."},
+{id:"14-2",type:"fill",question:"Vorm het perfectum van 'stoppen': ge___",
 ans:enc("gestopt"),exp:"stoppen → stop → ge+stop → P is in SOFT KETCHUP → add -t → gestopt."},
-{id:"14-3",type:"fill",question:"Form the perfectum of 'luisteren': ge___",
-ans:enc("geluisterd"),exp:"luisteren → luister → ge+luister → R not in SOFT KETCHUP → add -d → geluisterd."},
-{id:"14-4",type:"fill",question:"Form the perfectum of 'betalen' (starts with be-): ___",
-ans:enc("betaald"),exp:"betalen starts with be- → NO ge- prefix. betalen → betaal → L not in SK → add -d → betaald."},
-{id:"14-5",type:"fill",question:"Form the perfectum of 'leven' (V→F rule): ge___",
-ans:enc("geleefd"),exp:"leven → leef (V→F) → ge+leef → F IS in SK but it's the V→F exception → still add -d → geleefd."},
+{id:"14-3",type:"fill",question:"Vorm het perfectum van 'luisteren': ge___",
+ans:enc("geluisterd"),exp:"luisteren → luister → ge+luister → R is NOT in SOFT KETCHUP → add -d → geluisterd."},
+{id:"14-4",type:"fill",question:"Vorm het perfectum van 'betalen' (begint met be-): ___",
+ans:enc("betaald"),exp:"betalen starts with be- → NO ge-. betalen → betaal → L not in SK → add -d → betaald."},
+{id:"14-5",type:"fill",question:"Vorm het perfectum van 'leven' (V→F regel): ge___",
+ans:enc("geleefd"),exp:"leven → leef (V→F exception) → ge+leef → F is in SK but the V→F-exception applies → still add -d → geleefd."},
 ]},
 
 /* ─── LESSON 15 ─────────────────────────────────── */
@@ -806,18 +807,18 @@ expl:`<h3>Hebben of zijn als hulpwerkwoord?</h3>
 <span class="exnl">Hoe laat zijn jullie thuisgekomen?</span><span class="exen">What time did you get home? (zijn – komen)</span>
 </div></div>`,
 exercises:[
-{id:"15-1",type:"mc",question:"'Ik ___ samen met mijn vrienden gedanst.' (dansen = no movement)",
+{id:"15-1",type:"mc",question:"'Ik ___ samen met mijn vrienden gedanst.' (dansen = geen beweging)",
 opts:["ben","heb","zijn","heeft"],ans:enc("heb"),
 exp:"Dansen has no movement from A to B → hebben. Ik heb gedanst."},
 {id:"15-2",type:"fill",question:"'Hoe laat ___ jullie thuis gekomen?' (komen = zijn-verb)",
-ans:enc("zijn"),exp:"komen is always used with zijn: jullie zijn gekomen."},
+ans:enc("zijn"),exp:"komen always goes with zijn: jullie zijn gekomen."},
 {id:"15-3",type:"fill",question:"'Laura ___ 35 jaar geworden.' (worden = change of state)",
 ans:enc("is"),exp:"worden = change of state → zijn. Laura is geworden."},
 {id:"15-4",type:"mc",question:"'Gisteren ___ mijn vriend tot 20:00 uur gewerkt.' (werken)",
 opts:["is","zijn","heeft","heb"],ans:enc("heeft"),
 exp:"werken = no movement, no state change → hebben. mijn vriend (hij) → heeft."},
 {id:"15-5",type:"fill",question:"'Hassan ___ voor zijn rijexamen geslaagd.' (slagen = zijn-verb)",
-ans:enc("is"),exp:"slagen (to pass an exam) is in the zijn-list → Hassan is geslaagd."},
+ans:enc("is"),exp:"slagen is on the zijn-list → Hassan is geslaagd."},
 ]},
 
 /* ─── LESSON 16 ─────────────────────────────────── */
@@ -836,17 +837,17 @@ expl:`<h3>Bedoelen of betekenen?</h3>
 <span class="exnl">Dat betekent dat je moet stoppen.</span><span class="exen">That means you must stop. (consequence/definition)</span>
 </div></div>`,
 exercises:[
-{id:"16-1",type:"mc",question:"'Wat ___ p.p.?' (asking for the definition of an abbreviation)",
+{id:"16-1",type:"mc",question:"'Wat ___ p.p.?' (je vraagt naar de letterlijke betekenis van de afkorting)",
 opts:["bedoel","bedoelt","betekent","betekenen"],ans:enc("betekent"),
-exp:"Asking for the literal meaning of the abbreviation p.p. → betekenen. 'Wat betekent p.p.?'"},
-{id:"16-2",type:"mc",question:"'Ik begrijp niet wat zij ___.' (I don't understand her intention)",
+exp:"You are asking for the literal meaning of the abbreviation p.p. → betekenen."},
+{id:"16-2",type:"mc",question:"'Ik begrijp niet wat zij ___.' (je begrijpt haar bedoeling niet)",
 opts:["betekent","betekenen","bedoelt","bedoel"],ans:enc("bedoelt"),
-exp:"Zij (she, singular) → bedoelt. She is trying to say something and we don't understand her intention."},
+exp:"Zij (singular) → bedoelt. She is trying to say something but we don't understand her intention."},
 {id:"16-3",type:"fill",question:"'Mijn moeder heeft een allergie. Dat ___ dat zij geen noten mag eten.'",
-ans:enc("betekent"),exp:"Expressing a consequence/definition: dat betekent dat … (that means that…)."},
-{id:"16-4",type:"mc",question:"'Mag ik dat groene… uh… Oh, u ___ de peterselie!' (figuring out intention)",
+ans:enc("betekent"),exp:"Expressing a consequence/definition: dat betekent dat … ."},
+{id:"16-4",type:"mc",question:"'Mag ik dat groene… uh… Oh, u ___ de peterselie!' (je raadt wat ze bedoelen)",
 opts:["betekent","bedoelt","wilt","zegt"],ans:enc("bedoelt"),
-exp:"The shop assistant is figuring out what the customer intends to say → u bedoelt."},
+exp:"The employee guesses what the customer is trying to say → u bedoelt."},
 ]},
 
 /* ─── LESSON 17 ─────────────────────────────────── */
@@ -871,15 +872,15 @@ expl:`<h3>Onvoltooid verleden tijd (OVT) — Imperfectum</h3>
 • Perfectum: single completed action with a present result → <em>Ik heb een kaartje gekocht.</em><br>
 • Imperfectum: describes a past situation / sets the scene → <em>Ik kocht gisteren een kaartje voor het concert.</em></div>`,
 exercises:[
-{id:"17-1",type:"fill",question:"'Hij ___ (voelen) zich niet zo goed.' (singular, R not in SK)",
-ans:enc("voelde"),exp:"voelen → voel (ik-vorm) → L not in SK → singular -de → voelde."},
-{id:"17-2",type:"fill",question:"'Ik ___ (vieren) mijn verjaardag.' (singular)",
-ans:enc("vierde"),exp:"vieren → vier (ik-vorm) → R not in SK → singular -de → vierde."},
-{id:"17-3",type:"fill",question:"'Ricardo en Peter ___ (stoppen) met voetballen.' (plural)",
+{id:"17-1",type:"fill",question:"'Hij ___ (voelen) zich niet zo goed.' (enkelvoud)",
+ans:enc("voelde"),exp:"voelen → voel (stem) → L not in SK → singular -de → voelde."},
+{id:"17-2",type:"fill",question:"'Ik ___ (vieren) mijn verjaardag.' (enkelvoud)",
+ans:enc("vierde"),exp:"vieren → vier (stem) → R not in SK → singular -de → vierde."},
+{id:"17-3",type:"fill",question:"'Ricardo en Peter ___ (stoppen) met voetballen.' (meervoud)",
 ans:enc("stopten"),exp:"stoppen → stop → P is in SK → plural -ten → stopten."},
-{id:"17-4",type:"fill",question:"'Het ___ (regenen) de hele zomervakantie.' (singular)",
+{id:"17-4",type:"fill",question:"'Het ___ (regenen) de hele zomervakantie.' (enkelvoud)",
 ans:enc("regende"),exp:"regenen → regen → N not in SK → singular -de → regende."},
-{id:"17-5",type:"fill",question:"'In Amsterdam ___ (werken) Peter in een groot hotel.' (singular)",
+{id:"17-5",type:"fill",question:"'In Amsterdam ___ (werken) Peter in een groot hotel.' (enkelvoud)",
 ans:enc("werkte"),exp:"werken → werk → K is in SK → singular -te → werkte."},
 ]},
 
@@ -903,18 +904,18 @@ expl:`<h3>Modale werkwoorden in de imperfectum</h3>
 </div></div>
 <div class="tip"><strong>zou / zouden</strong> is also used as a conditional (like "would" in English): <em>Ik zou graag naar Parijs gaan.</em> (I would like to go to Paris.)</div>`,
 exercises:[
-{id:"18-1",type:"fill",question:"'Vroeger ___ (mogen) ik niet naar buiten.' (singular past)",
-ans:enc("mocht"),exp:"mogen → singular past: mocht."},
-{id:"18-2",type:"fill",question:"'We ___ (kunnen) niet op tijd komen.' (plural past)",
-ans:enc("konden"),exp:"kunnen → plural past: konden."},
-{id:"18-3",type:"mc",question:"'Als kind ___ ik piloot worden.' (willen, singular past)",
+{id:"18-1",type:"fill",question:"'Vroeger ___ (mogen) ik niet naar buiten.' (enkelvoud verleden tijd)",
+ans:enc("mocht"),exp:"mogen → singular past tense: mocht."},
+{id:"18-2",type:"fill",question:"'We ___ (kunnen) niet op tijd komen.' (meervoud verleden tijd)",
+ans:enc("konden"),exp:"kunnen → plural past tense: konden."},
+{id:"18-3",type:"mc",question:"'Als kind ___ ik piloot worden.' (willen, enkelvoud verleden tijd)",
 opts:["wil","wilde","wilden","wou"],ans:enc("wilde"),
-exp:"willen → singular past: wilde."},
-{id:"18-4",type:"fill",question:"'Hij ___ (moeten) vroeger altijd vroeg opstaan.' (singular past)",
-ans:enc("moest"),exp:"moeten → singular past: moest."},
-{id:"18-5",type:"mc",question:"'Wij ___ (zullen) de volgende dag vroeg vertrekken.' (plural past / conditional)",
+exp:"willen → singular past tense: wilde."},
+{id:"18-4",type:"fill",question:"'Hij ___ (moeten) vroeger altijd vroeg opstaan.' (enkelvoud verleden tijd)",
+ans:enc("moest"),exp:"moeten → singular past tense: moest."},
+{id:"18-5",type:"mc",question:"'Wij ___ (zullen) de volgende dag vroeg vertrekken.' (meervoud verleden tijd)",
 opts:["zou","zouden","zullen","zal"],ans:enc("zouden"),
-exp:"zullen → plural past: zouden."},
+exp:"zullen → plural past tense: zouden."},
 ]},
 
 /* ─── LESSON 19 ─────────────────────────────────── */
@@ -938,17 +939,17 @@ expl:`<h3>Scheidbare werkwoorden — Separable Verbs</h3>
 <span class="exnl">uitkiezen</span><span class="exen">to pick/choose</span>
 </div></div>`,
 exercises:[
-{id:"19-1",type:"mc",question:"Present: 'Ik ___ iedere maandag op Schiphol ___ .' (aankomen)",
+{id:"19-1",type:"mc",question:"Tegenwoordige tijd: 'Ik ___ iedere maandag op Schiphol ___ .' (aankomen)",
 opts:["kom / aan","aankomen / —","aankom / —","kom / aankomen"],ans:enc("kom / aan"),
 exp:"Present tense: split the verb. 'kom' stays at position 2, 'aan' goes to the end."},
-{id:"19-2",type:"fill",question:"Perfectum of 'aankomen': Ik ben ___ .",
-ans:enc("aangekomen"),exp:"Perfectum of separable verb: prefix + ge + verb form all together: aan + ge + komen = aangekomen."},
-{id:"19-3",type:"mc",question:"Modal: 'Ik wil liever op Schiphol ___ .' (aankomen)",
+{id:"19-2",type:"fill",question:"Perfectum van 'aankomen': Ik ben ___ .",
+ans:enc("aangekomen"),exp:"Perfectum of a separable verb: prefix + ge + verb form joined: aan + ge + komen = aangekomen."},
+{id:"19-3",type:"mc",question:"Modaal werkwoord: 'Ik wil liever op Schiphol ___ .' (aankomen)",
 opts:["aankomen","aan komen","kom aan","aangekomend"],ans:enc("aankomen"),
-exp:"With a modal verb, the separable verb goes to the end as a complete infinitive: aankomen."},
+exp:"With a modal verb, the separable verb goes to the end as an infinitive: aankomen."},
 {id:"19-4",type:"mc",question:"Imperfectum: 'Gisteren ___ ik Peter in de supermarkt ___ .' (tegenkomen)",
 opts:["tegenkwam / —","kwamen / tegen","kwam / tegen","kw / tegenkwam"],ans:enc("kwam / tegen"),
-exp:"Imperfectum: split just like present. komen → kwamen → ik kwam. Prefix 'tegen' goes to end."},
+exp:"Imperfectum: split just like present tense. komen → kwamen → ik kwam. Prefix 'tegen' goes to the end."},
 ]},
 
 /* ─── LESSON 20 ─────────────────────────────────── */
@@ -969,17 +970,17 @@ expl:`<h3>Toekomstige tijd — Future Tense</h3>
 <span class="exnl">De directeur zal het hotel inspecteren. (#3)</span><span class="exen">The director will inspect the hotel.</span>
 </div></div>`,
 exercises:[
-{id:"20-1",type:"mc",question:"Which structure is used here? 'Hans komt volgende week niet.'",
-opts:["gaan + infinitive","present + time word","zullen + infinitive","imperfectum"],
+{id:"20-1",type:"mc",question:"Welke structuur wordt hier gebruikt? 'Hans komt volgende week niet.'",
+opts:["gaan + infinitief","tegenwoordige tijd + tijdwoord","zullen + infinitief","imperfectum"],
 ans:enc("present + time word"),exp:"'Komt' is present tense, 'volgende week' is the time word. This is structure #1."},
-{id:"20-2",type:"fill",question:"Complete: 'Eva ___ een jaar in Engeland studeren.' (gaan, she)",
-ans:enc("gaat"),exp:"gaan + infinitive for future. Eva (zij/ze) → gaat."},
-{id:"20-3",type:"mc",question:"When do we prefer 'zullen' for the future?",
-opts:["For certain planned events","When the action is unconfirmed or uncertain","For past-tense narration","For polite requests only"],
+{id:"20-2",type:"fill",question:"Maak de zin af: 'Eva ___ een jaar in Engeland studeren.' (gaan, zij)",
+ans:enc("gaat"),exp:"gaan + infinitive for the future. Eva (zij/ze) → gaat."},
+{id:"20-3",type:"mc",question:"Wanneer gebruiken we bij voorkeur 'zullen' voor de toekomst?",
+opts:["Voor zekere geplande gebeurtenissen","Als de handeling onzeker of niet bevestigd is","Voor verhalende verleden tijd","Alleen voor beleefde verzoeken"],
 ans:enc("When the action is unconfirmed or uncertain"),
-exp:"Zullen is used when the future action is almost certain but not yet confirmed."},
-{id:"20-4",type:"fill",question:"'Ik ___ volgend weekend in Londen.' (present tense + time word for future)",
-ans:enc("ben"),exp:"Using the present tense with a future time word: ik ben (= I will be) volgend weekend in Londen."},
+exp:"Use zullen when the future action is likely but not yet confirmed."},
+{id:"20-4",type:"fill",question:"'Ik ___ volgend weekend in Londen.' (tegenwoordige tijd + tijdswoord voor toekomst)",
+ans:enc("ben"),exp:"Present tense with a time word pointing to the future: ik ben volgend weekend in Londen."},
 ]},
 
 /* ─── LESSON 21 ─────────────────────────────────── */
@@ -999,14 +1000,14 @@ expl:`<h3>Aanwijzend voornaamwoord als verwijzing</h3>
 </div></div>`,
 exercises:[
 {id:"21-1",type:"fill",question:"'Leuke schoenen! Waar heb je ___ gekocht?' (de schoenen)",
-ans:enc("die"),exp:"Referring to de schoenen (de-word) → die."},
+ans:enc("die"),exp:"Reference to de schoenen (de-word) → die."},
 {id:"21-2",type:"fill",question:"'Zullen we naar de bioscoop gaan? Ja, ___ is een goed idee!'",
-ans:enc("dat"),exp:"Referring to the whole action/idea of going to the cinema → dat."},
+ans:enc("dat"),exp:"Reference to the whole action/idea of going to the cinema → dat."},
 {id:"21-3",type:"fill",question:"'Waar is Ricardo? ___ haalt koffie.' (person)",
-ans:enc("die"),exp:"Referring to a person → die. 'Ricardo? Die haalt koffie.'"},
+ans:enc("die"),exp:"Reference to a person → die. 'Ricardo? Die haalt koffie.'"},
 {id:"21-4",type:"mc",question:"'Mag ik naar de WC? Ja, ___ mag.'",
 opts:["die","dat","het","dit"],ans:enc("dat"),
-exp:"Referring to the action of going to the WC → dat."},
+exp:"Reference to the action of going to the bathroom → dat."},
 {id:"21-5",type:"fill",question:"'Ken je de cd van Adele? Ja, ___ heb ik voor mijn verjaardag gekregen.' (de cd)",
 ans:enc("die"),exp:"de cd = de-word → die."},
 ]},
@@ -1042,19 +1043,19 @@ Subclause: conjunction + subject + (objects/time/place) + <strong>ALL VERBS LAST
 • <strong>Toen</strong> is ALWAYS used with a past tense.<br>
 • After <strong>nadat</strong>, use plusquamperfectum (had/hadden + perfectum verb).</div>`,
 exercises:[
-{id:"22-1",type:"mc",question:"Which conjunction sends the verb to the END of the clause?",
+{id:"22-1",type:"mc",question:"Welk voegwoord stuurt het werkwoord naar het EINDE van de bijzin?",
 opts:["en","maar","want","omdat"],ans:enc("omdat"),
-exp:"Omdat is a 'hard' conjunction: the verb goes to the end of the subclause. En/maar/want are 'easy' and keep normal word order."},
+exp:"Omdat is a 'hard' conjunction: the verb goes to the end of the clause. En/maar/want are 'easy' and keep normal word order."},
 {id:"22-2",type:"fill",question:"'Ik vind vlinders mooi ___ ze prachtige kleuren hebben.'",
-ans:enc("omdat"),exp:"'Because they have beautiful colours' = omdat ze prachtige kleuren hebben. Omdat sends verbs to end."},
-{id:"22-3",type:"mc",question:"Which rule applies to 'toen'?",
-opts:["Always used with present tense","Always used with past tense","Can start a sentence with result","Used only in questions"],
+ans:enc("omdat"),exp:"'Omdat ze prachtige kleuren hebben.' Omdat sends verbs to the end."},
+{id:"22-3",type:"mc",question:"Welke regel geldt voor 'toen'?",
+opts:["Altijd gebruikt met tegenwoordige tijd","Altijd gebruikt met verleden tijd","Kan een zin beginnen met een resultaat","Alleen gebruikt in vragen"],
 ans:enc("Always used with past tense"),exp:"Toen = when (in the past). It is ALWAYS followed by a past tense (imperfectum or perfectum)."},
 {id:"22-4",type:"fill",question:"'Ik ga de krant vaker lezen ___ ik nieuwe woorden leer.'",
-ans:enc("zodat"),exp:"'So that I learn new words' = zodat ik nieuwe woorden leer. Zodat = so that (expresses a result/purpose)."},
-{id:"22-5",type:"mc",question:"Which conjunction CANNOT begin a sentence?",
+ans:enc("zodat"),exp:"'Zodat ik nieuwe woorden leer.' Zodat = so that (expresses a result/purpose)."},
+{id:"22-5",type:"mc",question:"Welk voegwoord kan NOOIT een zin beginnen?",
 opts:["omdat","hoewel","als","zodat"],ans:enc("zodat"),
-exp:"Zodat expresses a result/consequence — it can never start a sentence since we can't start with the result."},
+exp:"Zodat expresses a result — it can never start a sentence because you cannot begin with the consequence."},
 ]},
 
 ]; // END OF LESSONS
@@ -1095,6 +1096,391 @@ const EXAM = [
 {q:"'Ik ga de krant vaker lezen ___ ik nieuwe woorden leer.' (so that)",opts:["omdat","want","zodat","als"],ans:enc("zodat"),topic:"Conjunctions"},
 ];
 </script>
+<!-- PART 3b: extra exercises (brings every lesson to 10) -->
+<script>
+/* Extra exercises injected at runtime — brings every lesson to 10 */
+(function(){
+const x = (id, exs) => { const l = LESSONS.find(l=>l.id===id); if(l) l.exercises.push(...exs); };
+
+/* ── LES 1 · Onderwerpen & Tegenwoordige Tijd ── */
+x(1,[
+{id:"1-6",type:"fill",question:"Vul in: Hij ___ elke dag naar het werk. (fietsen)",
+ ans:enc("fietst"),exp:"fietsen → fiets (stem) → fiets + t = fietst."},
+{id:"1-7",type:"mc",question:"Kies de juiste vorm: Ik ___ graag koffie.",
+ opts:["drinkt","drinken","drink","gedronken"],ans:enc("drink"),
+ exp:"Ik + stem: drinken → drink. No -t after ik."},
+{id:"1-8",type:"fill",question:"Vul in: Jullie ___ erg goed Nederlands. (spreken)",
+ ans:enc("spreken"),exp:"Jullie (plural) uses the infinitive: spreken."},
+{id:"1-9",type:"mc",question:"Welke vraagzin is correct? (jij + werken)",
+ opts:["Werkt jij hier?","Werk jij hier?","Werken jij hier?","Jij werkt hier?"],ans:enc("Werk jij hier?"),
+ exp:"In a question with jij/je the -t is dropped: werkT → Werk jij?"},
+{id:"1-10",type:"fill",question:"Vul in: U ___ hier al tien jaar. (wonen, formeel)",
+ ans:enc("woont"),exp:"U (singular, formal) = stem + t: wonen → woon → woont."},
+]);
+
+/* ── LES 2 · Getallen & Nuttige Zinnen ── */
+x(2,[
+{id:"2-6",type:"mc",question:"Hoe zeg je 70 in het Nederlands?",
+ opts:["zeven tien","zeventig","zevenzestig","seventy"],ans:enc("zeventig"),
+ exp:"70 = zeventig. Compare: dertig (30), veertig (40), vijftig (50)…"},
+{id:"2-7",type:"fill",question:"Hoe zeg je 56 in het Nederlands?",
+ ans:enc("zesenvijftig"),exp:"Units + en + tens: zes + en + vijftig = zesenvijftig."},
+{id:"2-8",type:"mc",question:"Wanneer zeg je 'Goedemiddag'?",
+ opts:["'s ochtends","'s middags","'s avonds","Bij het afscheid"],ans:enc("'s middags"),
+ exp:"Goedemorgen = morning · Goedemiddag = afternoon · Goedenavond = evening."},
+{id:"2-9",type:"fill",question:"Hoe vraag je iemands adres? 'Wat is je ___?'",
+ ans:enc("adres"),exp:"Wat is je adres? = What is your address?"},
+{id:"2-10",type:"mc",question:"Welk getal is 'negentig'?",
+ opts:["19","90","99","9"],ans:enc("90"),
+ exp:"Negentig = 90. Negen (9) + -tig (suffix for tens)."},
+]);
+
+/* ── LES 3 · Zinsbouw & Vragen ── */
+x(3,[
+{id:"3-6",type:"fill",question:"Vul het vraagwoord in: ___ kom je vandaan?",
+ ans:enc("Waar"),exp:"Waar = where. Asking about origin: Waar kom je vandaan?"},
+{id:"3-7",type:"mc",question:"Kies: ___ dagen heb je vakantie?",
+ opts:["Wie","Wat","Hoeveel","Wanneer"],ans:enc("Hoeveel"),
+ exp:"Hoeveel = how many. Asking about a quantity."},
+{id:"3-8",type:"fill",question:"Kies welk of welke: ___ dag vind jij het fijnst? (de dag)",
+ ans:enc("Welke"),exp:"de dag = de-word → welke. Use welk before het-words."},
+{id:"3-9",type:"mc",question:"Welke zinsvolgorde is juist voor een ja/nee vraag?",
+ opts:["Jij woont in Amsterdam?","Woont jij in Amsterdam?","In Amsterdam jij woont?","Jij in Amsterdam woont?"],
+ ans:enc("Woont jij in Amsterdam?"),
+ exp:"Yes/no question: Verb + Subject + rest. Woont (V) + jij (S) + in Amsterdam."},
+{id:"3-10",type:"fill",question:"Vul het vraagwoord in: ___ kost dit?",
+ ans:enc("Hoeveel"),exp:"Hoeveel = how much/many. Asking about a price or quantity."},
+]);
+
+/* ── LES 4 · Bezittelijke Voornaamwoorden ── */
+x(4,[
+{id:"4-6",type:"fill",question:"Vul in: Hij heeft ___ broer uitgenodigd.",
+ ans:enc("zijn"),exp:"Hij → zijn (his)."},
+{id:"4-7",type:"mc",question:"Kies het juiste bezittelijk voornaamwoord: 'Ik heb ___ tas verloren.'",
+ opts:["mijn","zijn","haar","ons"],ans:enc("mijn"),
+ exp:"Ik → mijn. The speaker has lost their own bag."},
+{id:"4-8",type:"fill",question:"Vul in: Wat is ___ telefoonnummer? (formeel, u)",
+ ans:enc("uw"),exp:"U (formal) → uw (formal possessive pronoun)."},
+{id:"4-9",type:"mc",question:"Wij wonen hier. ___ huis is groot. (het huis)",
+ opts:["Onze","Ons","Hun","Zijn"],ans:enc("Ons"),
+ exp:"Wij → onze/ons. 'huis' = het huis (het-word) → ons huis."},
+{id:"4-10",type:"fill",question:"Vul in: Jullie hebben ___ huiswerk niet gemaakt.",
+ ans:enc("jullie"),exp:"Jullie → jullie (possessive pronoun stays the same)."},
+]);
+
+/* ── LES 5 · Tijdvoorzetsels & De Klok ── */
+x(5,[
+{id:"5-7",type:"fill",question:"Vul in: Wij zijn geboren ___ 1990. (jaar)",
+ ans:enc("in"),exp:"Use in for years and seasons: in 1990, in de zomer."},
+{id:"5-8",type:"mc",question:"Kies het juiste voorzetsel: 'Bart en Marit zijn ___ 8 april 2018 getrouwd.'",
+ opts:["in","om","op","aan"],ans:enc("op"),
+ exp:"Use op for specific dates: op 8 april 2018."},
+{id:"5-9",type:"fill",question:"Hoe zeg je 11:20 in het Nederlands?",
+ ans:enc("tien voor half twaalf"),exp:"11:20 = 10 minutes before the half hour to 12 = tien voor half twaalf."},
+{id:"5-10",type:"mc",question:"Hoe zeg je 11:05 in het Nederlands?",
+ opts:["vijf voor elf","kwart over elf","vijf over elf","vijf voor half elf"],
+ ans:enc("vijf over elf"),exp:"11:05 = 5 minutes past eleven = vijf over elf."},
+]);
+
+/* ── LES 6 · Inversiezinnen ── */
+x(6,[
+{id:"6-5",type:"mc",question:"'Ik neem nu een glas bier.' Begin met 'Nu':",
+ opts:["Nu neem ik een glas bier.","Nu ik neem een glas bier.","Nu een glas bier neem ik.","Nu neem een glas bier ik."],
+ ans:enc("Nu neem ik een glas bier."),
+ exp:"Time word (Nu) + Verb (neem) + Subject (ik) + rest."},
+{id:"6-6",type:"fill",question:"'Ik werk elke dag in Amsterdam.' Begin met 'In Amsterdam': In Amsterdam ___ ik elke dag.",
+ ans:enc("werk"),exp:"Inversion: Place (In Amsterdam) + Verb (werk) + Subject (ik) + rest."},
+{id:"6-7",type:"mc",question:"Welke inversiezin is correct?",
+ opts:["Morgen gaan wij naar Rotterdam.","Morgen wij gaan naar Rotterdam.","Morgen naar Rotterdam gaan wij.","Morgen wij naar Rotterdam gaan."],
+ ans:enc("Morgen gaan wij naar Rotterdam."),
+ exp:"Time word + Verb + Subject + rest. The verb is always at position 2."},
+{id:"6-8",type:"fill",question:"'Peter fietst elke ochtend naar het station.' Begin met 'Elke ochtend': Elke ochtend ___ Peter naar het station.",
+ ans:enc("fietst"),exp:"Time word + Verb (fietst) + Subject (Peter) + rest."},
+{id:"6-9",type:"mc",question:"Wat staat altijd op positie 2 in een inversiezin?",
+ opts:["Het onderwerp","Het werkwoord","Het tijdswoord","Het lijdend voorwerp"],
+ ans:enc("Het werkwoord"),exp:"The basic rule: the verb is ALWAYS at position 2, whatever comes at position 1."},
+{id:"6-10",type:"fill",question:"\"'s Avonds ___ wij thee.\" ('s Avonds + drinken, wij)",
+ ans:enc("drinken"),exp:"Inversion: Time word ('s Avonds) + Verb (drinken) + Subject (wij)."},
+]);
+
+/* ── LES 7 · De- en Het-woorden ── */
+x(7,[
+{id:"7-6",type:"mc",question:"Welk lidwoord hoort bij 'nummer'?",
+ opts:["de","het","geen lidwoord","beide"],ans:enc("het"),
+ exp:"nummer = het nummer. Numbers are het-words."},
+{id:"7-7",type:"fill",question:"Vul in: ___ politie rijdt snel. (de/het?)",
+ ans:enc("De"),exp:"politie = de politie. Suffix -ie → always de."},
+{id:"7-8",type:"mc",question:"Welk lidwoord hoort bij 'cultuur'?",
+ opts:["het","de","geen","beide"],ans:enc("de"),
+ exp:"Suffix -uur → always de: de cultuur, de natuur."},
+{id:"7-9",type:"mc",question:"Welk lidwoord hoort bij 'gebit' (teeth)?",
+ opts:["de","het","geen","beide"],ans:enc("het"),
+ exp:"Prefix ge- with 2 syllables → het-word: het gebit, het gebruik."},
+{id:"7-10",type:"fill",question:"Vul in: ___ baby huilt heel hard. (baby = naam voor persoon)",
+ ans:enc("De"),exp:"Names for persons → de-word: de baby, de agent, de dokter."},
+]);
+
+/* ── LES 8 · Dagen van de Week & Meervoud ── */
+x(8,[
+{id:"8-6",type:"fill",question:"Wat is het meervoud van 'tomaat'?",
+ ans:enc("tomaten"),exp:"tomaat → remove one -a to preserve the long vowel sound → tomaten."},
+{id:"8-7",type:"mc",question:"Wat is het meervoud van 'pauze'?",
+ opts:["pauzeen","pauzes","pauze's","pauzens"],ans:enc("pauzes"),
+ exp:"pauze ends in -e → add -s → pauzes."},
+{id:"8-8",type:"fill",question:"Welke dag komt na woensdag?",
+ ans:enc("donderdag"),exp:"Order: maandag, dinsdag, woensdag, donderdag, vrijdag, zaterdag, zondag."},
+{id:"8-9",type:"mc",question:"Wat is het meervoud van 'aardappel'?",
+ opts:["aardappels","aardappelen","aardappel's","aardappeles"],
+ ans:enc("aardappelen"),exp:"aardappel ends in -el → add -en → aardappelen."},
+{id:"8-10",type:"fill",question:"Wat is het meervoud van 'biertje'?",
+ ans:enc("biertjes"),exp:"biertje is a diminutive (-je) → add -s → biertjes."},
+]);
+
+/* ── LES 9 · Bijvoeglijke Naamwoorden ── */
+x(9,[
+{id:"9-6",type:"mc",question:"'De ___ fiets staat buiten.' (oud, de fiets)",
+ opts:["oud","oude","ouds","oudst"],ans:enc("oude"),
+ exp:"de-word + adjective → add -e: de oude fiets."},
+{id:"9-7",type:"fill",question:"Vul in: 'Het is een ___ dag.' (mooi, de dag)",
+ ans:enc("mooie"),exp:"een + de-word (dag) → add -e: een mooie dag."},
+{id:"9-8",type:"mc",question:"'___ koffie is heerlijk.' (lekker, geen lidwoord, de koffie)",
+ opts:["Lekker","Lekkere","Lekkers","Lekkerste"],ans:enc("Lekkere"),
+ exp:"No article + de-word → add -e: lekkere koffie."},
+{id:"9-9",type:"fill",question:"Vul in: 'Ik heb een ___ idee.' (gek, het idee)",
+ ans:enc("gek"),exp:"een + het-word (idee) → NO -e: een gek idee."},
+{id:"9-10",type:"mc",question:"'Die ___ tas is van mij.' (rood, de tas, ver weg)",
+ opts:["rood","rode","rooie","rods"],ans:enc("rode"),
+ exp:"die (far) + de-word → add -e: die rode tas."},
+]);
+
+/* ── LES 10 · Modale Werkwoorden ── */
+x(10,[
+{id:"10-6",type:"mc",question:"'Nederlanders ___ twee paspoorten hebben.' (mogelijkheid)",
+ opts:["mogen","willen","kunnen","zullen"],ans:enc("kunnen"),
+ exp:"Kunnen = to have the ability. Nederlanders kunnen (are able to) have two passports."},
+{id:"10-7",type:"fill",question:"Vul in: '___ ik u iets vragen?' (toestemming vragen)",
+ ans:enc("Mag"),exp:"Mogen = permission. Mag ik …? = Am I allowed to …?"},
+{id:"10-8",type:"mc",question:"'Ricardo is 17 jaar. ___ hij al alcohol drinken?' (toestemming)",
+ opts:["Moet","Kan","Mag","Wil"],ans:enc("Mag"),
+ exp:"Mogen = permission. Mag hij = is he allowed to?"},
+{id:"10-9",type:"fill",question:"Vul in: 'Mijn achternaam is Versluijs, ___ ik dat even spellen?' (mogelijkheid/toestemming)",
+ ans:enc("kan|mag"),exp:"Kan (ability) or mag (permission) are both correct here."},
+{id:"10-10",type:"mc",question:"'Ik ___ de borden schoonmaken.' (verplichting)",
+ opts:["mag","kan","moet","wil"],ans:enc("moet"),
+ exp:"Moeten = obligation. Ik moet = I am required to."},
+]);
+
+/* ── LES 11 · Vergrotende & Overtreffende Trap ── */
+x(11,[
+{id:"11-6",type:"fill",question:"Vul in: weinig → ___ dan. (vergrotende trap)",
+ ans:enc("minder"),exp:"weinig is irregular: weinig → minder → het minst."},
+{id:"11-7",type:"mc",question:"'Ik spreek ___ Nederlands dan mijn broer.' (veel, vergrotende trap)",
+ opts:["veel","meer","meest","het meest"],ans:enc("meer"),
+ exp:"veel is irregular: veel → meer → het meest."},
+{id:"11-8",type:"fill",question:"'Dit is het ___ restaurant van de stad.' (goed, overtreffende trap)",
+ ans:enc("beste"),exp:"goed is irregular: goed → beter → het best(e). Before a noun: het beste."},
+{id:"11-9",type:"mc",question:"Vergrotende trap van 'klein': 'De baby is ___ dan de hond.'",
+ opts:["kleiner","kleinder","minder klein","minst klein"],ans:enc("kleiner"),
+ exp:"klein + -er = kleiner. Standard comparative rule."},
+{id:"11-10",type:"fill",question:"Vul in: 'Ze heeft ___ vrienden dan haar zus.' (weinig, vergrotende trap)",
+ ans:enc("minder"),exp:"weinig → minder (irregular, just like little → less in English)."},
+]);
+
+/* ── LES 12 · Aanwijzende Voornaamwoorden ── */
+x(12,[
+{id:"12-5",type:"fill",question:"Vul in: 'Wil je ___ blauwe trui of ___ zwarte?' (de trui, eerste dichtbij, tweede ver)",
+ ans:enc("deze / die"),exp:"de trui near → deze; de trui far → die."},
+{id:"12-6",type:"mc",question:"'___ huis is mooi.' (het huis, dichtbij)",
+ opts:["Deze","Die","Dit","Dat"],ans:enc("Dit"),
+ exp:"het huis is near → dit. het-word + near = dit."},
+{id:"12-7",type:"fill",question:"Vul in: '___ schoenen zijn comfortabeler.' (de schoenen, ver weg)",
+ ans:enc("Die"),exp:"de schoenen, far away → die."},
+{id:"12-8",type:"mc",question:"'Meneer, hebt u ___ model in meer kleuren?' (het model, dichtbij)",
+ opts:["deze","die","dit","dat"],ans:enc("dit"),
+ exp:"het model is near → dit."},
+{id:"12-9",type:"fill",question:"Vul in: '___ tas is van mij.' (de tas, dichtbij)",
+ ans:enc("Deze"),exp:"de tas, near → deze."},
+{id:"12-10",type:"mc",question:"'Ober, ___ vis is niet vers.' (de vis, dichtbij aan tafel)",
+ opts:["dit","dat","deze","die"],ans:enc("deze"),
+ exp:"de vis, near → deze."},
+]);
+
+/* ── LES 13 · Persoonlijke Voornaamwoorden ── */
+x(13,[
+{id:"13-6",type:"fill",question:"Vul in: 'Ik heb een nieuwe fiets. Wil je ___ zien?' (de fiets)",
+ ans:enc("hem"),exp:"de fiets = de-word → object form: hem."},
+{id:"13-7",type:"mc",question:"Kies de objectvorm: 'Ik stuur ___ een e-mail.' (u, formeel)",
+ opts:["uw","u","hun","hen"],ans:enc("u"),
+ exp:"U (formal) → object form stays u."},
+{id:"13-8",type:"fill",question:"Vul in: 'Hij belt ___ elke dag.' (mij/me = ik)",
+ ans:enc("mij|me"),exp:"Ik → object form: mij (emphatic) or me (general use)."},
+{id:"13-9",type:"mc",question:"Subject 'zij' (she) → objectvorm:",
+ opts:["ze","zijn","haar","hun"],ans:enc("haar"),
+ exp:"zij (she, singular) → object form: haar."},
+{id:"13-10",type:"fill",question:"Vul in: 'Kun jij ___ helpen?' (= mij, ik)",
+ ans:enc("mij|me"),exp:"Ik → object form: mij or me."},
+]);
+
+/* ── LES 14 · Perfectum — Vorming ── */
+x(14,[
+{id:"14-6",type:"fill",question:"Vorm het perfectum van 'spelen': ge___",
+ ans:enc("gespeeld"),exp:"spelen → speel (stem) → ge+speel → L not in SK → +d → gespeeld."},
+{id:"14-7",type:"mc",question:"Perfectum van 'maken':",
+ opts:["gemaakt","gemaakd","gemakkt","gegemaakt"],ans:enc("gemaakt"),
+ exp:"maken → maak (stem) → ge+maak → K is in SOFT KETCHUP → +t → gemaakt."},
+{id:"14-8",type:"fill",question:"Vorm het perfectum van 'reizen' (Z→S uitzondering): ge___",
+ ans:enc("gereisd"),exp:"reizen → reis (Z→S) → ge+reis → S in SK but Z→S-exception applies → still +d → gereisd."},
+{id:"14-9",type:"mc",question:"Perfectum van 'vertellen' (begint met ver-):",
+ opts:["geverteld","verteld","vergeteld","verteeld"],ans:enc("verteld"),
+ exp:"vertellen starts with ver- → no ge-. vertel → L not in SK → +d → verteld."},
+{id:"14-10",type:"fill",question:"Vorm het perfectum van 'gebruiken': ge___",
+ ans:enc("gebruikt"),exp:"gebruiken → gebruik (stem) → ge+gebruik → K in SK → +t → gebruikt."},
+]);
+
+/* ── LES 15 · Perfectum — hebben of zijn ── */
+x(15,[
+{id:"15-6",type:"fill",question:"Vul in: 'De film ___ al begonnen.' (beginnen = zijn-werkwoord)",
+ ans:enc("is"),exp:"beginnen is on the zijn-list → de film is begonnen."},
+{id:"15-7",type:"mc",question:"'Mijn ouders ___ een nieuw appartement gekocht.' (kopen)",
+ opts:["zijn","is","heb","hebben"],ans:enc("hebben"),
+ exp:"kopen = no movement, no state change → hebben. mijn ouders (zij) → hebben."},
+{id:"15-8",type:"fill",question:"Vul in: 'Waar ___ je het boek gekocht?' (kopen = hebben, jij)",
+ ans:enc("heb"),exp:"kopen uses hebben. jij/je → heb (in question form: heb jij/je)."},
+{id:"15-9",type:"mc",question:"'De buurt ___ helemaal veranderd.' (veranderen = zijn)",
+ opts:["heeft","heb","is","zijn"],ans:enc("is"),
+ exp:"veranderen is on the zijn-list → de buurt is veranderd."},
+{id:"15-10",type:"fill",question:"Vul in: '___ jullie met de cursus gestopt?' (stoppen = zijn)",
+ ans:enc("Zijn"),exp:"stoppen is on the zijn-list → Zijn jullie gestopt?"},
+]);
+
+/* ── LES 16 · Bedoelen of Betekenen ── */
+x(16,[
+{id:"16-5",type:"mc",question:"'Ik neem een bakje tomaten. Wat ___ 'bakje' eigenlijk?' (definitie van een woord)",
+ opts:["bedoel","bedoelt","betekent","bedoelden"],ans:enc("betekent"),
+ exp:"You are asking for the literal definition of the word 'bakje' → betekenen."},
+{id:"16-6",type:"fill",question:"Vul in: 'Wat ___ a.u.b.?' (definitie van een afkorting)",
+ ans:enc("betekent"),exp:"You are asking for the literal meaning of the abbreviation a.u.b. → betekenen."},
+{id:"16-7",type:"mc",question:"Wanneer gebruik je 'bedoelen'?",
+ opts:["Als je de letterlijke betekenis van een woord wilt weten","Als je iemands intentie wilt begrijpen of uitleggen","Als je een afkorting verklaart","Als je een definitie geeft"],
+ ans:enc("Als je iemands intentie wilt begrijpen of uitleggen"),
+ exp:"Bedoelen is about intention. Betekenen is about the literal meaning of a word."},
+{id:"16-8",type:"fill",question:"Vul in: 'Mijn moeder heeft een allergie. Dat ___ dat zij geen noten mag eten.'",
+ ans:enc("betekent"),exp:"Dat betekent dat … = expressing a consequence/definition → betekenen."},
+{id:"16-9",type:"mc",question:"Wanneer gebruik je 'betekenen'?",
+ opts:["Als iemand zijn bedoeling uitlegt","Als je vraagt naar de definitie van een woord of afkorting","Als je iemand niet begrijpt","Als je een voorstel doet"],
+ ans:enc("Als je vraagt naar de definitie van een woord of afkorting"),
+ exp:"Betekenen = the literal meaning of a word or abbreviation."},
+{id:"16-10",type:"fill",question:"Vul in: 'NAVO ___ Noord-Atlantische Verdragsorganisatie.' (definitie afkorting)",
+ ans:enc("betekent"),exp:"You are giving the meaning of the abbreviation NAVO → betekenen."},
+]);
+
+/* ── LES 17 · Imperfectum ── */
+x(17,[
+{id:"17-6",type:"fill",question:"Vul in: 'John ___ (vertellen) mij over zijn vakantie.' (enkelvoud)",
+ ans:enc("vertelde"),exp:"vertellen → vertel (stem) → L not in SK → singular -de → vertelde."},
+{id:"17-7",type:"mc",question:"Imperfectum van 'leven' (V→F, enkelvoud):",
+ opts:["lefte","leefde","leefden","leeftes"],ans:enc("leefde"),
+ exp:"leven → leef (V→F) → F is in SK but V→F-exception applies: still -de → leefde."},
+{id:"17-8",type:"fill",question:"Vul in: 'Marloes ___ (bedanken) ons voor de geweldige dag.' (enkelvoud)",
+ ans:enc("bedankte"),exp:"bedanken → bedank (stem) → K in SK → singular -te → bedankte."},
+{id:"17-9",type:"mc",question:"Imperfectum van 'reizen' (Z→S uitzondering, enkelvoud):",
+ opts:["reisde","reiside","reiste","reiseden"],ans:enc("reisde"),
+ exp:"reizen → reis (Z→S) → S in SK but Z→S-exception applies: still -de → reisde."},
+{id:"17-10",type:"fill",question:"Vul in: 'Wij ___ (fietsen) door de straten.' (meervoud)",
+ ans:enc("fietsten"),exp:"fietsen → fiets → S in SK → plural -ten → fietsten."},
+]);
+
+/* ── LES 18 · Modale Werkwoorden Verleden Tijd ── */
+x(18,[
+{id:"18-6",type:"fill",question:"Vul in: 'Vroeger ___ (mogen, meervoud) wij langer opblijven.'",
+ ans:enc("mochten"),exp:"mogen → plural past tense: mochten."},
+{id:"18-7",type:"mc",question:"Welke vorm is correct? 'Ik ___ gisteren niet komen.' (kunnen, enkelvoud)",
+ opts:["kan","kon","konden","kunnen"],ans:enc("kon"),
+ exp:"kunnen → singular past tense: kon."},
+{id:"18-8",type:"fill",question:"Vul in: 'Als kind ___ (willen, enkelvoud) zij dierenarts worden.'",
+ ans:enc("wilde"),exp:"willen → singular past tense: wilde."},
+{id:"18-9",type:"mc",question:"Verleden tijd van 'zullen' (enkelvoud):",
+ opts:["zou","zouden","zal","zullen"],ans:enc("zou"),
+ exp:"zullen → singular past tense: zou. Also used as conditional (would)."},
+{id:"18-10",type:"fill",question:"Vul in: 'Ze ___ (moeten, meervoud) elke dag vroeg opstaan.'",
+ ans:enc("moesten"),exp:"moeten → plural past tense: moesten."},
+]);
+
+/* ── LES 19 · Scheidbare Werkwoorden ── */
+x(19,[
+{id:"19-5",type:"fill",question:"Modaal werkwoord: 'Je moet je voor 1 december ___ .' (aanmelden, infinitief)",
+ ans:enc("aanmelden"),exp:"With a modal verb, the separable verb goes to the end as a complete infinitive."},
+{id:"19-6",type:"mc",question:"Perfectum van 'opbellen': Ik heb ___.",
+ opts:["opgebebeld","opgebeld","gebeld op","opbellen"],ans:enc("opgebeld"),
+ exp:"opbellen: bellen → bel → ge: op+ge+beld → L not in SK → +d → opgebeld."},
+{id:"19-7",type:"fill",question:"Tegenwoordige tijd: 'Wij ___ om 8 uur op Schiphol ___ .' (aankomen)",
+ ans:enc("komen / aan"),exp:"Present tense: split the verb. 'komen' at position 2, 'aan' to the end."},
+{id:"19-8",type:"mc",question:"Perfectum van 'meenemen': Ik heb ___.",
+ opts:["meegenomen","genomen mee","meegeno","nemen mee"],ans:enc("meegenomen"),
+ exp:"meenemen: nemen → genomen (irregular). Prefix mee + genomen = meegenomen."},
+{id:"19-9",type:"fill",question:"Vul in: 'Wil je de boodschappen ___?' (meenemen, modaal werkwoord → infinitief)",
+ ans:enc("meenemen"),exp:"With a modal verb, the infinitive of the separable verb goes to the end."},
+{id:"19-10",type:"mc",question:"Om + te met 'uitkiezen': 'Ik vind het moeilijk om gezonde producten ___'",
+ opts:["uit te kiezen","te uitkiezen","uit kiezen","uitkiezen te"],
+ ans:enc("uit te kiezen"),exp:"Om+te splits the prefix from the verb: uit te kiezen (not: te uitkiezen)."},
+]);
+
+/* ── LES 20 · Toekomstige Tijd ── */
+x(20,[
+{id:"20-5",type:"mc",question:"Welke zin drukt de toekomst uit met structuur #2 (gaan + infinitief)?",
+ opts:["Ik ga morgen naar de markt.","Ik ben morgen op kantoor.","Ik zal morgen bellen.","Morgen werkte ik thuis."],
+ ans:enc("Ik ga morgen naar de markt."),
+ exp:"Structure #2: gaan + infinitive → Ik ga … (going to the market is implicit but clear)."},
+{id:"20-6",type:"fill",question:"Vul in: 'Ze ___ volgend jaar trouwen.' (gaan, zij meervoud)",
+ ans:enc("gaan"),exp:"gaan + infinitive for the future. zij (plural) → gaan."},
+{id:"20-7",type:"mc",question:"'Er ___ veel mensen op het concert komen.' (zullen, onzeker)",
+ opts:["gaan","zullen","komen","zijn"],ans:enc("zullen"),
+ exp:"Use zullen for uncertain or unconfirmed future actions."},
+{id:"20-8",type:"fill",question:"Vul in: 'Wij ___ volgend jaar in Australië studeren.' (gaan, wij)",
+ ans:enc("gaan"),exp:"gaan + infinitive. wij → gaan."},
+{id:"20-9",type:"mc",question:"'De directeur ___ het hotel inspecteren.' (zullen, hij, onzeker)",
+ opts:["gaat","is","zal","wil"],ans:enc("zal"),
+ exp:"Zullen (uncertain/likely) → singular: zal."},
+{id:"20-10",type:"fill",question:"Vul in: 'De cursus ___ volgende week beginnen.' (gaan, de cursus)",
+ ans:enc("gaat"),exp:"gaan + infinitive. de cursus (singular, hij/zij) → gaat."},
+]);
+
+/* ── LES 21 · Die & Dat als Verwijzing ── */
+x(21,[
+{id:"21-6",type:"fill",question:"Vul in: 'Heb je mijn pen gezien? Ja, ___ ligt onder je boek.' (de pen)",
+ ans:enc("die"),exp:"de pen = de-word → reference with die."},
+{id:"21-7",type:"mc",question:"Kies die of dat: 'Was de trein op tijd? Nee, ___ was weer te laat.'",
+ opts:["die","dat","dit","deze"],ans:enc("die"),
+ exp:"Reference to de trein (de-word) → die."},
+{id:"21-8",type:"fill",question:"Vul in: 'Mag ik je nieuwe fiets proberen? Ja, ___ mag.' (verwijzing naar de handeling)",
+ ans:enc("dat"),exp:"Reference to the whole action (trying the bike) → dat."},
+{id:"21-9",type:"mc",question:"Kies die of dat: 'Heb je de film gezien? Ja, ___ was geweldig!'",
+ opts:["die","dat","dit","deze"],ans:enc("die"),
+ exp:"de film = de-word → reference with die."},
+{id:"21-10",type:"fill",question:"Vul in: 'Waar zijn je koffers? O, ___ staan nog buiten.' (de koffers)",
+ ans:enc("die"),exp:"de koffers = de-word (plural) → reference with die."},
+]);
+
+/* ── LES 22 · Voegwoorden ── */
+x(22,[
+{id:"22-6",type:"mc",question:"Kies het juiste voegwoord: 'Ik ga niet mee ___ ik moe ben.' (normale woordvolgorde bewaard)",
+ opts:["omdat","want","zodat","als"],ans:enc("want"),
+ exp:"Want keeps normal word order. Omdat sends the verb to the end: '…omdat ik moe ben.'"},
+{id:"22-7",type:"fill",question:"Vul in: 'Hij belt zijn moeder ___ hij naar huis gaat.' (voordat = before)",
+ ans:enc("voordat"),exp:"voordat = before. It is a hard conjunction: verb goes to the end."},
+{id:"22-8",type:"mc",question:"'___ mijn moeder ernstig ziek was, heeft hij voor mij gezorgd.' (kies het juiste voegwoord)",
+ opts:["Als","Toen","Voordat","Zodat"],ans:enc("Toen"),
+ exp:"Toen = when (past). Toen ALWAYS + past tense. Als = when (present/future or repeated)."},
+{id:"22-9",type:"fill",question:"Vul in: 'Ik wacht hier ___ jij klaar bent.' (until)",
+ ans:enc("totdat"),exp:"totdat = until. Hard conjunction: verb goes to the end of the clause."},
+{id:"22-10",type:"mc",question:"Kies de correcte woordvolgorde met 'omdat':",
+ opts:["...omdat ik ben moe.","...omdat ik moe ben.","...omdat moe ik ben.","...omdat ben ik moe."],
+ ans:enc("...omdat ik moe ben."),
+ exp:"After 'omdat': subject + other elements + ALL verbs last. '…omdat ik moe ben.'"},
+]);
+
+})();
+</script>
 <!-- PART 4: app logic -->
 <script>
 /* ══════════════════════════════════════════════════
@@ -1122,9 +1508,10 @@ function buildSidebar() {
   const list = document.getElementById('sb-list');
   list.innerHTML = LESSONS.map(l => {
     const ls = state[l.id];
-    const done = ls && ls.score === ls.total && ls.total > 0;
-    const inprog = ls && !done && Object.keys(ls.answers||{}).length > 0;
-    const pct = ls && ls.total ? Math.round(ls.score/ls.total*100) : null;
+    const answeredCount = Object.keys(ls && ls.answers || {}).length;
+    const done = ls && answeredCount === ls.total && ls.total > 0;
+    const inprog = ls && !done && answeredCount > 0;
+    const pct = ls && ls.total ? Math.round(answeredCount/ls.total*100) : null;
     const active = currentLesson && currentLesson.id === l.id ? 'active' : '';
     return `<div class="sli ${done?'done':''} ${active}" onclick="openLesson(${l.id})">
       <div class="sli-icon">${done ? '✓' : l.icon}</div>
@@ -1136,11 +1523,15 @@ function buildSidebar() {
 }
 
 function updateOverallProgress() {
-  const done = LESSONS.filter(l => {
+  const answered = LESSONS.reduce((sum, l) => {
     const ls = state[l.id];
-    return ls && ls.score === ls.total && ls.total > 0;
-  }).length;
-  const pct = Math.round(done / LESSONS.length * 100);
+    return sum + Object.keys(ls && ls.answers || {}).length;
+  }, 0);
+  const total = LESSONS.reduce((sum, l) => {
+    const ls = state[l.id];
+    return sum + (ls && ls.total || 0);
+  }, 0);
+  const pct = total > 0 ? Math.round(answered / total * 100) : 0;
   document.getElementById('prog-bar').style.width = pct + '%';
   document.getElementById('prog-pct').textContent = pct + '%';
 }
@@ -1161,8 +1552,8 @@ function showDash() {
 }
 
 function buildDashboard() {
-  const done = LESSONS.filter(l => { const ls=state[l.id]; return ls && ls.score===ls.total && ls.total>0; }).length;
-  const scores = LESSONS.map(l => state[l.id]).filter(ls => ls && ls.total);
+  const done = LESSONS.filter(l => { const ls=state[l.id]; return ls && Object.keys(ls.answers||{}).length===ls.total && ls.total>0; }).length;
+  const scores = LESSONS.map(l => state[l.id]).filter(ls => ls && ls.total && Object.keys(ls.answers||{}).length>0);
   const avg = scores.length ? Math.round(scores.reduce((a,ls)=>a+ls.score/ls.total*100,0)/scores.length) : null;
   const totalAns = Object.values(state).reduce((a,ls)=>a+Object.keys(ls.answers||{}).length,0);
   document.getElementById('d-done').textContent = done;
@@ -1171,9 +1562,10 @@ function buildDashboard() {
 
   document.getElementById('d-grid').innerHTML = LESSONS.map(l => {
     const ls = state[l.id];
-    const isDone = ls && ls.score===ls.total && ls.total>0;
-    const inProg = ls && !isDone && Object.keys(ls.answers||{}).length>0;
-    const pct = ls && ls.total ? Math.round(ls.score/ls.total*100) : null;
+    const answeredCount = Object.keys(ls && ls.answers || {}).length;
+    const isDone = ls && answeredCount===ls.total && ls.total>0;
+    const inProg = ls && !isDone && answeredCount>0;
+    const pct = ls && ls.total ? Math.round(answeredCount/ls.total*100) : null;
     return `<div class="lcard ${isDone?'done':inProg?'prog':''}" onclick="openLesson(${l.id})">
       <h3>${l.icon} ${l.id}. ${l.title}</h3>
       <div class="cmeta">
@@ -1239,7 +1631,7 @@ function buildExercise(ex, i, ls) {
   const correctVal = dec(ex.ans);
   const displayAns = correctVal.split('|')[0];
   const fbClass = answered ? (wasCorrect ? 'ok' : 'bad') : '';
-  const fbMsg = answered ? (wasCorrect ? `✓ Goed! ${ex.exp}` : `✗ Het goede antwoord is: <strong>${displayAns}</strong>. ${ex.exp}`) : '';
+  const fbMsg = answered ? (wasCorrect ? `✓ Correct! ${ex.exp}` : `✗ The correct answer is: <strong>${displayAns}</strong>. ${ex.exp}`) : '';
   const inputVal = answered ? (wasCorrect ? displayAns : (ls.userInput && ls.userInput[ex.id] || '')) : '';
   const inputCls = answered ? (wasCorrect ? 'correct' : 'wrong') : '';
   return `<div class="eq ${statusClass}" id="eq-${ex.id}">
@@ -1282,7 +1674,7 @@ function checkMC(btn, exId, chosen) {
   card.className = 'eq ' + (correct ? 'ok' : 'bad');
   const fb = document.getElementById('fb-' + exId);
   fb.className = 'fb on ' + (correct ? 'ok' : 'bad');
-  fb.innerHTML = correct ? `✓ Goed! ${ex.exp}` : `✗ Het goede antwoord is: <strong>${correctVal}</strong>. ${ex.exp}`;
+  fb.innerHTML = correct ? `✓ Correct! ${ex.exp}` : `✗ The correct answer is: <strong>${correctVal}</strong>. ${ex.exp}`;
   buildSidebar();
 }
 
@@ -1308,7 +1700,7 @@ function checkFill(exId) {
   const correctVal = dec(ex.ans).split('|')[0];
   const fb = document.getElementById('fb-' + exId);
   fb.className = 'fb on ' + (correct ? 'ok' : 'bad');
-  fb.innerHTML = correct ? `✓ Goed! ${ex.exp}` : `✗ Het goede antwoord is: <strong>${correctVal}</strong>. ${ex.exp}`;
+  fb.innerHTML = correct ? `✓ Correct! ${ex.exp}` : `✗ The correct answer is: <strong>${correctVal}</strong>. ${ex.exp}`;
   const card = document.getElementById('eq-' + exId);
   card.className = 'eq ' + (correct ? 'ok' : 'bad');
   buildSidebar();
@@ -1319,6 +1711,15 @@ function nextLesson() {
   const next = LESSONS.find(l => l.id === currentLesson.id + 1);
   if (next) openLesson(next.id);
   else showDash();
+}
+
+function restartLesson() {
+  if (!currentLesson) return;
+  state[currentLesson.id] = { answers: {}, score: 0, total: currentLesson.exercises.length };
+  saveState(state);
+  renderLesson(currentLesson);
+  buildSidebar();
+  document.getElementById('main').scrollTop = 0;
 }
 
 /* ══════════════════════════════════════════════════
