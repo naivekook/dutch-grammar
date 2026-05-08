@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nederlands Leren – Inburgering Cursus</title>
+<style>
+:root{--bg:#f0f4f8;--sb:#1a3354;--sb2:#22437a;--acc:#2563eb;--accl:#dbeafe;--ok:#16a34a;--okl:#dcfce7;--err:#dc2626;--errl:#fee2e2;--txt:#1f2937;--muted:#6b7280;--bdr:#e5e7eb;--wht:#fff;--shadow:0 1px 4px rgba(0,0,0,.1)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--txt);height:100vh;display:flex;overflow:hidden}
+
+/* ── SIDEBAR ── */
+#sb{width:272px;min-width:272px;background:var(--sb);color:#fff;display:flex;flex-direction:column;height:100vh;overflow-y:auto}
+#sb-head{padding:18px 16px 14px;border-bottom:1px solid rgba(255,255,255,.1)}
+#sb-head h1{font-size:1rem;font-weight:700;margin-bottom:2px}
+#sb-head p{font-size:.72rem;color:rgba(255,255,255,.55)}
+#sb-prog{padding:10px 16px;border-bottom:1px solid rgba(255,255,255,.1)}
+.prog-lbl{font-size:.68rem;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.05em;display:flex;justify-content:space-between;margin-bottom:5px}
+.pbar{background:rgba(255,255,255,.15);border-radius:4px;height:5px;overflow:hidden}
+.pbar-fill{height:100%;background:#34d399;border-radius:4px;transition:width .35s}
+#sb-list{flex:1;padding:6px 0;overflow-y:auto}
+.sli{display:flex;align-items:center;padding:8px 14px;cursor:pointer;gap:9px;font-size:.8rem;transition:background .15s}
+.sli:hover{background:var(--sb2)}
+.sli.active{background:var(--acc)}
+.sli-icon{width:20px;text-align:center;font-size:.8rem;color:rgba(255,255,255,.4);flex-shrink:0}
+.sli.done .sli-icon{color:#34d399}
+.sli-title{flex:1;line-height:1.3}
+.sli-badge{font-size:.62rem;background:rgba(255,255,255,.12);padding:1px 5px;border-radius:8px;color:rgba(255,255,255,.6)}
+.sli-badge.hi{background:rgba(52,211,153,.2);color:#34d399}
+#exam-btn{margin:8px 12px 14px;padding:10px 14px;background:linear-gradient(135deg,#7c3aed,#4f46e5);border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:8px;font-size:.84rem;font-weight:600;transition:opacity .2s}
+#exam-btn:hover{opacity:.88}
+
+/* ── MAIN ── */
+#main{flex:1;overflow-y:auto}
+.view{display:none;max-width:820px;margin:0 auto;padding:30px 24px}
+.view.on{display:block}
+
+/* ── DASHBOARD ── */
+.dh h2{font-size:1.5rem;font-weight:700;margin-bottom:6px}
+.dh p{color:var(--muted);margin-bottom:22px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}
+.stat{background:var(--wht);border-radius:10px;padding:16px;box-shadow:var(--shadow);text-align:center}
+.stat-v{font-size:1.9rem;font-weight:700;color:var(--acc)}
+.stat-l{font-size:.75rem;color:var(--muted);margin-top:3px}
+.lgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.lcard{background:var(--wht);border-radius:10px;padding:14px;box-shadow:var(--shadow);cursor:pointer;transition:transform .15s,box-shadow .15s;border-left:4px solid var(--bdr)}
+.lcard:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.lcard.done{border-left-color:var(--ok)}
+.lcard.prog{border-left-color:#f59e0b}
+.lcard h3{font-size:.87rem;font-weight:600;margin-bottom:4px}
+.lcard .cmeta{font-size:.72rem;color:var(--muted);display:flex;justify-content:space-between}
+.cscore{font-weight:600;color:var(--ok)}
+
+/* ── LESSON ── */
+.lnum{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--acc);margin-bottom:5px}
+.ltitle{font-size:1.4rem;font-weight:700;margin-bottom:20px}
+.explcard{background:var(--wht);border-radius:12px;padding:22px;box-shadow:var(--shadow);margin-bottom:22px}
+.explcard h3{font-size:.95rem;font-weight:700;color:var(--acc);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--accl)}
+.explcard p{line-height:1.7;font-size:.9rem;margin-bottom:10px}
+.explcard p:last-child{margin-bottom:0}
+.tip{background:#fffbeb;border:1px solid #fcd34d;border-radius:7px;padding:10px 13px;margin:12px 0;font-size:.85rem}
+.tip strong{color:#92400e}
+.exbox{background:var(--accl);border-radius:7px;padding:11px 13px;margin:12px 0;font-size:.88rem}
+.exlbl{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--acc);margin-bottom:6px}
+.exrow{display:grid;grid-template-columns:1fr 1fr;gap:3px 14px;font-size:.85rem}
+.exnl{font-weight:500}
+.exen{color:var(--muted);font-style:italic}
+.rule{background:#fef3c7;border-left:3px solid #f59e0b;padding:8px 12px;margin:10px 0;border-radius:0 6px 6px 0;font-size:.85rem}
+table.gt{width:100%;border-collapse:collapse;font-size:.84rem;margin:12px 0}
+table.gt th{background:var(--acc);color:#fff;padding:6px 9px;text-align:left;font-weight:600;font-size:.78rem}
+table.gt td{padding:5px 9px;border-bottom:1px solid var(--bdr)}
+table.gt tr:nth-child(even) td{background:#f9fafb}
+.hl{font-weight:700;color:var(--acc)}
+.wlist{display:grid;grid-template-columns:1fr 1fr;gap:3px 14px;font-size:.84rem;margin:8px 0}
+.wi{display:flex;gap:7px;padding:2px 0}
+.wnl{font-weight:600;min-width:90px}
+.wen{color:var(--muted)}
+
+/* ── EXERCISES ── */
+.exsec h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.eq{background:var(--wht);border-radius:10px;padding:18px;box-shadow:var(--shadow);margin-bottom:14px;border:2px solid transparent;transition:border-color .2s}
+.eq.ok{border-color:var(--ok)}
+.eq.bad{border-color:var(--err)}
+.eqn{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:7px}
+.eqq{font-size:.92rem;line-height:1.6;margin-bottom:12px;font-weight:500}
+.mc-opts{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.mco{padding:9px 13px;border:2px solid var(--bdr);border-radius:7px;cursor:pointer;font-size:.86rem;transition:all .15s;background:var(--wht);text-align:left;font-family:inherit}
+.mco:hover:not(:disabled){border-color:var(--acc);background:var(--accl)}
+.mco.sel{border-color:var(--acc);background:var(--accl)}
+.mco.correct{border-color:var(--ok);background:var(--okl);color:var(--ok);font-weight:600}
+.mco.wrong{border-color:var(--err);background:var(--errl);color:var(--err)}
+.mco:disabled{cursor:default}
+.fi{padding:8px 11px;border:2px solid var(--bdr);border-radius:7px;font-size:.88rem;width:180px;outline:none;transition:border-color .2s;font-family:inherit}
+.fi:focus{border-color:var(--acc)}
+.fi.correct{border-color:var(--ok);background:var(--okl)}
+.fi.wrong{border-color:var(--err);background:var(--errl)}
+.fi:disabled{cursor:default}
+.chkbtn{margin-top:9px;padding:7px 16px;background:var(--acc);color:#fff;border:none;border-radius:7px;cursor:pointer;font-size:.84rem;font-weight:600;font-family:inherit;transition:background .15s}
+.chkbtn:hover{background:#1d4ed8}
+.chkbtn:disabled{background:var(--muted);cursor:default}
+.fb{margin-top:10px;padding:9px 12px;border-radius:7px;font-size:.84rem;line-height:1.5;display:none}
+.fb.on{display:block}
+.fb.ok{background:var(--okl);color:#15803d}
+.fb.bad{background:var(--errl);color:#b91c1c}
+.lnav{display:flex;gap:10px;margin-top:26px;justify-content:flex-end}
+.btnp{padding:9px 22px;background:var(--acc);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:.87rem;font-weight:600;font-family:inherit;transition:background .15s}
+.btnp:hover{background:#1d4ed8}
+.btns{padding:9px 22px;background:var(--wht);color:var(--txt);border:2px solid var(--bdr);border-radius:8px;cursor:pointer;font-size:.87rem;font-weight:600;font-family:inherit;transition:all .15s}
+.btns:hover{border-color:var(--acc);color:var(--acc)}
+.score-bar{height:5px;background:var(--bdr);border-radius:3px;margin:6px 0 14px;overflow:hidden}
+.score-fill{height:100%;background:var(--acc);border-radius:3px}
+
+/* ── EXAM ── */
+#timer{font-size:1.1rem;font-weight:700;color:var(--acc);font-variant-numeric:tabular-nums}
+#timer.warn{color:#d97706}
+#timer.danger{color:var(--err)}
+.epbar{height:5px;background:var(--bdr);border-radius:3px;margin:10px 0 16px;overflow:hidden}
+.epbar-fill{height:100%;background:var(--acc);border-radius:3px;transition:width .3s}
+.ectr{font-size:.78rem;color:var(--muted);margin-bottom:18px}
+
+/* ── RESULTS ── */
+.rhead{text-align:center;margin-bottom:28px}
+.rhead h2{font-size:1.4rem;font-weight:700;margin-bottom:4px}
+.rscore{width:116px;height:116px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px auto;font-weight:700}
+.rscore.pass{background:var(--okl);border:4px solid var(--ok);color:var(--ok)}
+.rscore.fail{background:var(--errl);border:4px solid var(--err);color:var(--err)}
+.rpct{font-size:1.9rem}
+.rfrac{font-size:.82rem}
+.rbreak{background:var(--wht);border-radius:10px;padding:18px;box-shadow:var(--shadow);margin-bottom:18px}
+.rbreak h3{font-size:.9rem;font-weight:700;margin-bottom:13px}
+.ri{display:flex;align-items:flex-start;gap:9px;padding:8px 0;border-bottom:1px solid var(--bdr);font-size:.83rem}
+.ri:last-child{border-bottom:none}
+.ri-icon{font-size:.95rem;flex-shrink:0;margin-top:1px}
+.ri-q{flex:1}
+.ri-q .ya{color:var(--err)}
+.ri-q .ca{color:var(--ok);font-weight:600}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-thumb{background:rgba(0,0,0,.18);border-radius:3px}
+@media(max-width:700px){#sb{width:210px;min-width:210px}.stats{grid-template-columns:1fr 1fr}.lgrid{grid-template-columns:1fr}.mc-opts{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div id="sb">
+  <div id="sb-head">
+    <h1>🇳🇱 Nederlands Leren</h1>
+    <p>Voorbereiding Inburgeringsexamen</p>
+  </div>
+  <div id="sb-prog">
+    <div class="prog-lbl"><span>Voortgang</span><span id="prog-pct">0%</span></div>
+    <div class="pbar"><div class="pbar-fill" id="prog-bar" style="width:0%"></div></div>
+  </div>
+  <div id="sb-list"><!-- lesson nav items injected by JS --></div>
+  <div id="exam-btn" onclick="showExam()">🎓 Mock Inburgeringsexamen</div>
+</div>
+
+<div id="main">
+  <div class="view on" id="v-dash">
+    <div class="dh">
+      <h2>Welkom bij jouw Nederlandse cursus</h2>
+      <p>Bereid je voor op het inburgeringsexamen, les voor les. Klik op een les om te beginnen.</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="stat-v" id="d-done">0</div><div class="stat-l">Lessen voltooid</div></div>
+      <div class="stat"><div class="stat-v" id="d-score">—</div><div class="stat-l">Gemiddelde score</div></div>
+      <div class="stat"><div class="stat-v" id="d-streak">0</div><div class="stat-l">Oefeningen gedaan</div></div>
+    </div>
+    <div class="lgrid" id="d-grid"><!-- leskaarten --></div>
+  </div>
+
+  <div class="view" id="v-lesson">
+    <div class="lnum" id="l-num"></div>
+    <div class="ltitle" id="l-title"></div>
+    <div class="explcard" id="l-expl"></div>
+    <div class="exsec">
+      <h3>Oefeningen</h3>
+      <div id="l-exercises"></div>
+    </div>
+    <div class="lnav">
+      <button class="btns" onclick="showDash()">← Terug naar overzicht</button>
+      <button class="btnp" id="l-next" onclick="nextLesson()">Volgende les →</button>
+    </div>
+  </div>
+
+  <div class="view" id="v-exam">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <h2 style="font-size:1.35rem;font-weight:700">🎓 Mock Inburgeringsexamen</h2>
+      <div id="timer">45:00</div>
+    </div>
+    <div class="epbar"><div class="epbar-fill" id="ep-fill" style="width:0%"></div></div>
+    <div class="ectr" id="e-ctr">Vraag 1 van 30</div>
+    <div id="e-question"></div>
+    <div style="margin-top:16px;display:flex;gap:10px;justify-content:flex-end">
+      <button class="btns" onclick="confirmExitExam()">✕ Examen verlaten</button>
+      <button class="btnp" id="e-next" onclick="examNext()" disabled>Volgende →</button>
+    </div>
+  </div>
+
+  <div class="view" id="v-results">
+    <div class="rhead">
+      <h2>Examenresultaten</h2>
+      <div class="rscore" id="r-circle">
+        <div class="rpct" id="r-pct"></div>
+        <div class="rfrac" id="r-frac"></div>
+      </div>
+      <p id="r-msg" style="font-size:.95rem"></p>
+    </div>
+    <div class="rbreak">
+      <h3>Overzicht van vragen</h3>
+      <div id="r-items"></div>
+    </div>
+    <div style="text-align:center;margin-top:20px">
+      <button class="btnp" onclick="showDash()">← Terug naar cursus</button>
+      <button class="btns" style="margin-left:10px" onclick="startExam()">Examen herkansen</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════
+   ENCODING HELPERS  (answers never stored as plaintext)
+══════════════════════════════════════════════════ */
+const enc = s => btoa(unescape(encodeURIComponent(s))).split('').reverse().join('');
+const dec = s => decodeURIComponent(escape(atob(s.split('').reverse().join(''))));
+
+/* normalise user input for comparison */
+const norm = s => s.trim().toLowerCase()
+  .replace(/[àá]/g,'a').replace(/[èé]/g,'e').replace(/[ìí]/g,'i')
+  .replace(/[òó]/g,'o').replace(/[ùú]/g,'u').replace(/ë/g,'e');
+
+function checkAns(encoded, userInput) {
+  const correct = dec(encoded);
+  const alts = correct.split('|');
+  const u = norm(userInput);
+  return alts.some(a => norm(a) === u);
+}
+</script>
+<!-- PART 2: lesson data will be appended here -->
+<script>
+/* ══════════════════════════════════════════════════
+   LESSONS  (22 lessons)
+══════════════════════════════════════════════════ */
+const LESSONS = [
+
+/* ─── LESSON 1 ─────────────────────────────────── */
+{id:1, title:"Onderwerpen & Tegenwoordige Tijd", icon:"📘",
+expl:`<h3>Onderwerpen (Subjects)</h3>
+<table class="gt"><thead><tr><th>Dutch</th><th>English</th><th>Note</th></tr></thead><tbody>
+<tr><td class="hl">Ik</td><td>I</td><td></td></tr>
+<tr><td class="hl">Jij / je</td><td>You (informal)</td><td>jij = stressed form</td></tr>
+<tr><td class="hl">U</td><td>You (formal)</td><td>use with strangers/elderly</td></tr>
+<tr><td class="hl">Hij / Zij / ze / Het</td><td>He / She / It</td><td></td></tr>
+<tr><td class="hl">Wij / we</td><td>We</td><td>wij = stressed</td></tr>
+<tr><td class="hl">Jullie</td><td>You (plural)</td><td></td></tr>
+<tr><td class="hl">Zij / ze</td><td>They</td><td></td></tr>
+</tbody></table>
+<h3 style="margin-top:14px">Werkwoorden — Regular Verbs</h3>
+<p>All regular verbs end in <strong>-en</strong>. To conjugate, follow 3 steps:</p>
+<div class="rule">
+<strong>Step 1:</strong> Remove <em>-en</em> → ik-vorm (stem). e.g. luister<strong>en</strong> → <strong>luister</strong><br>
+<strong>Step 2:</strong> ik = stem alone → <em>ik luister</em><br>
+<strong>Step 3:</strong> jij/u/hij/zij/het = stem + <strong>t</strong> → <em>luistert</em><br>
+<strong>Plural</strong> (wij/jullie/zij) = infinitive → <em>luisteren</em>
+</div>
+<div class="tip"><strong>⚠ Question rule:</strong> When <strong>jij/je</strong> comes AFTER the verb (question), drop the <strong>-t</strong>: <em>Jij woont</em> → <em>Woon je?</em></div>
+<div class="exbox"><div class="exlbl">Examples — luisteren</div>
+<div class="exrow">
+<span class="exnl">Ik luister naar muziek.</span><span class="exen">I listen to music.</span>
+<span class="exnl">Hij luistert naar de radio.</span><span class="exen">He listens to the radio.</span>
+<span class="exnl">Luister jij ook?</span><span class="exen">Do you listen too? (no -t!)</span>
+<span class="exnl">Wij luisteren samen.</span><span class="exen">We listen together.</span>
+</div></div>
+<h3 style="margin-top:14px">Irregular: zijn, hebben, gaan</h3>
+<table class="gt"><thead><tr><th>Subject</th><th>zijn (to be)</th><th>hebben (to have)</th><th>gaan (to go)</th></tr></thead><tbody>
+<tr><td>ik</td><td>ben</td><td>heb</td><td>ga</td></tr>
+<tr><td>jij/u/hij/zij/het</td><td>is / bent(u)</td><td>hebt / heeft</td><td>gaat</td></tr>
+<tr><td>wij/jullie/zij</td><td>zijn</td><td>hebben</td><td>gaan</td></tr>
+</tbody></table>`,
+exercises:[
+{id:"1-1",type:"mc",question:"Choose the correct form: Johan ___ samen met zijn vriend Bas.",
+opts:["speel","speelt","spelen","speelden"],ans:enc("speelt"),
+exp:"For hij/zij/het: stem + t. spelen → stem 'speel' → speelt."},
+{id:"1-2",type:"mc",question:"Choose the correct form: Jullie ___ uit Argentinië.",
+opts:["komen","komt","kom","komst"],ans:enc("komen"),
+exp:"Jullie (plural) uses the infinitive form: komen."},
+{id:"1-3",type:"fill",question:"Fill in the correct form of 'wonen': Wij ___ in Utrecht.",
+ans:enc("wonen"),exp:"Wij (plural) = infinitive: wonen."},
+{id:"1-4",type:"mc",question:"Jij woont in Amsterdam. How do you ask this as a question?",
+opts:["Woont jij in Amsterdam?","Woon jij in Amsterdam?","Wonen jij in Amsterdam?","Woont je in Amsterdam?"],
+ans:enc("Woon jij in Amsterdam?"),exp:"When jij/je follows the verb in a question, drop the -t: woonT → Woon jij?"},
+{id:"1-5",type:"fill",question:"Fill in: De voetbalclub ___ de beker gewonnen. (hebben)",
+ans:enc("heeft"),exp:"De voetbalclub = singular third person → heeft (irregular: hebben → heeft)."},
+]},
+
+/* ─── LESSON 2 ─────────────────────────────────── */
+{id:2, title:"Getallen & Nuttige Zinnen", icon:"🔢",
+expl:`<h3>Telwoorden — Numbers</h3>
+<div class="wlist">
+<div class="wi"><span class="wnl">0 – 10</span><span class="wen">nul, één, twee, drie, vier, vijf, zes, zeven, acht, negen, tien</span></div>
+<div class="wi"><span class="wnl">11 – 20</span><span class="wen">elf, twaalf, dertien, veertien, vijftien, zestien, zeventien, achttien, negentien, twintig</span></div>
+<div class="wi"><span class="wnl">21</span><span class="wen">eenentwintig</span></div>
+<div class="wi"><span class="wnl">22 – 99</span><span class="wen">[units]en[tens]: tweeëntwintig, drieëntwintig…</span></div>
+<div class="wi"><span class="wnl">30 / 40 / 50</span><span class="wen">dertig / veertig / vijftig</span></div>
+<div class="wi"><span class="wnl">60 / 70 / 80 / 90</span><span class="wen">zestig / zeventig / tachtig / negentig</span></div>
+<div class="wi"><span class="wnl">100 / 101</span><span class="wen">honderd / honderdenéén</span></div>
+</div>
+<div class="rule"><strong>Pattern 21–99:</strong> units + <em>en</em> + tens → drieënveertig (43), vijfenvijftig (55)</div>
+<h3 style="margin-top:14px">Nuttige Zinnen — Useful Phrases</h3>
+<table class="gt"><thead><tr><th>Dutch</th><th>English</th></tr></thead><tbody>
+<tr><td>Wie ben jij?</td><td>Who are you?</td></tr>
+<tr><td>Wat is je voornaam / achternaam?</td><td>What is your first / last name?</td></tr>
+<tr><td>Waar woon je? / Waar kom je vandaan?</td><td>Where do you live? / Where do you come from?</td></tr>
+<tr><td>Wat is je nationaliteit?</td><td>What is your nationality?</td></tr>
+<tr><td>Goedemorgen / Goedemiddag / Goedenavond</td><td>Good morning / afternoon / evening</td></tr>
+<tr><td>Tot ziens / Tot straks / Tot morgen</td><td>Goodbye / See you soon / See you tomorrow</td></tr>
+</tbody></table>`,
+exercises:[
+{id:"2-1",type:"mc",question:"How do you say 45 in Dutch?",
+opts:["vijfveertig","vijfenveertig","veertigvijf","veertigenvijf"],ans:enc("vijfenveertig"),
+exp:"Units + en + tens: vijf + en + veertig = vijfenveertig (45)."},
+{id:"2-2",type:"fill",question:"How do you say 188 in Dutch?",
+ans:enc("honderdachtentachtig"),exp:"100 = honderd, 88 = achtenachttig → honderdachtentachtig."},
+{id:"2-3",type:"mc",question:"'Waar kom je vandaan?' means:",
+opts:["Where do you live?","What is your name?","Where do you come from?","How old are you?"],
+ans:enc("Where do you come from?"),exp:"Vandaan = from (origin). 'Kom je vandaan?' = do you come from?"},
+{id:"2-4",type:"mc",question:"Which greeting do you use in the morning?",
+opts:["Goedenavond","Goedemiddag","Goedemorgen","Tot ziens"],ans:enc("Goedemorgen"),
+exp:"Goedemorgen = Good morning. Goedemiddag = afternoon. Goedenavond = evening."},
+{id:"2-5",type:"fill",question:"Your family name is the '___ naam'. (Fill in: voor or achter)",
+ans:enc("achter"),exp:"Achternaam = surname/family name. Voornaam = first name."},
+]},
+
+/* ─── LESSON 3 ─────────────────────────────────── */
+{id:3, title:"Zinsbouw & Vragen", icon:"🗂",
+expl:`<h3>Zinstructuur — Sentence Structure</h3>
+<div class="exbox"><div class="exlbl">Main sentence (Hoofdzin)</div>
+<p style="font-size:.85rem"><strong>Subject + Verb + Time + Place + Object</strong></p>
+<div class="exrow">
+<span class="exnl">Ik woon nu 3 jaar in Amsterdam.</span><span class="exen">I have lived in Amsterdam for 3 years.</span>
+</div></div>
+<div class="exbox"><div class="exlbl">Yes/No question (Ja/nee vraag)</div>
+<p style="font-size:.85rem"><strong>Verb + Subject + Time + Place + Object?</strong></p>
+<div class="exrow">
+<span class="exnl">Woon je nu in Amsterdam?</span><span class="exen">Do you live in Amsterdam now?</span>
+</div></div>
+<div class="exbox"><div class="exlbl">W/H question (Vraagwoord zin)</div>
+<p style="font-size:.85rem"><strong>W/H word + Verb + Subject + …</strong></p>
+<div class="exrow">
+<span class="exnl">Wat heb jij vorige week gedaan?</span><span class="exen">What did you do last week?</span>
+</div></div>
+<h3 style="margin-top:14px">Vraagwoorden — Question Words</h3>
+<div class="wlist">
+<div class="wi"><span class="wnl">Wie</span><span class="wen">who</span></div>
+<div class="wi"><span class="wnl">Wat</span><span class="wen">what</span></div>
+<div class="wi"><span class="wnl">Waar</span><span class="wen">where</span></div>
+<div class="wi"><span class="wnl">Wanneer</span><span class="wen">when</span></div>
+<div class="wi"><span class="wnl">Waarom</span><span class="wen">why</span></div>
+<div class="wi"><span class="wnl">Hoe</span><span class="wen">how</span></div>
+<div class="wi"><span class="wnl">Hoeveel</span><span class="wen">how many/much</span></div>
+<div class="wi"><span class="wnl">Welk / Welke</span><span class="wen">which (het / de word)</span></div>
+</div>
+<div class="tip"><strong>Welk vs Welke:</strong> Use <strong>welk</strong> before het-words, <strong>welke</strong> before de-words.<br>
+e.g. <em>Welk nummer?</em> (het nummer) vs <em>Welke taart?</em> (de taart)</div>`,
+exercises:[
+{id:"3-1",type:"fill",question:"Fill in the correct question word: ___ heet jouw broer?",
+ans:enc("Hoe"),exp:"Hoe heet … = What is … called? (asking for a name). Answer: mijn broer heet Ricardo."},
+{id:"3-2",type:"mc",question:"Fill in: ___ woont jouw moeder?",
+opts:["Wie","Wat","Waar","Wanneer"],ans:enc("Waar"),
+exp:"Waar = where. We are asking about the location where mother lives."},
+{id:"3-3",type:"mc",question:"Fill in: ___ broers heb je?",
+opts:["Hoe","Hoeveel","Wie","Welke"],ans:enc("Hoeveel"),
+exp:"Hoeveel = how many. Answer: 'Ik heb 4 broers.'"},
+{id:"3-4",type:"mc",question:"Which is correct? ___ nummer vind jij mooi? (het nummer)",
+opts:["Welke nummer","Welk nummer","Wat nummer","Wie nummer"],ans:enc("Welk nummer"),
+exp:"Welk is used before het-words. 'nummer' = het nummer → welk nummer."},
+{id:"3-5",type:"fill",question:"Fill in the correct question word: ___ is je adres?",
+ans:enc("Wat"),exp:"Wat = what. We ask what the address is."},
+]},
+
+/* ─── LESSON 4 ─────────────────────────────────── */
+{id:4, title:"Bezittelijke Voornaamwoorden", icon:"👤",
+expl:`<h3>Bezittelijk voornaamwoord — Possessive Pronouns</h3>
+<table class="gt"><thead><tr><th>Subject</th><th>Possessive</th><th>Example</th></tr></thead><tbody>
+<tr><td>Ik</td><td class="hl">mijn</td><td>mijn broer (my brother)</td></tr>
+<tr><td>Jij / je</td><td class="hl">jouw / je</td><td>jouw zus (your sister)</td></tr>
+<tr><td>U</td><td class="hl">uw</td><td>uw moeder (your mother – formal)</td></tr>
+<tr><td>Hij</td><td class="hl">zijn</td><td>zijn vader (his father)</td></tr>
+<tr><td>Zij / ze</td><td class="hl">haar</td><td>haar oom (her uncle)</td></tr>
+<tr><td>Wij / we</td><td class="hl">onze / ons</td><td>onze tante / ons kind</td></tr>
+<tr><td>Jullie</td><td class="hl">jullie</td><td>jullie neef (your nephew)</td></tr>
+<tr><td>Zij / ze (they)</td><td class="hl">hun</td><td>hun familie (their family)</td></tr>
+</tbody></table>
+<div class="tip"><strong>Onze vs Ons:</strong> Use <strong>onze</strong> before de-words, <strong>ons</strong> before het-words.<br>
+e.g. <em>onze tante</em> (de tante) — <em>ons huis</em> (het huis)</div>
+<div class="exbox"><div class="exlbl">More examples</div>
+<div class="exrow">
+<span class="exnl">Mijn adres is Laan 5.</span><span class="exen">My address is Laan 5.</span>
+<span class="exnl">Haar achternaam is Jansen.</span><span class="exen">Her surname is Jansen.</span>
+<span class="exnl">Onze cursus begint morgen.</span><span class="exen">Our course starts tomorrow.</span>
+<span class="exnl">Hun vakantie was geweldig.</span><span class="exen">Their holiday was great.</span>
+</div></div>`,
+exercises:[
+{id:"4-1",type:"fill",question:"Ik woon in Rotterdam. ___ adres is Feyenoordlaan 74.",
+ans:enc("Mijn"),exp:"Ik → mijn (my)."},
+{id:"4-2",type:"mc",question:"Dat is Mariska en ___ achternaam is van den Berg.",
+opts:["zijn","haar","hun","jouw"],ans:enc("haar"),
+exp:"Mariska is female (zij/ze) → haar (her)."},
+{id:"4-3",type:"fill",question:"Wij komen uit Oostenrijk en ___ Nederlandse cursus begint morgen. ('cursus' = de cursus)",
+ans:enc("onze"),exp:"Wij → onze/ons. 'cursus' = de cursus (de-word) → onze."},
+{id:"4-4",type:"mc",question:"Yolanda en Marloes vertellen over ___ vakantie.",
+opts:["zijn","haar","hun","onze"],ans:enc("hun"),
+exp:"Yolanda en Marloes = they (zij/ze) → hun (their, for people)."},
+{id:"4-5",type:"mc",question:"Meneer de Vries, gaat u met ___ buurman naar de supermarkt?",
+opts:["jouw","zijn","uw","hun"],ans:enc("uw"),
+exp:"U (formal you) → uw (your formal)."},
+]},
+
+/* ─── LESSON 5 ─────────────────────────────────── */
+{id:5, title:"Tijdvoorzetsels & De Klok", icon:"🕐",
+expl:`<h3>Voorzetsels van tijd — in / om / op</h3>
+<table class="gt"><thead><tr><th>Preposition</th><th>Used before</th><th>Examples</th></tr></thead><tbody>
+<tr><td class="hl">in</td><td>months, seasons, years</td><td>in oktober, in de zomer, in 2012</td></tr>
+<tr><td class="hl">om</td><td>clock times</td><td>om 9 uur, om half tien</td></tr>
+<tr><td class="hl">op</td><td>specific dates & days</td><td>op donderdag, op 4 april 2022</td></tr>
+</tbody></table>
+<h3 style="margin-top:14px">De Klok — Telling Time</h3>
+<div class="rule">Dutch splits the hour around <strong>half</strong> (the halfway point). Key vocabulary: <strong>over</strong> (past) · <strong>voor</strong> (before) · <strong>kwart</strong> (quarter) · <strong>half</strong> (half, but refers to the NEXT hour!)</div>
+<table class="gt"><thead><tr><th>Time</th><th>Dutch</th></tr></thead><tbody>
+<tr><td>11:00</td><td>het is elf uur</td></tr>
+<tr><td>11:05</td><td>het is vijf over elf</td></tr>
+<tr><td>11:15</td><td>het is kwart over elf</td></tr>
+<tr><td>11:25</td><td>het is vijf voor half twaalf</td></tr>
+<tr><td>11:30</td><td>het is half twaalf</td></tr>
+<tr><td>11:35</td><td>het is vijf over half twaalf</td></tr>
+<tr><td>11:45</td><td>het is kwart voor twaalf</td></tr>
+<tr><td>11:50</td><td>het is tien voor twaalf</td></tr>
+</tbody></table>
+<div class="tip"><strong>⚠ Half twaalf = 11:30!</strong> "Half" refers to halfway to the NEXT hour. So half twaalf = half way to twelve = 11:30.</div>`,
+exercises:[
+{id:"5-1",type:"fill",question:"De cursus begint ___ dinsdag 8 april. (specific day/date)",
+ans:enc("op"),exp:"Op is used before specific days and dates: op dinsdag, op 8 april."},
+{id:"5-2",type:"fill",question:"De cursus begint ___ 10 uur. (a clock time)",
+ans:enc("om"),exp:"Om is used before clock times: om 10 uur, om half elf."},
+{id:"5-3",type:"fill",question:"De tweede cursus begint ___ februari. (a month)",
+ans:enc("in"),exp:"In is used before months and seasons: in februari, in de winter."},
+{id:"5-4",type:"mc",question:"How do you say 11:15 in Dutch?",
+opts:["kwart voor elf","kwart over elf","vijf over half elf","tien over elf"],
+ans:enc("kwart over elf"),exp:"11:15 = 15 minutes past 11 = kwart over elf."},
+{id:"5-5",type:"mc",question:"How do you say 11:30 in Dutch?",
+opts:["half elf","half twaalf","kwart voor twaalf","dertig over elf"],
+ans:enc("half twaalf"),exp:"Half + NEXT hour. 11:30 is halfway to 12 → half twaalf."},
+{id:"5-6",type:"mc",question:"How do you say 11:45 in Dutch?",
+opts:["kwart over elf","kwart voor elf","kwart voor twaalf","drie kwart twaalf"],
+ans:enc("kwart voor twaalf"),exp:"11:45 = 15 minutes before 12 = kwart voor twaalf."},
+]},
+
+/* ─── LESSON 6 ─────────────────────────────────── */
+{id:6, title:"Inversiezinnen", icon:"🔄",
+expl:`<h3>Inversie — Inversion</h3>
+<p>In a normal sentence the order is <strong>Subject → Verb → rest</strong>. But when you start a sentence with a time or place expression, the verb and subject <strong>swap</strong> (invert).</p>
+<div class="exbox"><div class="exlbl">Normal sentence</div>
+<div class="exrow">
+<span class="exnl">Ik ga maandag naar Amsterdam.</span><span class="exen">I go to Amsterdam on Monday.</span>
+</div></div>
+<div class="exbox"><div class="exlbl">Inversion – start with TIME</div>
+<p style="font-size:.82rem"><strong>Time + Verb + Subject + rest</strong></p>
+<div class="exrow">
+<span class="exnl">Maandag ga ik naar Amsterdam.</span><span class="exen">On Monday I go to Amsterdam.</span>
+</div></div>
+<div class="exbox"><div class="exlbl">Inversion – start with PLACE</div>
+<p style="font-size:.82rem"><strong>Place + Verb + Subject + rest</strong></p>
+<div class="exrow">
+<span class="exnl">In Amsterdam ga ik winkelen.</span><span class="exen">In Amsterdam I go shopping.</span>
+</div></div>
+<div class="tip"><strong>Key rule:</strong> Whatever comes first in the sentence, the <strong>verb must stay in position 2</strong>. The subject moves to position 3.</div>`,
+exercises:[
+{id:"6-1",type:"mc",question:"'We drinken koffie in het café.' Start with 'In het café':",
+opts:["In het café wij drinken koffie.","In het café drinken wij koffie.","In het café koffie drinken wij.","In het café drinken koffie wij."],
+ans:enc("In het café drinken wij koffie."),exp:"Place + Verb + Subject + Object. Verb (drinken) stays in position 2."},
+{id:"6-2",type:"mc",question:"'Ze zijn op dit moment in Spanje op vakantie.' Start with 'Op dit moment':",
+opts:["Op dit moment zijn ze in Spanje op vakantie.","Op dit moment ze zijn in Spanje op vakantie.","Op dit moment in Spanje zijn ze op vakantie.","Op dit moment op vakantie zijn ze in Spanje."],
+ans:enc("Op dit moment zijn ze in Spanje op vakantie."),exp:"Time + Verb + Subject + rest. zijn comes immediately after the time phrase."},
+{id:"6-3",type:"fill",question:"'Marloes is zaterdag jarig.' Rewrite starting with 'Zaterdag': Zaterdag ___ Marloes jarig.",
+ans:enc("is"),exp:"Inversion: Time (Zaterdag) + Verb (is) + Subject (Marloes) + rest."},
+{id:"6-4",type:"mc",question:"Which sentence has correct inversion?",
+opts:["Gisteren ik werkte thuis.","Gisteren werkte ik thuis.","Gisteren thuis werkte ik.","Gisteren ik thuis werkte."],
+ans:enc("Gisteren werkte ik thuis."),exp:"Time + Verb + Subject + place. The verb always goes directly after the first element."},
+]},
+
+/* ─── LESSON 7 ─────────────────────────────────── */
+{id:7, title:"De- en Het-woorden", icon:"📖",
+expl:`<h3>De-woorden en Het-woorden</h3>
+<p>Every Dutch noun has an article: <strong>de</strong> (common gender) or <strong>het</strong> (neuter). Learning the rules helps, but many words must be memorised.</p>
+<table class="gt"><thead><tr><th>DE words (common patterns)</th><th>HET words (common patterns)</th></tr></thead><tbody>
+<tr><td>Names of people/roles: <em>de man, de agent</em></td><td>Diminutives (-je): <em>het meisje, het boompje</em></td></tr>
+<tr><td>Suffix -heid: <em>de overheid</em></td><td>Languages: <em>het Nederlands</em></td></tr>
+<tr><td>Suffix -ing: <em>de verzekering</em></td><td>Metals: <em>het goud, het zilver</em></td></tr>
+<tr><td>Suffix -ie: <em>de politie</em></td><td>Sports: <em>het voetbal, het tennis</em></td></tr>
+<tr><td>Suffix -ij: <em>de partij</em></td><td>Compass directions: <em>het noorden</em></td></tr>
+<tr><td>Suffix -teit: <em>de universiteit</em></td><td>Prefix ge-/be-/ver-/ont- (2 syll.): <em>het gebit</em></td></tr>
+<tr><td>Suffix -uur: <em>de cultuur</em></td><td>Suffix -isme/-ment/-sel/-um: <em>het abonnement</em></td></tr>
+<tr><td>Trees, plants: <em>de roos, de eik</em></td><td></td></tr>
+</tbody></table>
+<div class="tip"><strong>Tip:</strong> When in doubt: most words are <strong>de</strong>-words. About 75% of Dutch nouns use <em>de</em>.</div>`,
+exercises:[
+{id:"7-1",type:"mc",question:"Which article is correct for 'meisje' (girl, diminutive)?",
+opts:["de meisje","het meisje","een meisje or het meisje","both de and het"],
+ans:enc("het meisje"),exp:"All diminutives (-je) are het-words: het meisje, het boompje, het kindje."},
+{id:"7-2",type:"mc",question:"Which article is correct for 'universiteit'?",
+opts:["het universiteit","de universiteit","both are possible","no article needed"],
+ans:enc("de universiteit"),exp:"Suffix -teit → always de: de universiteit, de kwaliteit."},
+{id:"7-3",type:"mc",question:"Which article is correct for 'abonnement' (subscription)?",
+opts:["de abonnement","het abonnement","een abonnement (no rule)","both de and het"],
+ans:enc("het abonnement"),exp:"Suffix -ment → het-word: het abonnement, het appartement."},
+{id:"7-4",type:"mc",question:"Which article is correct for 'voetbal' (football)?",
+opts:["de voetbal","het voetbal","both are used","neither"],
+ans:enc("het voetbal"),exp:"Sports are het-words: het voetbal, het tennis, het zwemmen."},
+{id:"7-5",type:"mc",question:"Which article is correct for 'verzekering' (insurance)?",
+opts:["het verzekering","de verzekering","both","no article"],
+ans:enc("de verzekering"),exp:"Suffix -ing → always de: de verzekering, de vergadering."},
+]},
+
+/* ─── LESSON 8 ─────────────────────────────────── */
+{id:8, title:"Dagen van de Week & Meervoud", icon:"📅",
+expl:`<h3>Dagen van de week</h3>
+<div class="wlist">
+<div class="wi"><span class="wnl">maandag</span><span class="wen">Monday</span></div>
+<div class="wi"><span class="wnl">dinsdag</span><span class="wen">Tuesday</span></div>
+<div class="wi"><span class="wnl">woensdag</span><span class="wen">Wednesday</span></div>
+<div class="wi"><span class="wnl">donderdag</span><span class="wen">Thursday</span></div>
+<div class="wi"><span class="wnl">vrijdag</span><span class="wen">Friday</span></div>
+<div class="wi"><span class="wnl">zaterdag</span><span class="wen">Saturday</span></div>
+<div class="wi"><span class="wnl">zondag</span><span class="wen">Sunday</span></div>
+<div class="wi"><span class="wnl">gisteren / vandaag / morgen</span><span class="wen">yesterday / today / tomorrow</span></div>
+<div class="wi"><span class="wnl">eergisteren / overmorgen</span><span class="wen">day before yesterday / day after tomorrow</span></div>
+</div>
+<h3 style="margin-top:14px">Meervoud — Plural Forms</h3>
+<table class="gt"><thead><tr><th>Singular ends in…</th><th>Plural rule</th><th>Example</th></tr></thead><tbody>
+<tr><td>-e, -er, -em, -ie, -eau</td><td>add <strong>-s</strong></td><td>vakantie → vakanties; niveau → niveaus</td></tr>
+<tr><td>-a, -o, -u, -i, -y</td><td>add <strong>-'s</strong></td><td>taxi → taxi's; baby → baby's</td></tr>
+<tr><td>most other endings</td><td>add <strong>-en</strong></td><td>schoen → schoenen; film → films? No: filmen? → Actually: film → films (ends in consonant cluster)</td></tr>
+</tbody></table>
+<div class="tip"><strong>Note:</strong> Most words take <strong>-en</strong>. The -s rule applies to words ending in unstressed -e, -er, -el, -em, -en, -ie, -eau.</div>`,
+exercises:[
+{id:"8-1",type:"mc",question:"What is the plural of 'vakantie' (holiday)?",
+opts:["vakantieen","vakanties","vakantiens","vakantie's"],ans:enc("vakanties"),
+exp:"vakantie ends in -ie → add -s → vakanties."},
+{id:"8-2",type:"mc",question:"What is the plural of 'taxi'?",
+opts:["taxien","taxis","taxi's","taxees"],ans:enc("taxi's"),
+exp:"taxi ends in -i → add -'s → taxi's."},
+{id:"8-3",type:"mc",question:"What is the plural of 'schoen' (shoe)?",
+opts:["schoens","schoenen","schoe's","schoens"],ans:enc("schoenen"),
+exp:"schoen ends in a consonant cluster → add -en → schoenen."},
+{id:"8-4",type:"fill",question:"What day comes after dinsdag?",
+ans:enc("woensdag"),exp:"The order: maandag, dinsdag, woensdag, donderdag, vrijdag, zaterdag, zondag."},
+{id:"8-5",type:"mc",question:"What is the plural of 'broer' (brother)?",
+opts:["broers","broederen","broeren","broer's"],ans:enc("broers"),
+exp:"broer ends in -er → add -s → broers."},
+]},
+
+/* ─── LESSON 9 ─────────────────────────────────── */
+{id:9, title:"Bijvoeglijke Naamwoorden", icon:"🎨",
+expl:`<h3>Bijvoeglijk naamwoord — Adjective Rules</h3>
+<p>An adjective describing a noun <strong>before</strong> it usually gets an extra <strong>-e</strong>. But there is one important exception.</p>
+<table class="gt"><thead><tr><th>Situation</th><th>Add -e?</th><th>Example</th></tr></thead><tbody>
+<tr><td><strong>de</strong> + adj + noun</td><td class="hl">YES</td><td>de mooie jongen</td></tr>
+<tr><td><strong>het</strong> + adj + noun</td><td class="hl">YES</td><td>het mooie meisje</td></tr>
+<tr><td><strong>een</strong> + adj + <strong>de</strong>-noun</td><td class="hl">YES</td><td>een mooie jongen</td></tr>
+<tr><td><strong>een</strong> + adj + <strong>het</strong>-noun</td><td class="hl">NO</td><td>een mooi meisje ✗ not mooie</td></tr>
+<tr><td>no article + <strong>de</strong>-noun</td><td class="hl">YES</td><td>mooie jongens</td></tr>
+<tr><td>no article + <strong>het</strong>-noun</td><td class="hl">NO</td><td>mooi water</td></tr>
+</tbody></table>
+<div class="rule"><strong>The ONE exception to memorise:</strong> <em>een</em> + het-word → NO -e on the adjective. All other combinations: add -e.</div>
+<div class="exbox"><div class="exlbl">Examples</div>
+<div class="exrow">
+<span class="exnl">een goed idee (het idee)</span><span class="exen">a good idea — no -e!</span>
+<span class="exnl">een goede student (de student)</span><span class="exen">a good student — add -e</span>
+<span class="exnl">het lekkere eten</span><span class="exen">the tasty food — add -e</span>
+<span class="exnl">lekker eten (no article, het-word)</span><span class="exen">tasty food — no -e</span>
+</div></div>`,
+exercises:[
+{id:"9-1",type:"mc",question:"'Ik vind dat een heel goed/___ idee.' (het idee)",
+opts:["goed","goede","goeds","goedie"],ans:enc("goed"),
+exp:"een + het-word → NO -e. 'idee' is het idee, so: een goed idee."},
+{id:"9-2",type:"mc",question:"'Wat heb je een knap/___ vrouw!' (de vrouw, with 'een')",
+opts:["knap","knappe","knaps","knapte"],ans:enc("knappe"),
+exp:"een + de-word → add -e. 'vrouw' is de vrouw: een knappe vrouw."},
+{id:"9-3",type:"mc",question:"'Ik wil graag een vers/___ sinaasappelsap.' (het sap)",
+opts:["verse","vers","verste","versen"],ans:enc("vers"),
+exp:"een + het-word → NO -e. 'sinaasappelsap' is het sap: een vers sinaasappelsap."},
+{id:"9-4",type:"mc",question:"'Je hebt een leuk/___ bril.' (de bril)",
+opts:["leuk","leuke","leuks","leukte"],ans:enc("leuke"),
+exp:"een + de-word → add -e. 'bril' is de bril: een leuke bril."},
+{id:"9-5",type:"mc",question:"'Marloes heeft een Amerikaans/___ achternaam.' (de achternaam)",
+opts:["Amerikaans","Amerikaanse","Amerikaansen","Amerikaanste"],
+ans:enc("Amerikaanse"),exp:"een + de-word → add -e: een Amerikaanse achternaam."},
+]},
+
+/* ─── LESSON 10 ─────────────────────────────────── */
+{id:10, title:"Modale Werkwoorden (Tegenwoordige Tijd)", icon:"⚡",
+expl:`<h3>Modale werkwoorden</h3>
+<p>Modal verbs have <strong>one form for all singular subjects</strong> and another for all plural subjects.</p>
+<table class="gt"><thead><tr><th>Infinitive</th><th>Meaning</th><th>Singular</th><th>Plural</th><th>Use</th></tr></thead><tbody>
+<tr><td class="hl">mogen</td><td>may / allowed to</td><td>mag</td><td>mogen</td><td>asking permission</td></tr>
+<tr><td class="hl">willen</td><td>want to</td><td>wil</td><td>willen</td><td>expressing desire</td></tr>
+<tr><td class="hl">moeten</td><td>must / have to</td><td>moet</td><td>moeten</td><td>obligation</td></tr>
+<tr><td class="hl">kunnen</td><td>can / be able to</td><td>kan</td><td>kunnen</td><td>ability/possibility</td></tr>
+<tr><td class="hl">zullen</td><td>shall / will</td><td>zal</td><td>zullen</td><td>proposals / uncertainty</td></tr>
+</tbody></table>
+<div class="exbox"><div class="exlbl">Examples</div>
+<div class="exrow">
+<span class="exnl">Mag ik een biertje?</span><span class="exen">May I have a beer? (permission)</span>
+<span class="exnl">Ik wil naar Parijs gaan.</span><span class="exen">I want to go to Paris. (desire)</span>
+<span class="exnl">Ik moet naar school.</span><span class="exen">I have to go to school. (obligation)</span>
+<span class="exnl">Ik kan mijn zus ophalen.</span><span class="exen">I can pick up my sister. (ability)</span>
+<span class="exnl">Zullen we naar de dierentuin gaan?</span><span class="exen">Shall we go to the zoo? (proposal)</span>
+</div></div>
+<div class="tip"><strong>Word order:</strong> The modal verb stays at position 2; the main infinitive goes to the <strong>end</strong> of the sentence.<br>
+<em>Ik wil graag twee koffie <strong>bestellen</strong>.</em></div>`,
+exercises:[
+{id:"10-1",type:"mc",question:"'Beste studenten, jullie ___ samenwerken.' (are allowed to)",
+opts:["moeten","willen","mogen","kunnen"],ans:enc("mogen"),
+exp:"Mogen = may/allowed to. Jullie mogen = you (plural) are allowed to."},
+{id:"10-2",type:"mc",question:"'Ik ben jarig. Ik ___ jullie een drankje aanbieden.' (want to)",
+opts:["mag","moet","kan","wil"],ans:enc("wil"),
+exp:"Willen = to want. Ik wil = I want to."},
+{id:"10-3",type:"fill",question:"___ we naar de dierentuin gaan? (let's make a proposal — shall)",
+ans:enc("Zullen"),exp:"Zullen is used for proposals: Zullen we …? = Shall we …?"},
+{id:"10-4",type:"mc",question:"'Ricardo ___ op vakantie naar Griekenland.' (wants to go)",
+opts:["mag","moet","wil","zal"],ans:enc("wil"),
+exp:"Willen = to want. Ricardo wil = Ricardo wants to."},
+{id:"10-5",type:"mc",question:"'Ik ___ mijn zusje van school halen.' (have the option/ability)",
+opts:["moet","wil","mag","kan"],ans:enc("kan"),
+exp:"Kunnen = can/ability. Ik kan = I can."},
+]},
+
+/* ─── LESSON 11 ─────────────────────────────────── */
+{id:11, title:"Vergrotende & Overtreffende Trap", icon:"📊",
+expl:`<h3>Vergrotende en overtreffende trap</h3>
+<table class="gt"><thead><tr><th>Form</th><th>Rule</th><th>Example</th></tr></thead><tbody>
+<tr><td><strong>Comparative</strong></td><td>adjective + <strong>-er</strong> (+ dan)</td><td>mooi → mooier dan</td></tr>
+<tr><td><strong>Superlative</strong></td><td><strong>het</strong> + adjective + <strong>-st</strong></td><td>mooi → het mooist</td></tr>
+</tbody></table>
+<div class="tip"><strong>Special rule:</strong> If the adjective ends in <strong>-r</strong>, add <strong>-der</strong> (not -er) for comparative: duur → <strong>duurder</strong></div>
+<div class="exbox"><div class="exlbl">Regular examples</div>
+<div class="exrow">
+<span class="exnl">Deze jas is mooier dan die jas.</span><span class="exen">This jacket is prettier than that jacket.</span>
+<span class="exnl">Deze jas is het mooist.</span><span class="exen">This jacket is the prettiest.</span>
+<span class="exnl">Deze jas is duurder dan die jas.</span><span class="exen">This jacket is more expensive.</span>
+</div></div>
+<h3 style="margin-top:14px">Irregular forms</h3>
+<table class="gt"><thead><tr><th>Base</th><th>Comparative</th><th>Superlative</th></tr></thead><tbody>
+<tr><td>goed (good)</td><td>beter</td><td>het best</td></tr>
+<tr><td>veel (many/much)</td><td>meer</td><td>het meest</td></tr>
+<tr><td>weinig (little/few)</td><td>minder</td><td>het minst</td></tr>
+</tbody></table>`,
+exercises:[
+{id:"11-1",type:"fill",question:"'Deze jas is ___ dan die jas.' (mooi → comparative)",
+ans:enc("mooier"),exp:"mooi + -er = mooier (prettier). Standard comparative rule."},
+{id:"11-2",type:"fill",question:"'Dit is ___ jas in de winkel.' (mooi → superlative, with 'de')",
+ans:enc("het mooiste"),exp:"het + mooi + -ste = het mooiste. (Before a noun with article, add -ste instead of -st.)"},
+{id:"11-3",type:"mc",question:"'Deze jas is ___ dan die jas.' (duur = expensive, ends in -r)",
+opts:["duurer","duurster","duurder","meer duur"],ans:enc("duurder"),
+exp:"When adjective ends in -r, add -der: duur → duurder."},
+{id:"11-4",type:"mc",question:"'Welk land is ___? Nederland of Duitsland?' (groot = big, comparative)",
+opts:["grooter","groter","het grootst","meer groot"],ans:enc("groter"),
+exp:"groot + -er = groter. (Single -t because 'groot' has a short vowel in closed syllable.)"},
+{id:"11-5",type:"mc",question:"'Ik vind dit ___ dan dat.' (goed = good — irregular!)",
+opts:["goeder","goeder dan","beter","beeter"],ans:enc("beter"),
+exp:"Goed is irregular: goed → beter → het best. Same as English good-better-best."},
+]},
+
+
+/* ─── LESSON 12 ─────────────────────────────────── */
+{id:12, title:"Aanwijzende Voornaamwoorden (deze/die/dit/dat)", icon:"👆",
+expl:`<h3>Aanwijzende voornaamwoorden</h3>
+<p>These words point to whether something is near (<em>here</em>) or far (<em>there</em>).</p>
+<table class="gt"><thead><tr><th></th><th>Near (hier)</th><th>Far (daar)</th></tr></thead><tbody>
+<tr><td><strong>de</strong>-words</td><td class="hl">deze jongen</td><td class="hl">die jongen</td></tr>
+<tr><td><strong>het</strong>-words</td><td class="hl">dit meisje</td><td class="hl">dat meisje</td></tr>
+</tbody></table>
+<div class="rule">Simple pattern:<br>
+• de-word near → <strong>deze</strong> | de-word far → <strong>die</strong><br>
+• het-word near → <strong>dit</strong> | het-word far → <strong>dat</strong>
+</div>
+<div class="exbox"><div class="exlbl">Examples</div>
+<div class="exrow">
+<span class="exnl">Neem je deze rode schoenen?</span><span class="exen">Are you taking these red shoes? (de schoenen, near)</span>
+<span class="exnl">Wie is die man, daar?</span><span class="exen">Who is that man, over there? (de man, far)</span>
+<span class="exnl">Dit T-shirt is goedkoper.</span><span class="exen">This T-shirt is cheaper. (het T-shirt, near)</span>
+<span class="exnl">Dat meisje zingt mooi.</span><span class="exen">That girl sings beautifully. (het meisje, far)</span>
+</div></div>`,
+exercises:[
+{id:"12-1",type:"mc",question:"'Neem je ___ rode schoenen of ___ zwarte?' (de schoenen — first near, second far)",
+opts:["deze / die","dit / dat","die / deze","dat / dit"],ans:enc("deze / die"),
+exp:"de schoenen → near = deze, far = die."},
+{id:"12-2",type:"mc",question:"'___ T-shirt is goedkoper.' (het T-shirt, it is right here)",
+opts:["Deze","Die","Dit","Dat"],ans:enc("Dit"),
+exp:"het T-shirt is near → dit."},
+{id:"12-3",type:"fill",question:"'Wie is ___ man, daar in de gang?' (de man, far away)",
+ans:enc("die"),exp:"de man, far away → die."},
+{id:"12-4",type:"mc",question:"'Ik koop ___ jurk en ___ rokje.' (de jurk near, het rokje near)",
+opts:["deze / dit","dit / deze","die / dat","dat / dit"],ans:enc("deze / dit"),
+exp:"de jurk near → deze; het rokje near → dit."},
+]},
+
+/* ─── LESSON 13 ─────────────────────────────────── */
+{id:13, title:"Persoonlijke Voornaamwoorden (Voorwerpsvormen)", icon:"🔤",
+expl:`<h3>Persoonlijke voornaamwoorden — object vormen</h3>
+<p>When a person or object is not the subject but the object (receives the action), we use a different form.</p>
+<table class="gt"><thead><tr><th>Subject</th><th>Object form</th><th>Example</th></tr></thead><tbody>
+<tr><td>ik</td><td class="hl">mij / me</td><td>Ga je met <strong>mij</strong> mee?</td></tr>
+<tr><td>jij / je</td><td class="hl">jou / je</td><td>Ik zie <strong>jou</strong>.</td></tr>
+<tr><td>u</td><td class="hl">u</td><td>Ik help <strong>u</strong>.</td></tr>
+<tr><td>hij + de-object</td><td class="hl">hem</td><td>Ik bel <strong>hem</strong>. / Ik koop <strong>hem</strong>. (de jas)</td></tr>
+<tr><td>zij / ze</td><td class="hl">haar</td><td>Ik ken <strong>haar</strong>.</td></tr>
+<tr><td>het + het-object</td><td class="hl">het</td><td>Ik lees <strong>het</strong>. (het boek)</td></tr>
+<tr><td>wij / we</td><td class="hl">ons</td><td>Wie helpt <strong>ons</strong>?</td></tr>
+<tr><td>jullie</td><td class="hl">jullie</td><td>Ik zie <strong>jullie</strong> morgen.</td></tr>
+<tr><td>zij / ze (they)</td><td class="hl">hen / hun / ze</td><td>Ik ken <strong>hen</strong>. / Ik geef <strong>hun</strong> een boek.</td></tr>
+</tbody></table>
+<div class="tip"><strong>hen / hun:</strong> hun = with preposition or indirect object (Ik geef <em>hun</em> boeken). hen = direct object without preposition (Ik zie <em>hen</em>). In practice, <strong>ze</strong> is often used for both.</div>`,
+exercises:[
+{id:"13-1",type:"mc",question:"'Meneer de Vries, kunt u ___ helpen?' (= me, formal context)",
+opts:["mij","hem","haar","ons"],ans:enc("mij"),
+exp:"The person asking uses 'mij' (object form of ik). Meneer de Vries helpt mij."},
+{id:"13-2",type:"fill",question:"'Marloes woont hier ook. Ik kom ___ vaak tegen.' (her)",
+ans:enc("haar"),exp:"Marloes = she (zij) → object form: haar."},
+{id:"13-3",type:"mc",question:"'Wat een leuk boek! Waar heb je ___ gekocht?' (het boek)",
+opts:["hem","haar","het","ze"],ans:enc("het"),
+exp:"het boek = het-word → object pronoun: het."},
+{id:"13-4",type:"mc",question:"'Wij spreken nog geen Nederlands. Wie kan ___ helpen?' (= us)",
+opts:["wij","ons","hun","hen"],ans:enc("ons"),
+exp:"Wij → object form: ons."},
+{id:"13-5",type:"mc",question:"'Waar zijn Jenny en Johan? Ik zal ___ even ophalen.' (them, people)",
+opts:["ze","hun","hen","ons"],ans:enc("ze"),
+exp:"Jenny en Johan = they (plural people). In modern Dutch 'ze' is most commonly used for both forms."},
+]},
+
+/* ─── LESSON 14 ─────────────────────────────────── */
+{id:14, title:"Perfectum — Vorming", icon:"✅",
+expl:`<h3>Voltooid tegenwoordige tijd (VTT) — Perfectum</h3>
+<p>The perfectum describes <strong>past actions whose result still matters now</strong>. It uses two parts: <strong>hebben/zijn + perfectum verb</strong> (at the end).</p>
+<div class="rule"><strong>Regular verb — 3 steps (example: luisteren)</strong><br>
+<strong>Step 1:</strong> Make ik-vorm: luisteren − en = <em>luister</em><br>
+<strong>Step 2:</strong> Add ge- prefix: ge + luister = <em>geluister</em><br>
+<strong>Step 3:</strong> Last letter of ik-vorm in <strong>SOFT KETCHUP</strong>? → add <strong>-t</strong>. Not in it? → add <strong>-d</strong>.<br>
+SOFT KETCHUP = <strong>s, o, f, t, k, e, t, c, h, u, p</strong><br>
+luister → R not in SOFT KETCHUP → add -d → <strong>geluisterd</strong> ✓
+</div>
+<div class="exbox"><div class="exlbl">More examples</div>
+<div class="exrow">
+<span class="exnl">werken → werk → gewerk → K in SOFT KETCHUP → gewerkt</span><span class="exen">(worked)</span>
+<span class="exnl">spelen → speel → gespeel → L not in SK → gespeeld</span><span class="exen">(played)</span>
+<span class="exnl">stoppen → stop → gestop → P in SK → gestopt</span><span class="exen">(stopped)</span>
+</div></div>
+<div class="tip"><strong>Exception 1 — No ge-:</strong> Verbs starting with be-, ge-, her-, ver-, ont- do NOT add ge-.<br>
+betalen → betaald (not gebetaald). gebeuren → gebeurd.</div>
+<div class="tip"><strong>Exception 2 — Z→S / V→F:</strong> When removing -en creates V or Z in the stem, they change to F/S, BUT you still add -d (not -t).<br>
+leven → leef → geleef → still add -d → <strong>geleefd</strong><br>
+reizen → reis → gereis → still add -d → <strong>gereisd</strong>
+</div>`,
+exercises:[
+{id:"14-1",type:"fill",question:"Form the perfectum of 'werken': ge___",
+ans:enc("gewerkt"),exp:"werken → werk (ik-vorm) → ge+werk → K is in SOFT KETCHUP → add -t → gewerkt."},
+{id:"14-2",type:"fill",question:"Form the perfectum of 'stoppen': ge___",
+ans:enc("gestopt"),exp:"stoppen → stop → ge+stop → P is in SOFT KETCHUP → add -t → gestopt."},
+{id:"14-3",type:"fill",question:"Form the perfectum of 'luisteren': ge___",
+ans:enc("geluisterd"),exp:"luisteren → luister → ge+luister → R not in SOFT KETCHUP → add -d → geluisterd."},
+{id:"14-4",type:"fill",question:"Form the perfectum of 'betalen' (starts with be-): ___",
+ans:enc("betaald"),exp:"betalen starts with be- → NO ge- prefix. betalen → betaal → L not in SK → add -d → betaald."},
+{id:"14-5",type:"fill",question:"Form the perfectum of 'leven' (V→F rule): ge___",
+ans:enc("geleefd"),exp:"leven → leef (V→F) → ge+leef → F IS in SK but it's the V→F exception → still add -d → geleefd."},
+]},
+
+/* ─── LESSON 15 ─────────────────────────────────── */
+{id:15, title:"Perfectum — hebben of zijn", icon:"🔀",
+expl:`<h3>Hebben of zijn als hulpwerkwoord?</h3>
+<p>In the perfectum, the auxiliary verb is <strong>hebben</strong> in ~90% of cases. But some verbs use <strong>zijn</strong>.</p>
+<div class="rule"><strong>Use zijn with:</strong><br>
+• Verbs of <strong>movement from A to B</strong>: gaan, komen, rijden (direction), lopen (to a place)<br>
+• Verbs describing a <strong>change of state</strong>: worden, trouwen, sterven, slagen, zakken<br>
+• A fixed list you need to memorise
+</div>
+<div class="wlist">
+<div class="wi"><span class="wnl">zijn</span><span class="wen">to be → geweest</span></div>
+<div class="wi"><span class="wnl">gaan</span><span class="wen">to go → gegaan</span></div>
+<div class="wi"><span class="wnl">komen</span><span class="wen">to come → gekomen</span></div>
+<div class="wi"><span class="wnl">blijven</span><span class="wen">to stay → gebleven</span></div>
+<div class="wi"><span class="wnl">worden</span><span class="wen">to become → geworden</span></div>
+<div class="wi"><span class="wnl">beginnen</span><span class="wen">to begin → begonnen</span></div>
+<div class="wi"><span class="wnl">stoppen</span><span class="wen">to stop → gestopt</span></div>
+<div class="wi"><span class="wnl">trouwen</span><span class="wen">to marry → getrouwd</span></div>
+<div class="wi"><span class="wnl">slagen</span><span class="wen">to pass (exam) → geslaagd</span></div>
+<div class="wi"><span class="wnl">zakken</span><span class="wen">to fail (exam) → gezakt</span></div>
+<div class="wi"><span class="wnl">sterven</span><span class="wen">to die → gestorven</span></div>
+<div class="wi"><span class="wnl">veranderen</span><span class="wen">to change → veranderd</span></div>
+</div>
+<div class="exbox"><div class="exlbl">Examples</div>
+<div class="exrow">
+<span class="exnl">Ik heb gegeten.</span><span class="exen">I have eaten. (hebben – no movement)</span>
+<span class="exnl">Ik ben naar school gegaan.</span><span class="exen">I went to school. (zijn – movement)</span>
+<span class="exnl">Laura is 35 jaar geworden.</span><span class="exen">Laura has turned 35. (zijn – change of state)</span>
+<span class="exnl">Hoe laat zijn jullie thuisgekomen?</span><span class="exen">What time did you get home? (zijn – komen)</span>
+</div></div>`,
+exercises:[
+{id:"15-1",type:"mc",question:"'Ik ___ samen met mijn vrienden gedanst.' (dansen = no movement)",
+opts:["ben","heb","zijn","heeft"],ans:enc("heb"),
+exp:"Dansen has no movement from A to B → hebben. Ik heb gedanst."},
+{id:"15-2",type:"fill",question:"'Hoe laat ___ jullie thuis gekomen?' (komen = zijn-verb)",
+ans:enc("zijn"),exp:"komen is always used with zijn: jullie zijn gekomen."},
+{id:"15-3",type:"fill",question:"'Laura ___ 35 jaar geworden.' (worden = change of state)",
+ans:enc("is"),exp:"worden = change of state → zijn. Laura is geworden."},
+{id:"15-4",type:"mc",question:"'Gisteren ___ mijn vriend tot 20:00 uur gewerkt.' (werken)",
+opts:["is","zijn","heeft","heb"],ans:enc("heeft"),
+exp:"werken = no movement, no state change → hebben. mijn vriend (hij) → heeft."},
+{id:"15-5",type:"fill",question:"'Hassan ___ voor zijn rijexamen geslaagd.' (slagen = zijn-verb)",
+ans:enc("is"),exp:"slagen (to pass an exam) is in the zijn-list → Hassan is geslaagd."},
+]},
+
+/* ─── LESSON 16 ─────────────────────────────────── */
+{id:16, title:"Bedoelen of Betekenen", icon:"💬",
+expl:`<h3>Bedoelen of betekenen?</h3>
+<p>Both translate as "to mean" in English, but they are used in different situations.</p>
+<table class="gt"><thead><tr><th>Word</th><th>Use it when…</th><th>Example</th></tr></thead><tbody>
+<tr><td class="hl">betekenen</td><td>Referring to the literal meaning of a <strong>word or abbreviation</strong></td><td>Wat betekent p.p.? → Dat betekent 'per persoon'.</td></tr>
+<tr><td class="hl">bedoelen</td><td>Referring to someone's <strong>intention</strong> — what they are trying to say</td><td>Oh, u bedoelt de peterselie! (you figured out what they meant)</td></tr>
+</tbody></table>
+<div class="exbox"><div class="exlbl">More examples</div>
+<div class="exrow">
+<span class="exnl">Wat betekent 'gezellig'?</span><span class="exen">What does 'gezellig' mean? (asking for definition)</span>
+<span class="exnl">Wat bedoel je?</span><span class="exen">What do you mean? (asking for intention/clarification)</span>
+<span class="exnl">Ik begrijp niet wat zij bedoelt.</span><span class="exen">I don't understand what she means (intention).</span>
+<span class="exnl">Dat betekent dat je moet stoppen.</span><span class="exen">That means you must stop. (consequence/definition)</span>
+</div></div>`,
+exercises:[
+{id:"16-1",type:"mc",question:"'Wat ___ p.p.?' (asking for the definition of an abbreviation)",
+opts:["bedoel","bedoelt","betekent","betekenen"],ans:enc("betekent"),
+exp:"Asking for the literal meaning of the abbreviation p.p. → betekenen. 'Wat betekent p.p.?'"},
+{id:"16-2",type:"mc",question:"'Ik begrijp niet wat zij ___.' (I don't understand her intention)",
+opts:["betekent","betekenen","bedoelt","bedoel"],ans:enc("bedoelt"),
+exp:"Zij (she, singular) → bedoelt. She is trying to say something and we don't understand her intention."},
+{id:"16-3",type:"fill",question:"'Mijn moeder heeft een allergie. Dat ___ dat zij geen noten mag eten.'",
+ans:enc("betekent"),exp:"Expressing a consequence/definition: dat betekent dat … (that means that…)."},
+{id:"16-4",type:"mc",question:"'Mag ik dat groene… uh… Oh, u ___ de peterselie!' (figuring out intention)",
+opts:["betekent","bedoelt","wilt","zegt"],ans:enc("bedoelt"),
+exp:"The shop assistant is figuring out what the customer intends to say → u bedoelt."},
+]},
+
+/* ─── LESSON 17 ─────────────────────────────────── */
+{id:17, title:"Imperfectum (Verleden Tijd)", icon:"⏪",
+expl:`<h3>Onvoltooid verleden tijd (OVT) — Imperfectum</h3>
+<p>The imperfectum is used when telling stories or describing a situation in the past (often with more context following). Uses the same <strong>SOFT KETCHUP</strong> trick.</p>
+<div class="rule"><strong>Regular verb — 3 steps (example: luisteren)</strong><br>
+<strong>Step 1:</strong> ik-vorm: luisteren − en = <em>luister</em><br>
+<strong>Step 2:</strong> Singular or plural?<br>
+<strong>Step 3:</strong> Last letter in SOFT KETCHUP?<br>
+• In SK: singular → <strong>+te</strong>, plural → <strong>+ten</strong><br>
+• NOT in SK: singular → <strong>+de</strong>, plural → <strong>+den</strong>
+</div>
+<div class="exbox"><div class="exlbl">Examples</div>
+<div class="exrow">
+<span class="exnl">luisteren: ik luisterde / wij luisterden</span><span class="exen">(R not in SK → -de/-den)</span>
+<span class="exnl">werken: ik werkte / wij werkten</span><span class="exen">(K in SK → -te/-ten)</span>
+<span class="exnl">leven: ik leefde / wij leefden</span><span class="exen">(V→F, still -de: not in SK)</span>
+<span class="exnl">reizen: ik reisde / wij reisden</span><span class="exen">(Z→S, still -de: not in SK)</span>
+</div></div>
+<div class="tip"><strong>Perfectum vs Imperfectum:</strong><br>
+• Perfectum: single completed action with a present result → <em>Ik heb een kaartje gekocht.</em><br>
+• Imperfectum: describes a past situation / sets the scene → <em>Ik kocht gisteren een kaartje voor het concert.</em></div>`,
+exercises:[
+{id:"17-1",type:"fill",question:"'Hij ___ (voelen) zich niet zo goed.' (singular, R not in SK)",
+ans:enc("voelde"),exp:"voelen → voel (ik-vorm) → L not in SK → singular -de → voelde."},
+{id:"17-2",type:"fill",question:"'Ik ___ (vieren) mijn verjaardag.' (singular)",
+ans:enc("vierde"),exp:"vieren → vier (ik-vorm) → R not in SK → singular -de → vierde."},
+{id:"17-3",type:"fill",question:"'Ricardo en Peter ___ (stoppen) met voetballen.' (plural)",
+ans:enc("stopten"),exp:"stoppen → stop → P is in SK → plural -ten → stopten."},
+{id:"17-4",type:"fill",question:"'Het ___ (regenen) de hele zomervakantie.' (singular)",
+ans:enc("regende"),exp:"regenen → regen → N not in SK → singular -de → regende."},
+{id:"17-5",type:"fill",question:"'In Amsterdam ___ (werken) Peter in een groot hotel.' (singular)",
+ans:enc("werkte"),exp:"werken → werk → K is in SK → singular -te → werkte."},
+]},
+
+/* ─── LESSON 18 ─────────────────────────────────── */
+{id:18, title:"Modale Werkwoorden — Verleden Tijd", icon:"🔙",
+expl:`<h3>Modale werkwoorden in de imperfectum</h3>
+<p>These are all irregular past forms — they must be memorised.</p>
+<table class="gt"><thead><tr><th>Infinitive</th><th>Singular past</th><th>Plural past</th></tr></thead><tbody>
+<tr><td class="hl">mogen</td><td>mocht</td><td>mochten</td></tr>
+<tr><td class="hl">willen</td><td>wilde</td><td>wilden</td></tr>
+<tr><td class="hl">moeten</td><td>moest</td><td>moesten</td></tr>
+<tr><td class="hl">kunnen</td><td>kon</td><td>konden</td></tr>
+<tr><td class="hl">zullen</td><td>zou</td><td>zouden</td></tr>
+</tbody></table>
+<div class="exbox"><div class="exlbl">Examples</div>
+<div class="exrow">
+<span class="exnl">Vroeger mocht ik niet naar buiten.</span><span class="exen">In the past I wasn't allowed outside.</span>
+<span class="exnl">Als kind wilde ik piloot worden.</span><span class="exen">As a child I wanted to become a pilot.</span>
+<span class="exnl">We konden niet op tijd komen.</span><span class="exen">We couldn't arrive on time.</span>
+<span class="exnl">Hij zou me helpen maar deed het niet.</span><span class="exen">He was supposed to help me but didn't.</span>
+</div></div>
+<div class="tip"><strong>zou / zouden</strong> is also used as a conditional (like "would" in English): <em>Ik zou graag naar Parijs gaan.</em> (I would like to go to Paris.)</div>`,
+exercises:[
+{id:"18-1",type:"fill",question:"'Vroeger ___ (mogen) ik niet naar buiten.' (singular past)",
+ans:enc("mocht"),exp:"mogen → singular past: mocht."},
+{id:"18-2",type:"fill",question:"'We ___ (kunnen) niet op tijd komen.' (plural past)",
+ans:enc("konden"),exp:"kunnen → plural past: konden."},
+{id:"18-3",type:"mc",question:"'Als kind ___ ik piloot worden.' (willen, singular past)",
+opts:["wil","wilde","wilden","wou"],ans:enc("wilde"),
+exp:"willen → singular past: wilde."},
+{id:"18-4",type:"fill",question:"'Hij ___ (moeten) vroeger altijd vroeg opstaan.' (singular past)",
+ans:enc("moest"),exp:"moeten → singular past: moest."},
+{id:"18-5",type:"mc",question:"'Wij ___ (zullen) de volgende dag vroeg vertrekken.' (plural past / conditional)",
+opts:["zou","zouden","zullen","zal"],ans:enc("zouden"),
+exp:"zullen → plural past: zouden."},
+]},
+
+/* ─── LESSON 19 ─────────────────────────────────── */
+{id:19, title:"Scheidbare Werkwoorden", icon:"🔗",
+expl:`<h3>Scheidbare werkwoorden — Separable Verbs</h3>
+<p>Separable verbs = prefix + verb. The prefix changes the meaning. In different tenses they behave differently.</p>
+<table class="gt"><thead><tr><th>Tense</th><th>Behaviour</th><th>Example: aankomen</th></tr></thead><tbody>
+<tr><td><strong>Present</strong></td><td>Verb stays at position 2; prefix goes to END</td><td>Ik kom iedere maandag aan.</td></tr>
+<tr><td><strong>Imperfectum</strong></td><td>Same as present: verb at 2, prefix at end</td><td>Ik kwam vorige week aan.</td></tr>
+<tr><td><strong>Perfectum</strong></td><td>Prefix + ge + verb form goes to end (stays together)</td><td>Ik ben aangekomen.</td></tr>
+<tr><td><strong>Modal verb</strong></td><td>Infinitive (whole verb) goes to end</td><td>Ik wil op Schiphol aankomen.</td></tr>
+<tr><td><strong>om+te / te</strong></td><td>te goes between prefix and verb</td><td>om aan te komen</td></tr>
+</tbody></table>
+<div class="exbox"><div class="exlbl">Common separable verbs</div>
+<div class="exrow">
+<span class="exnl">aankomen</span><span class="exen">to arrive</span>
+<span class="exnl">aanmelden</span><span class="exen">to register/sign up</span>
+<span class="exnl">tegenkomen</span><span class="exen">to run into (someone)</span>
+<span class="exnl">opbellen</span><span class="exen">to call (phone)</span>
+<span class="exnl">meenemen</span><span class="exen">to take along</span>
+<span class="exnl">uitkiezen</span><span class="exen">to pick/choose</span>
+</div></div>`,
+exercises:[
+{id:"19-1",type:"mc",question:"Present: 'Ik ___ iedere maandag op Schiphol ___ .' (aankomen)",
+opts:["kom / aan","aankomen / —","aankom / —","kom / aankomen"],ans:enc("kom / aan"),
+exp:"Present tense: split the verb. 'kom' stays at position 2, 'aan' goes to the end."},
+{id:"19-2",type:"fill",question:"Perfectum of 'aankomen': Ik ben ___ .",
+ans:enc("aangekomen"),exp:"Perfectum of separable verb: prefix + ge + verb form all together: aan + ge + komen = aangekomen."},
+{id:"19-3",type:"mc",question:"Modal: 'Ik wil liever op Schiphol ___ .' (aankomen)",
+opts:["aankomen","aan komen","kom aan","aangekomend"],ans:enc("aankomen"),
+exp:"With a modal verb, the separable verb goes to the end as a complete infinitive: aankomen."},
+{id:"19-4",type:"mc",question:"Imperfectum: 'Gisteren ___ ik Peter in de supermarkt ___ .' (tegenkomen)",
+opts:["tegenkwam / —","kwamen / tegen","kwam / tegen","kw / tegenkwam"],ans:enc("kwam / tegen"),
+exp:"Imperfectum: split just like present. komen → kwamen → ik kwam. Prefix 'tegen' goes to end."},
+]},
+
+/* ─── LESSON 20 ─────────────────────────────────── */
+{id:20, title:"Toekomstige Tijd (Futurum)", icon:"🔮",
+expl:`<h3>Toekomstige tijd — Future Tense</h3>
+<p>There are <strong>3 ways</strong> to express the future in Dutch:</p>
+<table class="gt"><thead><tr><th>#</th><th>Structure</th><th>Example</th><th>When to use</th></tr></thead><tbody>
+<tr><td>1</td><td>Present verb + time word</td><td>Ik ben volgend weekend in Londen.</td><td>planned / certain future</td></tr>
+<tr><td>2</td><td>gaan + infinitive</td><td>Eva gaat in Engeland studeren.</td><td>planned / intended future</td></tr>
+<tr><td>3</td><td>zullen + infinitive</td><td>Er zullen veel mensen komen.</td><td>uncertain / unconfirmed future</td></tr>
+</tbody></table>
+<div class="tip"><strong>Most natural in speech:</strong> Combine options 1 + 2: use <em>gaan</em> with a time word.<br>
+<em>Vanavond ga ik koken.</em> (Tonight I'm going to cook.)</div>
+<div class="exbox"><div class="exlbl">Examples</div>
+<div class="exrow">
+<span class="exnl">Ik ben morgen op kantoor. (#1)</span><span class="exen">I'll be in the office tomorrow.</span>
+<span class="exnl">We gaan even koffiedrinken. (#2)</span><span class="exen">We're going to get some coffee.</span>
+<span class="exnl">De directeur zal het hotel inspecteren. (#3)</span><span class="exen">The director will inspect the hotel.</span>
+</div></div>`,
+exercises:[
+{id:"20-1",type:"mc",question:"Which structure is used here? 'Hans komt volgende week niet.'",
+opts:["gaan + infinitive","present + time word","zullen + infinitive","imperfectum"],
+ans:enc("present + time word"),exp:"'Komt' is present tense, 'volgende week' is the time word. This is structure #1."},
+{id:"20-2",type:"fill",question:"Complete: 'Eva ___ een jaar in Engeland studeren.' (gaan, she)",
+ans:enc("gaat"),exp:"gaan + infinitive for future. Eva (zij/ze) → gaat."},
+{id:"20-3",type:"mc",question:"When do we prefer 'zullen' for the future?",
+opts:["For certain planned events","When the action is unconfirmed or uncertain","For past-tense narration","For polite requests only"],
+ans:enc("When the action is unconfirmed or uncertain"),
+exp:"Zullen is used when the future action is almost certain but not yet confirmed."},
+{id:"20-4",type:"fill",question:"'Ik ___ volgend weekend in Londen.' (present tense + time word for future)",
+ans:enc("ben"),exp:"Using the present tense with a future time word: ik ben (= I will be) volgend weekend in Londen."},
+]},
+
+/* ─── LESSON 21 ─────────────────────────────────── */
+{id:21, title:"Aanwijzende Voornaamwoorden — die & dat als Verwijzing", icon:"↩",
+expl:`<h3>Aanwijzend voornaamwoord als verwijzing</h3>
+<p>When you want to refer back to something already mentioned (to avoid repeating it), use <strong>die</strong> or <strong>dat</strong>.</p>
+<table class="gt"><thead><tr><th>Use DIE when referring to…</th><th>Use DAT when referring to…</th></tr></thead><tbody>
+<tr><td><strong>People</strong> (any gender)</td><td>A <strong>whole action</strong> or situation</td></tr>
+<tr><td><strong>de-words</strong></td><td></td></tr>
+</tbody></table>
+<div class="exbox"><div class="exlbl">Examples</div>
+<div class="exrow">
+<span class="exnl">Waar is tante Marloes? Die wacht in de auto.</span><span class="exen">DIE = person</span>
+<span class="exnl">Wat een leuke schoenen! Waar heb je die gekocht?</span><span class="exen">DIE = de schoenen (de-word)</span>
+<span class="exnl">Zullen we naar de bioscoop gaan? Ja, dat is een goed idee!</span><span class="exen">DAT = the whole action/idea</span>
+<span class="exnl">Je hebt aardbeien meegenomen. Ja, dat heb ik gedaan.</span><span class="exen">DAT = the action of taking strawberries</span>
+</div></div>`,
+exercises:[
+{id:"21-1",type:"fill",question:"'Leuke schoenen! Waar heb je ___ gekocht?' (de schoenen)",
+ans:enc("die"),exp:"Referring to de schoenen (de-word) → die."},
+{id:"21-2",type:"fill",question:"'Zullen we naar de bioscoop gaan? Ja, ___ is een goed idee!'",
+ans:enc("dat"),exp:"Referring to the whole action/idea of going to the cinema → dat."},
+{id:"21-3",type:"fill",question:"'Waar is Ricardo? ___ haalt koffie.' (person)",
+ans:enc("die"),exp:"Referring to a person → die. 'Ricardo? Die haalt koffie.'"},
+{id:"21-4",type:"mc",question:"'Mag ik naar de WC? Ja, ___ mag.'",
+opts:["die","dat","het","dit"],ans:enc("dat"),
+exp:"Referring to the action of going to the WC → dat."},
+{id:"21-5",type:"fill",question:"'Ken je de cd van Adele? Ja, ___ heb ik voor mijn verjaardag gekregen.' (de cd)",
+ans:enc("die"),exp:"de cd = de-word → die."},
+]},
+
+/* ─── LESSON 22 ─────────────────────────────────── */
+{id:22, title:"Voegwoorden — Makkelijk & Moeilijk", icon:"🔗",
+expl:`<h3>Voegwoorden — Conjunctions</h3>
+<h3 style="margin-top:8px;color:#15803d;font-size:.9rem">Easy conjunctions (no word-order change)</h3>
+<div class="wlist">
+<div class="wi"><span class="wnl">en</span><span class="wen">and</span></div>
+<div class="wi"><span class="wnl">of</span><span class="wen">or</span></div>
+<div class="wi"><span class="wnl">maar</span><span class="wen">but</span></div>
+<div class="wi"><span class="wnl">want</span><span class="wen">because (reason from speaker)</span></div>
+<div class="wi"><span class="wnl">dus</span><span class="wen">so / therefore</span></div>
+</div>
+<h3 style="margin-top:12px;color:#b91c1c;font-size:.9rem">Hard conjunctions (verb goes to END of clause)</h3>
+<div class="wlist">
+<div class="wi"><span class="wnl">omdat</span><span class="wen">because</span></div>
+<div class="wi"><span class="wnl">als</span><span class="wen">when / if</span></div>
+<div class="wi"><span class="wnl">toen</span><span class="wen">when (past only)</span></div>
+<div class="wi"><span class="wnl">voordat</span><span class="wen">before</span></div>
+<div class="wi"><span class="wnl">nadat</span><span class="wen">after</span></div>
+<div class="wi"><span class="wnl">totdat</span><span class="wen">until</span></div>
+<div class="wi"><span class="wnl">zodat</span><span class="wen">so that (result)</span></div>
+<div class="wi"><span class="wnl">zodra</span><span class="wen">as soon as</span></div>
+<div class="wi"><span class="wnl">hoewel</span><span class="wen">although</span></div>
+</div>
+<div class="rule"><strong>Hard conjunction word order:</strong><br>
+Subclause: conjunction + subject + (objects/time/place) + <strong>ALL VERBS LAST</strong><br>
+<em>Ik vind vlinders mooi <strong>omdat ze prachtige kleuren hebben</strong>.</em></div>
+<div class="tip"><strong>⚠ Important rules:</strong><br>
+• <strong>Zodat</strong> can NEVER start a sentence (it expresses a result, not a cause).<br>
+• <strong>Toen</strong> is ALWAYS used with a past tense.<br>
+• After <strong>nadat</strong>, use plusquamperfectum (had/hadden + perfectum verb).</div>`,
+exercises:[
+{id:"22-1",type:"mc",question:"Which conjunction sends the verb to the END of the clause?",
+opts:["en","maar","want","omdat"],ans:enc("omdat"),
+exp:"Omdat is a 'hard' conjunction: the verb goes to the end of the subclause. En/maar/want are 'easy' and keep normal word order."},
+{id:"22-2",type:"fill",question:"'Ik vind vlinders mooi ___ ze prachtige kleuren hebben.'",
+ans:enc("omdat"),exp:"'Because they have beautiful colours' = omdat ze prachtige kleuren hebben. Omdat sends verbs to end."},
+{id:"22-3",type:"mc",question:"Which rule applies to 'toen'?",
+opts:["Always used with present tense","Always used with past tense","Can start a sentence with result","Used only in questions"],
+ans:enc("Always used with past tense"),exp:"Toen = when (in the past). It is ALWAYS followed by a past tense (imperfectum or perfectum)."},
+{id:"22-4",type:"fill",question:"'Ik ga de krant vaker lezen ___ ik nieuwe woorden leer.'",
+ans:enc("zodat"),exp:"'So that I learn new words' = zodat ik nieuwe woorden leer. Zodat = so that (expresses a result/purpose)."},
+{id:"22-5",type:"mc",question:"Which conjunction CANNOT begin a sentence?",
+opts:["omdat","hoewel","als","zodat"],ans:enc("zodat"),
+exp:"Zodat expresses a result/consequence — it can never start a sentence since we can't start with the result."},
+]},
+
+]; // END OF LESSONS
+
+/* ══════════════════════════════════════════════════
+   MOCK EXAM  (30 questions)
+══════════════════════════════════════════════════ */
+const EXAM = [
+{q:"Choose the correct form: Mijn kat ___ op de kast gesprongen.",opts:["is","zijn","heeft","heb"],ans:enc("is"),topic:"Perfectum hebben/zijn"},
+{q:"'Jullie ___ uit Argentinië?' Choose the correct verb form.",opts:["kom","komt","komen","gekomen"],ans:enc("komen"),topic:"Verb conjugation"},
+{q:"How do you say 11:45 in Dutch?",opts:["kwart over elf","kwart voor elf","kwart voor twaalf","vijftien voor twaalf"],ans:enc("kwart voor twaalf"),topic:"De klok"},
+{q:"'Ik wil dat een heel goed/___ idee.' (het idee, een + het-word)",opts:["goed","goede","goeds","goeie"],ans:enc("goed"),topic:"Adjectives"},
+{q:"Form the perfectum of 'betalen':",opts:["gebetaald","betaald","gebetalen","betalen"],ans:enc("betaald"),topic:"Perfectum formation"},
+{q:"Choose the possessive: 'Dat is Mariska en ___ achternaam is Jansen.'",opts:["zijn","haar","hun","uw"],ans:enc("haar"),topic:"Possessive pronouns"},
+{q:"Which article goes with 'meisje'?",opts:["de","het","een (only)","no article"],ans:enc("het"),topic:"De/Het words"},
+{q:"'Ik ___ naar school.' Choose the correct modal (must/obligation).",opts:["kan","mag","moet","wil"],ans:enc("moet"),topic:"Modal verbs"},
+{q:"What is the plural of 'taxi'?",opts:["taxien","taxis","taxi's","taxees"],ans:enc("taxi's"),topic:"Plural forms"},
+{q:"'Deze jas is ___ dan die jas.' (duur → comparative, ends in -r)",opts:["duurer","duurder","meer duur","duurste"],ans:enc("duurder"),topic:"Comparative"},
+{q:"Fill in: 'Zullen we naar de bioscoop gaan? Ja, ___ is een goed idee!' (reference pronoun)",opts:["die","dit","dat","deze"],ans:enc("dat"),topic:"Die/dat reference"},
+{q:"'Wij spreken geen Nederlands. Wie kan ___ helpen?' (us)",opts:["wij","ons","hen","hun"],ans:enc("ons"),topic:"Personal pronouns"},
+{q:"Which is a HARD conjunction (verb to end)?",opts:["en","maar","want","omdat"],ans:enc("omdat"),topic:"Conjunctions"},
+{q:"'De cursus begint ___ 10 uur.' (clock time)",opts:["in","op","om","aan"],ans:enc("om"),topic:"Prepositions in/om/op"},
+{q:"'Gisteren ___ mijn vriend gewerkt.' (werken — no movement)",opts:["is","zijn","heeft","heb"],ans:enc("heeft"),topic:"Perfectum hebben/zijn"},
+{q:"'Maandag ___ we naar Amsterdam.' (inversion — fill in verb)",opts:["we gaan","gaan we","ga we","gaan"],ans:enc("gaan we"),topic:"Inversion"},
+{q:"'Ik ___ samen met vrienden gedanst.' (dansen — no movement/state change)",opts:["ben","zijn","heb","heeft"],ans:enc("heb"),topic:"Perfectum hebben/zijn"},
+{q:"How do you say 11:30 in Dutch?",opts:["half elf","half twaalf","dertig over elf","kwart voor twaalf"],ans:enc("half twaalf"),topic:"De klok"},
+{q:"What does 'Waar kom je vandaan?' mean?",opts:["Where do you live?","Where are you going?","Where do you come from?","Where do you work?"],ans:enc("Where do you come from?"),topic:"Useful phrases"},
+{q:"'luisteren' — imperfectum, ik-form:",opts:["luisterte","luisterde","geluisterd","luisterden"],ans:enc("luisterde"),topic:"Imperfectum"},
+{q:"'Als kind ___ ik piloot worden.' (willen — singular past)",opts:["wil","wou","wilde","wilden"],ans:enc("wilde"),topic:"Modal verbs past"},
+{q:"'Ik ___ (mogen) vroeger niet naar buiten.' (singular past)",opts:["mochten","moch","mocht","mochtte"],ans:enc("mocht"),topic:"Modal verbs past"},
+{q:"Present tense of separable verb 'aankomen' for 'ik':",opts:["Ik aankomen.","Ik kom aan.","Ik aankom.","Ik ben aangekomen."],ans:enc("Ik kom aan."),topic:"Separable verbs"},
+{q:"Perfectum of 'aankomen' in a sentence:",opts:["Ik heb aangekomen.","Ik ben aankgekomen.","Ik ben aangekomen.","Ik heb aankomen."],ans:enc("Ik ben aangekomen."),topic:"Separable verbs"},
+{q:"'Wat ___ p.p.?' (asking for the literal meaning of an abbreviation)",opts:["bedoel","bedoelt","betekent","betekenen"],ans:enc("betekent"),topic:"Bedoelen/betekenen"},
+{q:"'___ T-shirt is goedkoper.' (het T-shirt, it is right here — near)",opts:["Deze","Die","Dit","Dat"],ans:enc("Dit"),topic:"Demonstrative pronouns"},
+{q:"Which word order is correct with 'omdat'?",opts:["Ik kom niet omdat ik ben ziek.","Ik kom niet omdat ik ziek ben.","Ik kom niet omdat ziek ik ben.","Omdat ik ben ziek, ik kom niet."],ans:enc("Ik kom niet omdat ik ziek ben."),topic:"Conjunctions"},
+{q:"'___ universiteit' — which article?",opts:["het","de","een (no rule applies)","both de and het"],ans:enc("de"),topic:"De/Het words"},
+{q:"'Laura ___ 35 jaar geworden.' (worden — change of state → zijn)",opts:["heeft","heb","is","zijn"],ans:enc("is"),topic:"Perfectum hebben/zijn"},
+{q:"'Ik ga de krant vaker lezen ___ ik nieuwe woorden leer.' (so that)",opts:["omdat","want","zodat","als"],ans:enc("zodat"),topic:"Conjunctions"},
+];
+</script>
+<!-- PART 4: app logic -->
+<script>
+/* ══════════════════════════════════════════════════
+   STATE & STORAGE
+══════════════════════════════════════════════════ */
+const STORE_KEY = 'nl_progress_v3';
+
+function loadState() {
+  try { return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; } catch(e) { return {}; }
+}
+function saveState(s) {
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(s)); } catch(e) {}
+}
+
+let state = loadState();
+// state[lessonId] = { answers: {exId: bool}, score: n, total: n }
+
+let currentLesson = null;
+let examState = null; // {qIndex, answers:[], timer, timerInterval}
+
+/* ══════════════════════════════════════════════════
+   SIDEBAR BUILDER
+══════════════════════════════════════════════════ */
+function buildSidebar() {
+  const list = document.getElementById('sb-list');
+  list.innerHTML = LESSONS.map(l => {
+    const ls = state[l.id];
+    const done = ls && ls.score === ls.total && ls.total > 0;
+    const inprog = ls && !done && Object.keys(ls.answers||{}).length > 0;
+    const pct = ls && ls.total ? Math.round(ls.score/ls.total*100) : null;
+    const active = currentLesson && currentLesson.id === l.id ? 'active' : '';
+    return `<div class="sli ${done?'done':''} ${active}" onclick="openLesson(${l.id})">
+      <div class="sli-icon">${done ? '✓' : l.icon}</div>
+      <div class="sli-title">${l.id}. ${l.title}</div>
+      ${pct !== null ? `<div class="sli-badge ${pct===100?'hi':''}">${pct}%</div>` : ''}
+    </div>`;
+  }).join('');
+  updateOverallProgress();
+}
+
+function updateOverallProgress() {
+  const done = LESSONS.filter(l => {
+    const ls = state[l.id];
+    return ls && ls.score === ls.total && ls.total > 0;
+  }).length;
+  const pct = Math.round(done / LESSONS.length * 100);
+  document.getElementById('prog-bar').style.width = pct + '%';
+  document.getElementById('prog-pct').textContent = pct + '%';
+}
+
+/* ══════════════════════════════════════════════════
+   VIEWS
+══════════════════════════════════════════════════ */
+function showView(id) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+}
+
+function showDash() {
+  currentLesson = null;
+  buildDashboard();
+  buildSidebar();
+  showView('v-dash');
+}
+
+function buildDashboard() {
+  const done = LESSONS.filter(l => { const ls=state[l.id]; return ls && ls.score===ls.total && ls.total>0; }).length;
+  const scores = LESSONS.map(l => state[l.id]).filter(ls => ls && ls.total);
+  const avg = scores.length ? Math.round(scores.reduce((a,ls)=>a+ls.score/ls.total*100,0)/scores.length) : null;
+  const totalAns = Object.values(state).reduce((a,ls)=>a+Object.keys(ls.answers||{}).length,0);
+  document.getElementById('d-done').textContent = done;
+  document.getElementById('d-score').textContent = avg !== null ? avg + '%' : '—';
+  document.getElementById('d-streak').textContent = totalAns;
+
+  document.getElementById('d-grid').innerHTML = LESSONS.map(l => {
+    const ls = state[l.id];
+    const isDone = ls && ls.score===ls.total && ls.total>0;
+    const inProg = ls && !isDone && Object.keys(ls.answers||{}).length>0;
+    const pct = ls && ls.total ? Math.round(ls.score/ls.total*100) : null;
+    return `<div class="lcard ${isDone?'done':inProg?'prog':''}" onclick="openLesson(${l.id})">
+      <h3>${l.icon} ${l.id}. ${l.title}</h3>
+      <div class="cmeta">
+        <span>${l.exercises.length} oefeningen</span>
+        ${pct!==null?`<span class="cscore">${pct}%</span>`:`<span>Nog niet begonnen</span>`}
+      </div>
+      ${pct!==null?`<div class="score-bar"><div class="score-fill" style="width:${pct}%"></div></div>`:''}
+    </div>`;
+  }).join('');
+}
+
+/* ══════════════════════════════════════════════════
+   LESSON VIEW
+══════════════════════════════════════════════════ */
+function openLesson(id) {
+  currentLesson = LESSONS.find(l => l.id === id);
+  if (!currentLesson) return;
+  buildSidebar();
+  renderLesson(currentLesson);
+  showView('v-lesson');
+  document.getElementById('main').scrollTop = 0;
+}
+
+function renderLesson(lesson) {
+  document.getElementById('l-num').textContent = `Les ${lesson.id} van ${LESSONS.length}`;
+  document.getElementById('l-title').textContent = `${lesson.icon} ${lesson.title}`;
+  document.getElementById('l-expl').innerHTML = lesson.expl;
+  document.getElementById('l-next').textContent = lesson.id < LESSONS.length ? 'Volgende les →' : 'Cursus voltooid ✓';
+
+  const ls = state[lesson.id] || { answers: {}, score: 0, total: lesson.exercises.length };
+  state[lesson.id] = ls;
+
+  const container = document.getElementById('l-exercises');
+  container.innerHTML = lesson.exercises.map((ex, i) => buildExercise(ex, i, ls)).join('');
+}
+
+function buildExercise(ex, i, ls) {
+  const answered = ls.answers.hasOwnProperty(ex.id);
+  const wasCorrect = ls.answers[ex.id];
+  const statusClass = answered ? (wasCorrect ? 'ok' : 'bad') : '';
+
+  if (ex.type === 'mc') {
+    const correctVal = dec(ex.ans);
+    const optsHtml = ex.opts.map(o => {
+      let cls = '';
+      if (answered) {
+        if (o === correctVal) cls = 'correct';
+        else if (o === ls.chosen && o !== correctVal) cls = 'wrong';
+      }
+      return `<button class="mco ${cls}" ${answered?'disabled':''} onclick="checkMC(this,'${ex.id}','${escQ(o)}')">${o}</button>`;
+    }).join('');
+    const fbClass = answered ? (wasCorrect ? 'ok' : 'bad') : '';
+    const fbMsg = answered ? (wasCorrect ? `✓ Correct! ${ex.exp}` : `✗ The correct answer is: <strong>${correctVal}</strong>. ${ex.exp}`) : '';
+    return `<div class="eq ${statusClass}" id="eq-${ex.id}">
+      <div class="eqn">Oefening ${i+1} · Meerkeuze</div>
+      <div class="eqq">${ex.question}</div>
+      <div class="mc-opts">${optsHtml}</div>
+      <div class="fb ${fbClass} ${answered?'on':''}" id="fb-${ex.id}">${fbMsg}</div>
+    </div>`;
+  }
+
+  // fill type
+  const correctVal = dec(ex.ans);
+  const displayAns = correctVal.split('|')[0];
+  const fbClass = answered ? (wasCorrect ? 'ok' : 'bad') : '';
+  const fbMsg = answered ? (wasCorrect ? `✓ Goed! ${ex.exp}` : `✗ Het goede antwoord is: <strong>${displayAns}</strong>. ${ex.exp}`) : '';
+  const inputVal = answered ? (wasCorrect ? displayAns : (ls.userInput && ls.userInput[ex.id] || '')) : '';
+  const inputCls = answered ? (wasCorrect ? 'correct' : 'wrong') : '';
+  return `<div class="eq ${statusClass}" id="eq-${ex.id}">
+    <div class="eqn">Oefening ${i+1} · Invuloefening</div>
+    <div class="eqq">${ex.question}</div>
+    <input class="fi ${inputCls}" id="fi-${ex.id}" type="text" value="${escQ(inputVal)}"
+      ${answered?'disabled':''} placeholder="Typ je antwoord…"
+      onkeydown="if(event.key==='Enter')checkFill('${ex.id}')">
+    <br><button class="chkbtn" id="btn-${ex.id}" onclick="checkFill('${ex.id}')" ${answered?'disabled':''}>Controleer</button>
+    <div class="fb ${fbClass} ${answered?'on':''}" id="fb-${ex.id}">${fbMsg}</div>
+  </div>`;
+}
+
+function escQ(s) { return (s||'').replace(/'/g,"&#39;").replace(/"/g,'&quot;'); }
+
+/* ══════════════════════════════════════════════════
+   EXERCISE CHECKING
+══════════════════════════════════════════════════ */
+function checkMC(btn, exId, chosen) {
+  const lesson = currentLesson;
+  const ex = lesson.exercises.find(e => e.id === exId);
+  if (!ex) return;
+  const correct = checkAns(ex.ans, chosen);
+  const ls = state[lesson.id];
+  if (!ls.answers.hasOwnProperty(exId)) {
+    ls.answers[exId] = correct;
+    ls.chosen = chosen;
+    if (correct) ls.score = (ls.score||0) + 1;
+    ls.total = lesson.exercises.length;
+    saveState(state);
+  }
+  // update UI
+  const correctVal = dec(ex.ans);
+  const card = document.getElementById('eq-' + exId);
+  card.querySelectorAll('.mco').forEach(b => {
+    b.disabled = true;
+    if (b.textContent === correctVal) b.classList.add('correct');
+    else if (b.textContent === chosen && chosen !== correctVal) b.classList.add('wrong');
+  });
+  card.className = 'eq ' + (correct ? 'ok' : 'bad');
+  const fb = document.getElementById('fb-' + exId);
+  fb.className = 'fb on ' + (correct ? 'ok' : 'bad');
+  fb.innerHTML = correct ? `✓ Goed! ${ex.exp}` : `✗ Het goede antwoord is: <strong>${correctVal}</strong>. ${ex.exp}`;
+  buildSidebar();
+}
+
+function checkFill(exId) {
+  const lesson = currentLesson;
+  const ex = lesson.exercises.find(e => e.id === exId);
+  if (!ex) return;
+  const input = document.getElementById('fi-' + exId);
+  const userVal = input.value;
+  const correct = checkAns(ex.ans, userVal);
+  const ls = state[lesson.id];
+  if (!ls.answers.hasOwnProperty(exId)) {
+    ls.answers[exId] = correct;
+    if (!ls.userInput) ls.userInput = {};
+    ls.userInput[exId] = userVal;
+    if (correct) ls.score = (ls.score||0) + 1;
+    ls.total = lesson.exercises.length;
+    saveState(state);
+  }
+  input.disabled = true;
+  input.className = 'fi ' + (correct ? 'correct' : 'wrong');
+  document.getElementById('btn-' + exId).disabled = true;
+  const correctVal = dec(ex.ans).split('|')[0];
+  const fb = document.getElementById('fb-' + exId);
+  fb.className = 'fb on ' + (correct ? 'ok' : 'bad');
+  fb.innerHTML = correct ? `✓ Goed! ${ex.exp}` : `✗ Het goede antwoord is: <strong>${correctVal}</strong>. ${ex.exp}`;
+  const card = document.getElementById('eq-' + exId);
+  card.className = 'eq ' + (correct ? 'ok' : 'bad');
+  buildSidebar();
+}
+
+function nextLesson() {
+  if (!currentLesson) return;
+  const next = LESSONS.find(l => l.id === currentLesson.id + 1);
+  if (next) openLesson(next.id);
+  else showDash();
+}
+
+/* ══════════════════════════════════════════════════
+   EXAM
+══════════════════════════════════════════════════ */
+function showExam() {
+  if (examState && examState.active) { showView('v-exam'); return; }
+  if (confirm('Wil je het mock inburgeringsexamen starten?\n\n30 vragen · 45 minuten · antwoorden kunnen niet worden gewijzigd.')) {
+    startExam();
+  }
+}
+
+function startExam() {
+  if (examState && examState.timerInterval) clearInterval(examState.timerInterval);
+  examState = {
+    qIndex: 0,
+    answers: new Array(EXAM.length).fill(null),
+    chosen: new Array(EXAM.length).fill(null),
+    secondsLeft: 45 * 60,
+    active: true,
+    timerInterval: null
+  };
+  examState.timerInterval = setInterval(examTick, 1000);
+  renderExamQuestion();
+  showView('v-exam');
+}
+
+function examTick() {
+  if (!examState) return;
+  examState.secondsLeft--;
+  updateTimer();
+  if (examState.secondsLeft <= 0) finishExam();
+}
+
+function updateTimer() {
+  const s = examState.secondsLeft;
+  const m = Math.floor(s/60), sec = s%60;
+  const el = document.getElementById('timer');
+  el.textContent = `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+  el.className = s < 300 ? 'danger' : s < 600 ? 'warn' : '';
+}
+
+function renderExamQuestion() {
+  const qi = examState.qIndex;
+  const q = EXAM[qi];
+  document.getElementById('e-ctr').textContent = `Vraag ${qi+1} van ${EXAM.length}`;
+  document.getElementById('ep-fill').style.width = (qi / EXAM.length * 100) + '%';
+  document.getElementById('e-next').disabled = examState.answers[qi] === null;
+  document.getElementById('e-next').textContent = qi < EXAM.length-1 ? 'Volgende →' : 'Examen afronden';
+
+  const correctVal = dec(q.ans);
+  const chosen = examState.chosen[qi];
+  const answered = examState.answers[qi] !== null;
+
+  document.getElementById('e-question').innerHTML = `
+    <div class="eq" style="border-color:transparent">
+      <div class="eqn">Vraag ${qi+1} · ${q.topic}</div>
+      <div class="eqq" style="font-size:1rem">${q.q}</div>
+      <div class="mc-opts">
+        ${q.opts.map(o => {
+          let cls = '';
+          if (answered) {
+            if (o === correctVal) cls = 'correct';
+            else if (o === chosen && o !== correctVal) cls = 'wrong';
+          } else if (o === chosen) cls = 'sel';
+          return `<button class="mco ${cls}" ${answered?'disabled':''} onclick="examSelect('${escQ(o)}')">${o}</button>`;
+        }).join('')}
+      </div>
+    </div>`;
+}
+
+function examSelect(opt) {
+  const qi = examState.qIndex;
+  if (examState.answers[qi] !== null) return;
+  examState.chosen[qi] = opt;
+  examState.answers[qi] = checkAns(EXAM[qi].ans, opt);
+  document.getElementById('e-next').disabled = false;
+  renderExamQuestion();
+}
+
+function examNext() {
+  const qi = examState.qIndex;
+  if (examState.answers[qi] === null) return;
+  if (qi < EXAM.length - 1) {
+    examState.qIndex++;
+    renderExamQuestion();
+    document.getElementById('main').scrollTop = 0;
+  } else {
+    finishExam();
+  }
+}
+
+function finishExam() {
+  if (examState.timerInterval) clearInterval(examState.timerInterval);
+  examState.active = false;
+  const score = examState.answers.filter(Boolean).length;
+  const total = EXAM.length;
+  const pct = Math.round(score/total*100);
+  const pass = pct >= 70;
+
+  const circle = document.getElementById('r-circle');
+  circle.className = 'rscore ' + (pass ? 'pass' : 'fail');
+  document.getElementById('r-pct').textContent = pct + '%';
+  document.getElementById('r-frac').textContent = score + '/' + total;
+  document.getElementById('r-msg').textContent = pass
+    ? '🎉 Gefeliciteerd! Je bent geslaagd! (≥70%)'
+    : `Blijf oefenen en probeer het opnieuw. Je hebt minimaal 70% nodig (jij had ${pct}%).`;
+
+  document.getElementById('r-items').innerHTML = EXAM.map((q, i) => {
+    const ok = examState.answers[i];
+    const correctVal = dec(q.ans);
+    const chosen = examState.chosen[i] || '(geen antwoord)';
+    return `<div class="ri">
+      <div class="ri-icon">${ok ? '✅' : '❌'}</div>
+      <div class="ri-q">
+        <strong>${q.q}</strong><br>
+        ${ok ? `<span class="ca">Jouw antwoord: ${chosen}</span>`
+             : `<span class="ya">Jouw antwoord: ${chosen}</span> → <span class="ca">Goed antwoord: ${correctVal}</span>`}
+        <br><small style="color:#6b7280">${q.topic}</small>
+      </div>
+    </div>`;
+  }).join('');
+
+  showView('v-results');
+  document.getElementById('main').scrollTop = 0;
+}
+
+function confirmExitExam() {
+  if (confirm('Wil je het examen verlaten? Je voortgang gaat verloren.')) {
+    if (examState && examState.timerInterval) clearInterval(examState.timerInterval);
+    examState = null;
+    showDash();
+  }
+}
+
+/* ══════════════════════════════════════════════════
+   INIT
+══════════════════════════════════════════════════ */
+// Ensure state has correct totals
+LESSONS.forEach(l => {
+  if (!state[l.id]) state[l.id] = { answers: {}, score: 0, total: l.exercises.length };
+  else state[l.id].total = l.exercises.length;
+});
+saveState(state);
+showDash();
+</script>
+</body>
+</html>
